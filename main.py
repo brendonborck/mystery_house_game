@@ -13,5 +13,5 @@ while not done:
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             done = True
     scr.fill((0,0,0))
-    scr.blit(text, (350 - text.get_width()/2, 270 - text.get_height()/2))
+    scr.blit(text, (int(350 - text.get_width()/2), int(270 - text.get_height()/2)))
     pygame.display.flip()
