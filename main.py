@@ -2,7 +2,6 @@
 from cgitb import text
 import pygame
 import constantes
-import sprites
 import os
 class Game:
     def __init__(self):
@@ -48,8 +47,9 @@ class Game:
 
     def carregar_arquivos(self):
         #Carregar arquivos
-        diretorio=os.path.join(os.getcwd(),'imagens')
-        self.diretorio_audios=os.path.join(os.getcwd(),'audio')
+        diretorio=os.path.join(os.getcwd(),'assets')
+        diretorio=os.path.join(diretorio,"imagens")
+        #self.diretorio_audios=os.path.join(os.getcwd(),'assets')
         self.spritesheet=os.path.join(diretorio,constantes.SPRITESHEET)
         self.tela_inicio=os.path.join(diretorio,constantes.TELA_INICIO)
         self.tela_inicio=pygame.image.load(self.tela_inicio).convert()
