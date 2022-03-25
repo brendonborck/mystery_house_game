@@ -15,6 +15,7 @@ class Game:
         self.fonte=pygame.font.match_font(constantes.FONTE)
         self.carregar_arquivos()
         self.direcao=0
+        self.teclas_pressionadas = {'a': False, 's': False, 'd': False, 'w': False}
 
     def novo_jogo(self):
         #instancia as classes
@@ -31,8 +32,7 @@ class Game:
             self.eventos()
             self.tela.fill((150,255,255))
             Backgorund.Desenhar_Sala(self.tela)
-            if self.direcao !=0:
-                Jogador.mover_jogador(self.direcao)
+            Jogador.mover_jogador(self.direcao)
             Jogador.desenhar_jogador(self.tela)
             pygame.display.update()
     
@@ -43,18 +43,35 @@ class Game:
                 if self.jogando:
                     self.jogando=False
                 self.esta_rodando=False
-            if event.type== pygame.KEYDOWN:
-                if event.key== pygame.K_a: #K_a=Tecla a
-                    self.direcao="e"
-                elif event.key== pygame.K_w:
-                    self.direcao="c"
-                elif event.key== pygame.K_d:
-                    self.direcao="d"
-                elif event.key== pygame.K_s:
-                    self.direcao="b"
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_a: #K_a=Tecla a
+                    self.direcao = "a"
+                    self.teclas_pressionadas['a'] = True
+                elif event.key == pygame.K_w:
+                    self.direcao = "w"
+                    self.teclas_pressionadas['w'] = True
+                elif event.key == pygame.K_d:
+                    self.direcao = "d"
+                    self.teclas_pressionadas['d'] = True
+                elif event.key == pygame.K_s:
+                    self.direcao = "s"
+                    self.teclas_pressionadas['s'] = True
             if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_w or event.key == pygame.K_s or event.key == pygame.K_a or event.key == pygame.K_d:
-                        self.direcao = 0
+                if event.key == pygame.K_a:
+                    self.direcao = 0
+                    self.teclas_pressionadas['a'] = False
+                elif event.key == pygame.K_w:
+                    self.direcao = 0
+                    self.teclas_pressionadas['w'] = False
+                elif event.key == pygame.K_d:
+                    self.direcao = 0
+                    self.teclas_pressionadas['d'] = False
+                elif event.key == pygame.K_s:
+                    self.direcao = 0
+                    self.teclas_pressionadas['s'] = False
+                for tecla in ('a','w','s','d'):
+                    if self.teclas_pressionadas[tecla]:
+                        self.direcao = tecla
     def carregar_arquivos(self):
         #Carregar arquivos
         diretorio=os.path.join(os.getcwd(),'assets')
@@ -63,6 +80,7 @@ class Game:
         self.spritesheet=os.path.join(diretorio,constantes.SPRITESHEET)
         self.tela_inicio=os.path.join(diretorio,constantes.TELA_INICIO)
         self.tela_inicio=pygame.image.load(self.tela_inicio).convert()
+        self.tela_inicio=pygame.transform.scale(self.tela_inicio, (1000, 800))
 
     def mostrar_texto(self,texto,tamanho_fonte,cor,x,y):
         #Exibe um texto na tela do jogo
@@ -78,8 +96,8 @@ class Game:
         self.tela.blit(self.tela_inicio,star_logo_rect)
 
     def mostrar_tela_start(self):
-        self.mostrar_start_logo(constantes.LARGURA/2,20 )
-        self.mostrar_texto('Se está preparado, pressione uma tecla',32,constantes.AZUL,constantes.LARGURA/2,constantes.ALTURA/2)
+        self.mostrar_start_logo(constantes.LARGURA/2,0)
+        self.mostrar_texto('Se está preparado, pressione uma tecla',50,constantes.BRANCO,constantes.LARGURA/2,constantes.ALTURA * 0.5)
         pygame.display.flip()
         esperando=True
         while esperando:
@@ -101,6 +119,7 @@ class Sala(pygame.sprite.Sprite):
         self.diretorio=os.path.join(self.diretorio,"imagens")
         self.sala=os.path.join(self.diretorio,constantes.SALA)
         self.sala=pygame.image.load(self.sala).convert()
+        self.sala = pygame.transform.scale(self.sala, (constantes.LARGURA, constantes.ALTURA))
 
     def Desenhar_Sala(self,tela):
        tela.blit(self.sala,(0,0)) 
@@ -112,26 +131,31 @@ class Personagem(pygame.sprite.Sprite):
         self.diretorio=os.path.join(self.diretorio,"imagens")
         self.player=os.path.join(self.diretorio,constantes.JOGADOR)
         self.player=pygame.image.load(self.player).convert()
-        self.x=constantes.LARGURA/2
-        self.y=constantes.ALTURA/2
+        self.x = constantes.LARGURA/2
+        self.y = constantes.ALTURA/2
+        self.altura = 80
+        self.largura = 60
 
     def desenhar_jogador(self,tela):
-        self.player=pygame.transform.scale(self.player,(60,80))
+        self.player=pygame.transform.scale(self.player,(self.largura, self.altura))
         tela.blit(self.player,(self.x,self.y)) 
 
     def mover_jogador(self,direcao):
-        x_max=300
-        y_max=150
-        if direcao != 0 :
-            if direcao=="c" and self.y>y_max:
-                self.y=self.y-10
-            if direcao=="b" and self.y<constantes.ALTURA:
-                self.y=self.y+10
-            if direcao=="e":
-                self.x=self.x-10
-            if direcao=="d":
-                self.x=self.x+10
-
+        x_min = 0
+        x_max = 800
+        y_min = 150
+        y_max = constantes.ALTURA
+        velocidade = 10
+        
+        if direcao == "w" and self.y > y_min:
+            self.y = self.y - velocidade
+        if direcao == "s" and self.y < y_max - self.altura:
+            self.y = self.y + velocidade
+        if direcao == "a" and self.x > x_min:
+            self.x = self.x - velocidade
+        if direcao == "d" and self.x < x_max - self.largura:
+            self.x = self.x + velocidade
+            
 
 g=Game()
 g.mostrar_tela_start()

@@ -1,5 +1,5 @@
 LARGURA=800
-ALTURA=600
+ALTURA=800
 TITULO='Mistery House'
 FPS=30
 
@@ -8,5 +8,6 @@ TELA_INICIO='tela_inicio.jpg'
 SALA="Sala_v2.jpeg"
 JOGADOR="player1.png"
 PRETO=(0,0,0)
+BRANCO=(255,255,255)
 AZUL=(0,0,255)
-FONTE='arial'
+FONTE='comicsansms'
