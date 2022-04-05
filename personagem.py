@@ -74,7 +74,9 @@ class Personagem(pygame.sprite.Sprite):
                 if objeto not in self.objetos_interagidos:
                     self.objetos_interagidos.append(objeto)
                 objeto.interacao(self)
+            return True
         else:
             for objeto in self.objetos_interagidos:
                 objeto.pos_interacao()
                 self.objetos_interagidos.remove(objeto)
+            return False

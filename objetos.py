@@ -164,7 +164,9 @@ class Porta(ObjetosInterativos):
 
         grupo_texto.draw(self.tela)
         pygame.display.update()
-        time.sleep(tempo)  
+        time.sleep(tempo)
+        for event in pygame.event.get():
+            pass
 
 
 class Quadro(ObjetosInterativos):

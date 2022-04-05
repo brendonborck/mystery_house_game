@@ -49,7 +49,11 @@ class Game:
             grupo_objetos_interativos.draw(self.tela)
             jogador.mover_jogador()
             jogador.desenhar_jogador(self.tela)
-            jogador.checar_interacao(grupo_objetos_interativos)
+            interagiu = jogador.checar_interacao(grupo_objetos_interativos)
+            if interagiu:
+                for tecla in self.teclas_pressionadas:
+                    self.teclas_pressionadas[tecla] = False
+                jogador.direcao = 0
             pygame.display.update()
             if jogador.venceu_sala:
                 self.jogando = False
