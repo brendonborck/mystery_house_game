@@ -2,7 +2,8 @@ import pygame
 import constantes
 from menu import Menu
 from personagem import Personagem
-from objetos import Porta
+from objetos import Porta, Quadro
+from utils import Texto
 import os
 from abc import abstractmethod
 
@@ -17,7 +18,6 @@ class Game:
         self.clock = pygame.time.Clock()
         self.esta_rodando = True
         self.jogando = False
-        self.direcao = 0
         self.teclas_pressionadas = {'a': False, 's': False, 'd': False, 'w': False}
         self.velocidade = 0
 
@@ -32,60 +32,52 @@ class Game:
         self.jogando = True
         sala = Sala()
         jogador = Personagem(self.imagem_jogador, self.velocidade)
-        porta_saida = Porta(self.tela, 0.75*constantes.LARGURA, constantes.Y_PAREDE_SUPERIOR)
+        quadro_x = 0.15*constantes.LARGURA
+        quadro_y = 0.36*constantes.Y_PAREDE_SUPERIOR
+        quadro = Quadro(self.tela, self.clock, quadro_x, quadro_y, 'center')
+        porta_saida_x = 0.75*constantes.LARGURA
+        porta_saida_y = constantes.Y_PAREDE_SUPERIOR
+        porta_saida = Porta(self.tela, self.clock, porta_saida_x, porta_saida_y, 'bottomleft')
         grupo_objetos_interativos = pygame.sprite.Group()
         grupo_sala = pygame.sprite.GroupSingle()
-        grupo_objetos_interativos.add(porta_saida)
+        grupo_objetos_interativos.add(porta_saida, quadro)
         grupo_sala.add(sala)
         while self.jogando:
             self.clock.tick(constantes.FPS)
-            self.eventos()
+            self.eventos(jogador)
             grupo_sala.draw(self.tela)
             grupo_objetos_interativos.draw(self.tela)
-            jogador.mover_jogador(self.direcao)
+            jogador.mover_jogador()
             jogador.desenhar_jogador(self.tela)
             jogador.checar_interacao(grupo_objetos_interativos)
             pygame.display.update()
+            if jogador.venceu_sala:
+                self.jogando = False
 
-
-    def eventos(self):
+    def eventos(self, jogador):
         #Define os eventos do jogo
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.jogando = False
                 self.esta_rodando = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a: #K_a=Tecla a
-                    self.direcao = "a"
-                    self.teclas_pressionadas['a'] = True
-                elif event.key == pygame.K_w:
-                    self.direcao = "w"
-                    self.teclas_pressionadas['w'] = True
-                elif event.key == pygame.K_d:
-                    self.direcao = "d"
-                    self.teclas_pressionadas['d'] = True
-                elif event.key == pygame.K_s:
-                    self.direcao = "s"
-                    self.teclas_pressionadas['s'] = True
+            elif event.type == pygame.KEYDOWN:
+                if event.key in (pygame.K_a, pygame.K_w, pygame.K_d, pygame.K_s):
+                    jogador.direcao = event.unicode
+                    self.teclas_pressionadas[event.unicode] = True
+                elif event.key == pygame.K_e:
+                    jogador.agir()
                 elif event.key == pygame.K_ESCAPE:
                     self.jogando = False
                     self.esta_rodando = False
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_a:
-                    self.direcao = 0
-                    self.teclas_pressionadas['a'] = False
-                elif event.key == pygame.K_w:
-                    self.direcao = 0
-                    self.teclas_pressionadas['w'] = False
-                elif event.key == pygame.K_d:
-                    self.direcao = 0
-                    self.teclas_pressionadas['d'] = False
-                elif event.key == pygame.K_s:
-                    self.direcao = 0
-                    self.teclas_pressionadas['s'] = False
+            elif event.type == pygame.KEYUP:
+                if event.key in (pygame.K_a, pygame.K_w, pygame.K_d, pygame.K_s):
+                    jogador.direcao = 0
+                    self.teclas_pressionadas[event.unicode] = False
+                elif event.key == pygame.K_e:
+                    jogador.parar_agir()
                 for tecla in ('a','w','s','d'):
                     if self.teclas_pressionadas[tecla]:
-                        self.direcao = tecla     
+                        jogador.direcao = tecla     
 
 
     def mostrar_tela_inicio(self):
@@ -104,9 +96,29 @@ class Game:
         self.velocidade = menu.velocidade
 	
                     
-    def game_over(self):
-        #TODO
-        pass 
+    def fim_de_jogo(self):
+        self.clock.tick(constantes.FPS)
+        x_fundo = constantes.LARGURA/2
+        y_fundo = constantes.ALTURA/2
+        tamanho_fonte = 60
+        mensagem = 'Você venceu!'
+        cor = constantes.BRANCO
+        largura = constantes.LARGURA
+        altura = constantes.ALTURA
+        x_texto = 0.5*largura
+        y_texto = 0.5*altura
+        grupo_texto = pygame.sprite.Group()
+        texto = Texto(mensagem, tamanho_fonte, x_fundo, y_fundo, x_texto, y_texto, largura, altura, cor)
+        grupo_texto.add(texto)
+
+        grupo_texto.draw(self.tela)
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.esta_rodando = False
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    self.esta_rodando = False
 
 
 class Sala(pygame.sprite.Sprite):
@@ -118,9 +130,10 @@ class Sala(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
 
-g = Game()
-g.mostrar_tela_inicio()
-
-while g.esta_rodando:
+if __name__ == '__main__':
+    g = Game()
+    g.mostrar_tela_inicio()
     g.novo_jogo()
-    g.game_over()
+
+    while g.esta_rodando:
+        g.fim_de_jogo()
