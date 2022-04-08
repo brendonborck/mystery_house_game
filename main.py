@@ -25,7 +25,7 @@ class Game:
     def novo_jogo(self):
         #instancia as classes
         self.rodar_fase1()
-        self.rodar_fase2()
+        #self.rodar_fase2()
 
 
     def rodar_fase1(self):
