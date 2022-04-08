@@ -56,13 +56,12 @@ class Menu():
 
     
     def opcoes_de_jogo(self, botao_selecionado):
-        match botao_selecionado:
-            case 0:
-                self.imagem_jogador = "player1.png"
-                self.velocidade = 10
-            case 1:
-                self.imagem_jogador = "player2.png"
-                self.velocidade = 10
-            case 2:
-                self.imagem_jogador = "player1.png"
-                self.velocidade = 20
+        if botao_selecionado==0:
+            self.imagem_jogador = "player1.png"
+            self.velocidade = 10
+        elif  botao_selecionado==1:
+            self.imagem_jogador = "player2.png"
+            self.velocidade = 10
+        elif  botao_selecionado==2:
+            self.imagem_jogador = "player1.png"
+            self.velocidade = 20

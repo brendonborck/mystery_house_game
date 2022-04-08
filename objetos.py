@@ -15,11 +15,10 @@ class ObjetosInterativos(pygame.sprite.Sprite):
         if escala:
             self.image = pygame.transform.scale(self.image, escala)
         self.rect = self.image.get_rect()
-        match modo_posicao:
-            case 'center':
-                self.rect.center = (x, y)
-            case 'bottomleft':
-                self.rect.bottomleft = (x, y)
+        if modo_posicao=='center':
+            self.rect.center = (x, y)
+        elif modo_posicao=='bottomleft':
+            self.rect.bottomleft = (x, y)
         self.largura = self.rect.width
         self.altura = self.rect.height
         self.mask = self.definir_mask()
@@ -205,6 +204,7 @@ class Quadro(ObjetosInterativos):
                 elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_e:
                         jogador.parar_agir()
+
 
     def pos_interacao(self):
         pass

@@ -24,10 +24,11 @@ class Game:
 
     def novo_jogo(self):
         #instancia as classes
-        self.rodar()
+        self.rodar_fase1()
+        self.rodar_fase2()
 
 
-    def rodar(self):
+    def rodar_fase1(self):
         #loop do jogo
         self.jogando = True
         sala = Sala()
