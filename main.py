@@ -2,7 +2,7 @@ import pygame
 import constantes
 from menu import Menu
 from personagem import Personagem
-from objetos import Porta, Quadro
+from objetos import Porta, Quadro, Pergaminho
 from utils import Texto
 import os
 from abc import abstractmethod
@@ -33,15 +33,22 @@ class Game:
         self.jogando = True
         sala = Sala()
         jogador = Personagem(self.imagem_jogador, self.velocidade)
+        
         quadro_x = 0.15*constantes.LARGURA
         quadro_y = 0.36*constantes.Y_PAREDE_SUPERIOR
         quadro = Quadro(self.tela, self.clock, quadro_x, quadro_y, 'center')
+        
         porta_saida_x = 0.75*constantes.LARGURA
         porta_saida_y = constantes.Y_PAREDE_SUPERIOR
         porta_saida = Porta(self.tela, self.clock, porta_saida_x, porta_saida_y, 'bottomleft')
+        
+        pergaminho_x = 0.25*constantes.LARGURA
+        pergaminho_y = 0.8*constantes.ALTURA
+        pergaminho = Pergaminho(self.tela, self.clock, pergaminho_x, pergaminho_y, 'center')
+        
         grupo_objetos_interativos = pygame.sprite.Group()
         grupo_sala = pygame.sprite.GroupSingle()
-        grupo_objetos_interativos.add(porta_saida, quadro)
+        grupo_objetos_interativos.add(porta_saida, quadro, pergaminho)
         grupo_sala.add(sala)
         while self.jogando:
             self.clock.tick(constantes.FPS)

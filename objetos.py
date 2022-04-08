@@ -1,6 +1,6 @@
 import pygame
 import constantes
-from utils import Texto
+from utils import Texto, Utils
 import os
 import time
 from abc import abstractmethod
@@ -220,3 +220,72 @@ class Quadro(ObjetosInterativos):
         retangulo = pygame.mask.Mask((largura_retangulo, altura_retangulo), True)
         mask.draw(retangulo, posicao)
         return mask
+        
+        
+class Pergaminho(ObjetosInterativos):
+    
+    def __init__(self, tela, clock, x, y, modo_posicao):
+        self.imagem_pergaminho = os.path.join(constantes.DIRETORIO_IAMGENS, 'pergaminho.png')
+        super().__init__(tela, clock, self.imagem_pergaminho, x, y, modo_posicao, (45, 55))
+
+    
+    def interacao(self, jogador):
+        x_fundo, y_fundo = (constantes.LARGURA/2, constantes.ALTURA/2)
+        largura = 0.77*constantes.LARGURA
+        altura = 0.24*constantes.ALTURA
+        imagem = pygame.Surface([largura, altura])
+        imagem.fill(constantes.PRETO)
+        retangulo = imagem.get_rect()
+        retangulo.center = (x_fundo ,y_fundo)
+        self.tela.blit(imagem, retangulo)
+        
+        tamanho_fonte = 20
+        cor = constantes.BRANCO
+        x_texto = x_fundo
+        y_texto1 = 0.44*constantes.ALTURA
+        y_texto2 = 0.48*constantes.ALTURA
+        y_texto3 = 0.52*constantes.ALTURA
+        y_texto4 = 0.56*constantes.ALTURA
+        mensagem1 = "Bem vindo a Mistery House!"
+        mensagem2 = "Você não se lembra como veio parar aqui, mas não se preocupe, tudo será explicado no tempo"
+        mensagem3 = "certo. A única coisa que posso te dizer nesse momento é que, por muitas vezes, a vida"
+        mensagem4 = "parece ser apenas preto no branco, mas, na verdade, ela não é. Tudo não é sempre 0 ou 1."
+        Utils().mostrar_texto(self.tela, mensagem1, tamanho_fonte, cor, x_texto, y_texto1)
+        Utils().mostrar_texto(self.tela, mensagem2, tamanho_fonte, cor, x_texto, y_texto2)
+        Utils().mostrar_texto(self.tela, mensagem3, tamanho_fonte, cor, x_texto, y_texto3)
+        Utils().mostrar_texto(self.tela, mensagem4, tamanho_fonte, cor, x_texto, y_texto4)
+
+
+        pygame.display.update()
+        
+        vendo_pop_up = True
+        while vendo_pop_up:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    #TODO
+                    pass
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        vendo_pop_up = False
+                    elif event.key == pygame.K_ESCAPE:
+                        vendo_pop_up = False
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_e:
+                        jogador.parar_agir()
+
+
+    def pos_interacao(self):
+        pass
+
+
+    def definir_mask(self):
+        largura_mask = self.largura
+        altura_mask = self.altura
+        mask = pygame.mask.Mask((largura_mask, altura_mask), False)
+        largura_retangulo = 0.8*largura_mask
+        altura_retangulo = 0.8*altura_mask
+        posicao = ((largura_mask - largura_retangulo)/2, (altura_mask - largura_retangulo)/2)
+        retangulo = pygame.mask.Mask((largura_retangulo, altura_retangulo), True)
+        mask.draw(retangulo, posicao)
+        return mask        
+

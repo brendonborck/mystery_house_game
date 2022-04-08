@@ -15,6 +15,7 @@ class Utils:
         retangulo_texto = texto.get_rect()
         retangulo_texto.center = (x, y)
         tela.blit(texto, retangulo_texto)
+        
 
 
 class Texto(pygame.sprite.Sprite):
