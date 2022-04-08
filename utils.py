@@ -1,5 +1,5 @@
 import pygame
-import constantes
+import constants
 
 class Utils:
 
@@ -7,30 +7,30 @@ class Utils:
         pass
 
     @staticmethod
-    def mostrar_texto(tela, mensagem, tamanho_fonte, cor, x, y):
-        #Exibe um texto na tela do jogo
-        nome_fonte = pygame.font.match_font(constantes.FONTE)
-        fonte = pygame.font.Font(nome_fonte, tamanho_fonte)
-        texto = fonte.render(mensagem, True, cor)
-        retangulo_texto = texto.get_rect()
-        retangulo_texto.center = (x, y)
-        tela.blit(texto, retangulo_texto)
+    def draw_text(screen, message, font_size, color, x, y):
+        #Exibe um text na screen do jogo
+        font_name = pygame.font.match_font(constants.FONT)
+        font = pygame.font.Font(font_name, font_size)
+        text = font.render(message, True, color)
+        text_rect = text.get_rect()
+        text_rect.center = (x, y)
+        screen.blit(text, text_rect)
 
 
-class Texto(pygame.sprite.Sprite):
+class Text(pygame.sprite.Sprite):
 
-    def __init__(self, mensagem, tamanho_fonte, x_fundo, y_fundo, x_texto, y_texto, largura, altura, cor_texto, cor_fundo = constantes.PRETO):
+    def __init__(self, message, font_size, x_pop_up, y_pop_up, x_text, y_text, width, height, text_color, pop_up_color = constants.BLACK):
         super().__init__()
-        nome_fonte = pygame.font.match_font(constantes.FONTE)
-        fonte = pygame.font.Font(nome_fonte, tamanho_fonte)
-        texto = fonte.render(mensagem, True, cor_texto)
+        font_name = pygame.font.match_font(constants.FONT)
+        font = pygame.font.Font(font_name, font_size)
+        text = font.render(message, True, text_color)
         
-        self.image = pygame.Surface([largura, altura])
-        self.image.fill(cor_fundo)
+        self.image = pygame.Surface([width, height])
+        self.image.fill(pop_up_color)
         self.rect = self.image.get_rect()
-        self.rect.center = (x_fundo ,y_fundo)
+        self.rect.center = (x_pop_up ,y_pop_up)
 
-        retangulo_texto = texto.get_rect()
-        x = x_texto - retangulo_texto.w/2
-        y = y_texto - retangulo_texto.h/2
-        self.image.blit(texto, (x, y))
+        text_rect = text.get_rect()
+        x = x_text - text_rect.w/2
+        y = y_text - text_rect.h/2
+        self.image.blit(text, (x, y))

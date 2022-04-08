@@ -1,68 +1,67 @@
 import pygame
-import constantes
+import constants
 from utils import Utils
 
 class Menu():
-    def __init__(self, tela, tela_inicio):
-        self.tela = tela
-        self.tela_inicio = tela_inicio
-        self.esta_rodando = True
-        self.jogando = False
-        self.tamanho_fonte = 35
-        self.imagem_jogador = None
-        self.velocidade = None
+    def __init__(self, screen, start_screen_image):
+        self.screen = screen
+        self.start_screen_image = start_screen_image
+        self.running = True
+        self.playing = False
+        self.font_size = 35
+        self.player_image = None
+        self.speed = None
 
 
-    def mostrar_opcoes(self, cores):
-        Utils().mostrar_texto(self.tela, 'Modo 1', self.tamanho_fonte, cores[0], constantes.LARGURA/2, constantes.ALTURA * 0.7)
-        Utils().mostrar_texto(self.tela, 'Modo 2', self.tamanho_fonte, cores[1], constantes.LARGURA/2, constantes.ALTURA * 0.8)
-        Utils().mostrar_texto(self.tela, 'Modo 3', self.tamanho_fonte, cores[2], constantes.LARGURA/2, constantes.ALTURA * 0.9)
+    def draw_options(self, colors):
+        Utils().draw_text(self.screen, 'Modo 1', self.font_size, colors[0], constants.WIDTH/2, constants.HEIGHT * 0.7)
+        Utils().draw_text(self.screen, 'Modo 2', self.font_size, colors[1], constants.WIDTH/2, constants.HEIGHT * 0.8)
+        Utils().draw_text(self.screen, 'Modo 3', self.font_size, colors[2], constants.WIDTH/2, constants.HEIGHT * 0.9)
         pygame.display.flip()
 
     
-    def rodar_menu(self):
-        num_botoes = 3
-        botao_selecionado = 0
-        cores = [constantes.PRETO, constantes.BRANCO, constantes.BRANCO]
-        self.mostrar_opcoes(cores)
+    def draw_menu(self):
+        n_buttons = 3
+        selected_button = 0
+        colors = [constants.GRAY, constants.WHITE, constants.WHITE]
+        self.draw_options(colors)
 
-        no_menu=True
-        while no_menu:
+        in_menu=True
+        while in_menu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    no_menu = False
-                    self.esta_rodando = False
+                    in_menu = False
+                    self.running = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
-                        no_menu = False
-                        self.opcoes_de_jogo(botao_selecionado)
+                        in_menu = False
+                        self.game_options(selected_button)
                     elif event.key == pygame.K_ESCAPE:
-                        no_menu = False
-                        self.esta_rodando = False
+                        in_menu = False
+                        self.running = False
                 if event.type == pygame.KEYUP:
-                    if event.key == pygame.K_UP and botao_selecionado > 0:
-                        botao_selecionado -= 1
-                    if event.key == pygame.K_DOWN and botao_selecionado < num_botoes - 1:
-                        botao_selecionado += 1
+                    if event.key == pygame.K_UP and selected_button > 0:
+                        selected_button -= 1
+                    if event.key == pygame.K_DOWN and selected_button < n_buttons - 1:
+                        selected_button += 1
                     if event.key in (pygame.K_UP, pygame.K_DOWN):
-                        cores = [constantes.BRANCO] * num_botoes
-                        cores[botao_selecionado] = constantes.PRETO
+                        colors = [constants.WHITE] * n_buttons
+                        colors[selected_button] = constants.GRAY
         
-                        retangulo_tela = self.tela_inicio.get_rect()
-                        retangulo_tela.midtop = (constantes.LARGURA/2,0)
-                        self.tela.blit(self.tela_inicio, retangulo_tela)
-                        self.mostrar_opcoes(cores)
+                        screen_rect = self.start_screen_image.get_rect()
+                        screen_rect.midtop = (constants.WIDTH/2,0)
+                        self.screen.blit(self.start_screen_image, screen_rect)
+                        self.draw_options(colors)
                         pygame.display.update()
 
     
-    def opcoes_de_jogo(self, botao_selecionado):
-        match botao_selecionado:
-            case 0:
-                self.imagem_jogador = "player1.png"
-                self.velocidade = 10
-            case 1:
-                self.imagem_jogador = "player2.png"
-                self.velocidade = 10
-            case 2:
-                self.imagem_jogador = "player1.png"
-                self.velocidade = 20
+    def game_options(self, selected_button):
+        if selected_button == 0:
+            self.player_image = "player1.png"
+            self.speed = 10
+        elif selected_button == 1:
+            self.player_image = "player2.png"
+            self.speed = 10
+        elif selected_button == 2:
+            self.player_image = "player1.png"
+            self.speed = 20
