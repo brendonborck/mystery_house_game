@@ -1,9 +1,9 @@
 import pygame
-import constantes
+import constants
 from menu import Menu
-from personagem import Personagem
-from objetos import Porta, Quadro, Pergaminho
-from utils import Texto
+from player import Player
+from objects import Door, Painting, Paper
+from utils import Text
 import os
 from abc import abstractmethod
 
@@ -12,140 +12,140 @@ class Game:
         #Criando a Tela do Jogo
         pygame.init()
         pygame.mixer.init()
-        self.tela = pygame.display.set_mode((constantes.LARGURA,constantes.ALTURA))
-        self.imagem_jogador = None
-        pygame.display.set_caption(constantes.TITULO)
+        self.screen = pygame.display.set_mode((constants.WIDTH,constants.HEIGHT))
+        self.player_image = None
+        pygame.display.set_caption(constants.TITLE)
         self.clock = pygame.time.Clock()
-        self.esta_rodando = True
-        self.jogando = False
-        self.teclas_pressionadas = {'a': False, 's': False, 'd': False, 'w': False}
-        self.velocidade = 0
+        self.running = True
+        self.playing = False
+        self.pressed_keys = {'a': False, 's': False, 'd': False, 'w': False}
+        self.speed = 0
 
 
-    def novo_jogo(self):
+    def new_game(self):
         #instancia as classes
-        self.rodar_fase1()
-        #self.rodar_fase2()
+        self.run_level_1()
+        #self.run_level_2()
 
 
-    def rodar_fase1(self):
+    def run_level_1(self):
         #loop do jogo
-        self.jogando = True
-        sala = Sala()
-        jogador = Personagem(self.imagem_jogador, self.velocidade)
+        self.playing = True
+        room = Room()
+        player = Player(self.player_image, self.speed)
         
-        quadro_x = 0.15*constantes.LARGURA
-        quadro_y = 0.36*constantes.Y_PAREDE_SUPERIOR
-        quadro = Quadro(self.tela, self.clock, quadro_x, quadro_y, 'center')
+        painting_x = 0.15*constants.WIDTH
+        painting_y = 0.36*constants.Y_SUPERIOR_WALL
+        painting = Painting(self.screen, self.clock, painting_x, painting_y, 'center')
         
-        porta_saida_x = 0.75*constantes.LARGURA
-        porta_saida_y = constantes.Y_PAREDE_SUPERIOR
-        porta_saida = Porta(self.tela, self.clock, porta_saida_x, porta_saida_y, 'bottomleft')
+        exit_door_x = 0.75*constants.WIDTH
+        exit_door_y = constants.Y_SUPERIOR_WALL
+        exit_door = Door(self.screen, self.clock, exit_door_x, exit_door_y, 'bottomleft')
         
-        pergaminho_x = 0.25*constantes.LARGURA
-        pergaminho_y = 0.8*constantes.ALTURA
-        pergaminho = Pergaminho(self.tela, self.clock, pergaminho_x, pergaminho_y, 'center')
+        paper_x = 0.25*constants.WIDTH
+        paper_y = 0.8*constants.HEIGHT
+        paper = Paper(self.screen, self.clock, paper_x, paper_y, 'center')
         
-        grupo_objetos_interativos = pygame.sprite.Group()
-        grupo_sala = pygame.sprite.GroupSingle()
-        grupo_objetos_interativos.add(porta_saida, quadro, pergaminho)
-        grupo_sala.add(sala)
-        while self.jogando:
-            self.clock.tick(constantes.FPS)
-            self.eventos(jogador)
-            grupo_sala.draw(self.tela)
-            grupo_objetos_interativos.draw(self.tela)
-            jogador.mover_jogador()
-            jogador.desenhar_jogador(self.tela)
-            interagiu = jogador.checar_interacao(grupo_objetos_interativos)
-            if interagiu:
-                for tecla in self.teclas_pressionadas:
-                    self.teclas_pressionadas[tecla] = False
-                jogador.direcao = 0
+        interactive_objects_group = pygame.sprite.Group()
+        room_group = pygame.sprite.GroupSingle()
+        interactive_objects_group.add(exit_door, painting, paper)
+        room_group.add(room)
+        while self.playing:
+            self.clock.tick(constants.FPS)
+            self.events(player)
+            room_group.draw(self.screen)
+            interactive_objects_group.draw(self.screen)
+            player.move_player()
+            player.draw_player(self.screen)
+            interacted = player.check_interaction(interactive_objects_group)
+            if interacted:
+                for key in self.pressed_keys:
+                    self.pressed_keys[key] = False
+                player.direction = 0
             pygame.display.update()
-            if jogador.venceu_sala:
-                self.jogando = False
+            if player.passed_room:
+                self.playing = False
 
-    def eventos(self, jogador):
-        #Define os eventos do jogo
+    def events(self, player):
+        #Define os events do jogo
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.jogando = False
-                self.esta_rodando = False
+                self.playing = False
+                self.running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key in (pygame.K_a, pygame.K_w, pygame.K_d, pygame.K_s):
-                    jogador.direcao = event.unicode.lower()
-                    self.teclas_pressionadas[event.unicode.lower()] = True
+                    player.direction = event.unicode.lower()
+                    self.pressed_keys[event.unicode.lower()] = True
                 elif event.key == pygame.K_e:
-                    jogador.agir()
+                    player.act()
                 elif event.key == pygame.K_ESCAPE:
-                    self.jogando = False
-                    self.esta_rodando = False
+                    self.playing = False
+                    self.running = False
             elif event.type == pygame.KEYUP:
                 if event.key in (pygame.K_a, pygame.K_w, pygame.K_d, pygame.K_s):
-                    jogador.direcao = 0
-                    self.teclas_pressionadas[event.unicode.lower()] = False
+                    player.direction = 0
+                    self.pressed_keys[event.unicode.lower()] = False
                 elif event.key == pygame.K_e:
-                    jogador.parar_agir()
-                for tecla in ('a','w','s','d'):
-                    if self.teclas_pressionadas[tecla]:
-                        jogador.direcao = tecla     
+                    player.stop_acting()
+                for key in ('a','w','s','d'):
+                    if self.pressed_keys[key]:
+                        player.direction = key     
 
 
-    def mostrar_tela_inicio(self):
-        caminho_tela_inicio = os.path.join(constantes.DIRETORIO_IAMGENS, constantes.TELA_INICIO)
-        tela_inicio = pygame.image.load(caminho_tela_inicio).convert()
-        tela_inicio = pygame.transform.scale(tela_inicio, (1000, 800))
-        retangulo_tela_inicio = tela_inicio.get_rect()
-        retangulo_tela_inicio.midtop = (constantes.LARGURA/2,0)
-        self.tela.blit(tela_inicio, retangulo_tela_inicio)
+    def draw_start_screen(self):
+        start_screen_path = os.path.join(constants.IMAGES_DIR, constants.START_IMAGE)
+        start_screen_image = pygame.image.load(start_screen_path).convert()
+        start_screen_image = pygame.transform.scale(start_screen_image, (1000, 800))
+        start_screen_rect = start_screen_image.get_rect()
+        start_screen_rect.midtop = (constants.WIDTH/2,0)
+        self.screen.blit(start_screen_image, start_screen_rect)
 
-        menu = Menu(self.tela, tela_inicio)
+        menu = Menu(self.screen, start_screen_image)
         pygame.display.flip()
-        menu.rodar_menu()
-        self.esta_rodando = menu.esta_rodando
-        self.imagem_jogador = menu.imagem_jogador
-        self.velocidade = menu.velocidade
+        menu.draw_menu()
+        self.running = menu.running
+        self.player_image = menu.player_image
+        self.speed = menu.speed
 	
                     
-    def fim_de_jogo(self):
-        self.clock.tick(constantes.FPS)
-        x_fundo = constantes.LARGURA/2
-        y_fundo = constantes.ALTURA/2
-        tamanho_fonte = 60
-        mensagem = 'Você venceu!'
-        cor = constantes.BRANCO
-        largura = constantes.LARGURA
-        altura = constantes.ALTURA
-        x_texto = 0.5*largura
-        y_texto = 0.5*altura
-        grupo_texto = pygame.sprite.Group()
-        texto = Texto(mensagem, tamanho_fonte, x_fundo, y_fundo, x_texto, y_texto, largura, altura, cor)
-        grupo_texto.add(texto)
+    def game_ended(self):
+        self.clock.tick(constants.FPS)
+        x_pop_up = constants.WIDTH/2
+        y_pop_up = constants.HEIGHT/2
+        font_size = 60
+        message = 'Você venceu!'
+        color = constants.WHITE
+        width = constants.WIDTH
+        height = constants.HEIGHT
+        x_text = 0.5*width
+        y_text = 0.5*height
+        text_group = pygame.sprite.Group()
+        text = Text(message, font_size, x_pop_up, y_pop_up, x_text, y_text, width, height, color)
+        text_group.add(text)
 
-        grupo_texto.draw(self.tela)
+        text_group.draw(self.screen)
         pygame.display.update()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.esta_rodando = False
+                self.running = False
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                    self.esta_rodando = False
+                    self.running = False
 
 
-class Sala(pygame.sprite.Sprite):
+class Room(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        caminho_sala = os.path.join(constantes.DIRETORIO_IAMGENS, constantes.IMAGEM_SALA)
-        self.image = pygame.image.load(caminho_sala).convert()
-        self.image = pygame.transform.scale(self.image, (constantes.LARGURA, constantes.ALTURA))
+        room_image_path = os.path.join(constants.IMAGES_DIR, constants.ROOM_IMAGE)
+        self.image = pygame.image.load(room_image_path).convert()
+        self.image = pygame.transform.scale(self.image, (constants.WIDTH, constants.HEIGHT))
         self.rect = self.image.get_rect()
 
 
 if __name__ == '__main__':
     g = Game()
-    g.mostrar_tela_inicio()
-    g.novo_jogo()
+    g.draw_start_screen()
+    g.new_game()
 
-    while g.esta_rodando:
-        g.fim_de_jogo()
+    while g.running:
+        g.game_ended()
