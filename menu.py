@@ -23,7 +23,7 @@ class Menu():
     def rodar_menu(self):
         num_botoes = 3
         botao_selecionado = 0
-        cores = [constantes.PRETO, constantes.BRANCO, constantes.BRANCO]
+        cores = [constantes.CINZA, constantes.BRANCO, constantes.BRANCO]
         self.mostrar_opcoes(cores)
 
         no_menu=True
@@ -46,7 +46,7 @@ class Menu():
                         botao_selecionado += 1
                     if event.key in (pygame.K_UP, pygame.K_DOWN):
                         cores = [constantes.BRANCO] * num_botoes
-                        cores[botao_selecionado] = constantes.PRETO
+                        cores[botao_selecionado] = constantes.CINZA
         
                         retangulo_tela = self.tela_inicio.get_rect()
                         retangulo_tela.midtop = (constantes.LARGURA/2,0)

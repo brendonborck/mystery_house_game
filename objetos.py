@@ -231,7 +231,7 @@ class Pergaminho(ObjetosInterativos):
     
     def interacao(self, jogador):
         x_fundo, y_fundo = (constantes.LARGURA/2, constantes.ALTURA/2)
-        largura = 0.77*constantes.LARGURA
+        largura = 0.87*constantes.LARGURA
         altura = 0.24*constantes.ALTURA
         imagem = pygame.Surface([largura, altura])
         imagem.fill(constantes.PRETO)
@@ -239,7 +239,7 @@ class Pergaminho(ObjetosInterativos):
         retangulo.center = (x_fundo ,y_fundo)
         self.tela.blit(imagem, retangulo)
         
-        tamanho_fonte = 20
+        tamanho_fonte = 16
         cor = constantes.BRANCO
         x_texto = x_fundo
         y_texto1 = 0.44*constantes.ALTURA
@@ -250,7 +250,7 @@ class Pergaminho(ObjetosInterativos):
         mensagem2 = "Você não se lembra como veio parar aqui, mas não se preocupe, tudo será explicado no tempo"
         mensagem3 = "certo. A única coisa que posso te dizer nesse momento é que, por muitas vezes, a vida"
         mensagem4 = "parece ser apenas preto no branco, mas, na verdade, ela não é. Tudo não é sempre 0 ou 1."
-        Utils().mostrar_texto(self.tela, mensagem1, tamanho_fonte, cor, x_texto, y_texto1)
+        Utils().mostrar_texto(self.tela, mensagem1, int(1.25*tamanho_fonte), cor, x_texto, y_texto1)
         Utils().mostrar_texto(self.tela, mensagem2, tamanho_fonte, cor, x_texto, y_texto2)
         Utils().mostrar_texto(self.tela, mensagem3, tamanho_fonte, cor, x_texto, y_texto3)
         Utils().mostrar_texto(self.tela, mensagem4, tamanho_fonte, cor, x_texto, y_texto4)

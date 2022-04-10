@@ -74,8 +74,8 @@ class Game:
                 self.esta_rodando = False
             elif event.type == pygame.KEYDOWN:
                 if event.key in (pygame.K_a, pygame.K_w, pygame.K_d, pygame.K_s):
-                    jogador.direcao = event.unicode
-                    self.teclas_pressionadas[event.unicode] = True
+                    jogador.direcao = event.unicode.lower()
+                    self.teclas_pressionadas[event.unicode.lower()] = True
                 elif event.key == pygame.K_e:
                     jogador.agir()
                 elif event.key == pygame.K_ESCAPE:
@@ -84,7 +84,7 @@ class Game:
             elif event.type == pygame.KEYUP:
                 if event.key in (pygame.K_a, pygame.K_w, pygame.K_d, pygame.K_s):
                     jogador.direcao = 0
-                    self.teclas_pressionadas[event.unicode] = False
+                    self.teclas_pressionadas[event.unicode.lower()] = False
                 elif event.key == pygame.K_e:
                     jogador.parar_agir()
                 for tecla in ('a','w','s','d'):

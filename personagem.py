@@ -34,13 +34,13 @@ class Personagem(pygame.sprite.Sprite):
         y_max = constantes.ALTURA
         delta_y_3d = 0.7 * self.altura
         
-        if self.direcao == "w" and self.y > y_min - delta_y_3d:
+        if self.direcao == 'w' and self.y > y_min - delta_y_3d:
             self.y = self.y - self.velocidade
-        if self.direcao == "s" and self.y < y_max - self.altura:
+        if self.direcao == 's' and self.y < y_max - self.altura:
             self.y = self.y + self.velocidade
-        if self.direcao == "a" and self.x > x_min:
+        if self.direcao == 'a' and self.x > x_min:
             self.x = self.x - self.velocidade
-        if self.direcao == "d" and self.x < x_max - self.largura:
+        if self.direcao == 'd' and self.x < x_max - self.largura:
             self.x = self.x + self.velocidade
 
 
