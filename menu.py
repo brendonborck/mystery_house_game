@@ -3,20 +3,17 @@ import constants
 from utils import Utils
 
 class Menu():
-    def __init__(self, screen, start_screen_image):
-        self.screen = screen
+    def __init__(self, start_screen_image):
         self.start_screen_image = start_screen_image
         self.running = True
         self.playing = False
         self.font_size = 35
-        self.player_image = None
-        self.speed = None
 
 
     def draw_options(self, colors):
-        Utils().draw_text(self.screen, 'Modo 1', self.font_size, colors[0], constants.WIDTH/2, constants.HEIGHT * 0.7)
-        Utils().draw_text(self.screen, 'Modo 2', self.font_size, colors[1], constants.WIDTH/2, constants.HEIGHT * 0.8)
-        Utils().draw_text(self.screen, 'Modo 3', self.font_size, colors[2], constants.WIDTH/2, constants.HEIGHT * 0.9)
+        Utils().draw_text('Modo 1', self.font_size, colors[0], constants.WIDTH/2, constants.HEIGHT * 0.7)
+        Utils().draw_text('Modo 2', self.font_size, colors[1], constants.WIDTH/2, constants.HEIGHT * 0.8)
+        Utils().draw_text('Modo 3', self.font_size, colors[2], constants.WIDTH/2, constants.HEIGHT * 0.9)
         pygame.display.flip()
 
     
@@ -35,7 +32,8 @@ class Menu():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
                         in_menu = False
-                        self.game_options(selected_button)
+                        options = self.game_options(selected_button)
+                        return options
                     elif event.key == pygame.K_ESCAPE:
                         in_menu = False
                         self.running = False
@@ -50,18 +48,27 @@ class Menu():
         
                         screen_rect = self.start_screen_image.get_rect()
                         screen_rect.midtop = (constants.WIDTH/2,0)
-                        self.screen.blit(self.start_screen_image, screen_rect)
+                        constants.SCREEN.blit(self.start_screen_image, screen_rect)
                         self.draw_options(colors)
                         pygame.display.update()
 
     
     def game_options(self, selected_button):
         if selected_button == 0:
-            self.player_image = "player1.png"
-            self.speed = 10
+            player_image = "player1.png"
+            speed = 10
         elif selected_button == 1:
-            self.player_image = "player2.png"
-            self.speed = 10
+            player_image = "player2.png"
+            speed = 10
         elif selected_button == 2:
-            self.player_image = "player1.png"
-            self.speed = 20
+            player_image = "player1.png"
+            speed = 20
+
+        options = {}
+        options['player_image'] = player_image
+        options['speed'] = speed
+        return options
+
+
+    def get_options(self):
+        return self.draw_menu()

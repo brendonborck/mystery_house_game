@@ -16,15 +16,15 @@ class Player(pygame.sprite.Sprite):
         self.mask_on = self.define_mask_on()
         self.mask_off = self.define_mask_off()
         self.mask = self.mask_off
-        self.x = (constants.WIDTH - self.width)/2
-        self.y = (constants.HEIGHT + constants.Y_SUPERIOR_WALL - 6)/2 - self.height
+        self.x = int(0.012*constants.WIDTH)*10
+        self.y = int(0.088*constants.HEIGHT)*10
         self.speed = speed
         self.interacted_objects = []
 
 
-    def draw_player(self, screen):
-        self.rect.topleft = (self.x, self.y)
-        screen.blit(self.image, self.rect) 
+    def draw_player(self):
+        self.rect.center = (self.x, self.y)
+        constants.SCREEN.blit(self.image, self.rect) 
 
 
     def move_player(self):
@@ -32,15 +32,15 @@ class Player(pygame.sprite.Sprite):
         x_max = constants.WIDTH
         y_min = constants.Y_SUPERIOR_WALL
         y_max = constants.HEIGHT
-        delta_y_3d = 0.7 * self.height
+        delta_y_3d = 0.2 * self.height
         
         if self.direction == "w" and self.y > y_min - delta_y_3d:
             self.y = self.y - self.speed
-        if self.direction == "s" and self.y < y_max - self.height:
+        if self.direction == "s" and self.y < y_max - self.height/2:
             self.y = self.y + self.speed
-        if self.direction == "a" and self.x > x_min:
+        if self.direction == "a" and self.x > x_min + self.width/2:
             self.x = self.x - self.speed
-        if self.direction == "d" and self.x < x_max - self.width:
+        if self.direction == "d" and self.x < x_max - self.width/2:
             self.x = self.x + self.speed
 
 
