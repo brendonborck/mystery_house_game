@@ -3,7 +3,7 @@ import constants
 from menu import Menu
 from player import Player
 from utils import Utils
-from room import rooms
+from room import create_rooms
 import os
 
 
@@ -11,6 +11,7 @@ class Game:
     def __init__(self):
         pygame.init()
         pygame.mixer.init()
+        constants.SCREEN = pygame.display.set_mode((constants.WIDTH, constants.HEIGHT))
         pygame.display.set_caption(constants.TITLE)
         self.clock = pygame.time.Clock()
         self.running = True
@@ -31,7 +32,7 @@ class Game:
 
     def run_rooms(self, player):
         room_group = pygame.sprite.GroupSingle()
-
+        rooms = create_rooms()
         for room in rooms:
             if self.playing:
                 room_group.add(room)

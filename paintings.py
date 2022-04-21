@@ -49,9 +49,9 @@ class Painting1(Painting):
 
 
     def print_pop_up(self):
-        message = 'Senha: 01110011 01100101 01101110 01101000 01100001'
+        message = 'Um homem sentado em uma cadeira antiga, Laubert o mais novo'
         options = {'centralized'}
-        parameters = {'message': message, 'font_size': 20,
+        parameters = {'message': message, 'font_size': 18,
             'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)

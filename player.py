@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.y = int(0.088*constants.HEIGHT)*10
         self.speed = speed
         self.interacted_objects = []
+        self.key=False
 
 
     def draw_player(self):

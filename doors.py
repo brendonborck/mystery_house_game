@@ -36,7 +36,7 @@ class Door1(Door):
 
         in_pop_up = True
         password_input = ''
-        password = 'senha'
+        password = 'Laubert'
         user_returned = False
         while in_pop_up:
             for event in pygame.event.get():
@@ -71,13 +71,13 @@ class Door1(Door):
             self.image = pygame.image.load(self.open_door_image).convert_alpha()
             constants.SCREEN.blit(self.image, self.rect)
             player.draw_player()
-            parameters = {'message': 'Senha correta!', 'wait_time': 1.4,
+            parameters = {'message': 'A Porta se Abre', 'wait_time': 1.4,
                 'font_size': 40, 'width': w, 'height': h
             }
             Utils().print_message({'centralized', 'persistent'}, parameters)
             player.passed_room = True
         elif user_returned:
-            parameters = {'message': 'Senha incorreta', 'wait_time': 0.8,
+            parameters = {'message': 'Nada Ocorre...', 'wait_time': 0.8,
                 'font_size': 40, 'width': w, 'height': h
             }
             Utils().print_message({'centralized', 'persistent'}, parameters)
@@ -92,7 +92,7 @@ class Door1(Door):
         Utils().print_message(options, parameters)
 
         options = {}
-        parameters = {'message': 'Insira a senha:', 'font_size': 20,
+        parameters = {'message': 'Há um cadeado na porta', 'font_size': 20,
             'width': 0.5*constants.WIDTH, 'height': 0.03*constants.HEIGHT,
             'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.51*constants.HEIGHT
         }
@@ -110,30 +110,51 @@ class Door1(Door):
         Utils().print_message(options, parameters)
 
 
-
 class Door2(Door):
 
-    def interaction(self, player):
-        self.print_pop_up()        
+    def interaction(self, player):        
         in_pop_up = True
+        user_returned = False
         while in_pop_up:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     #TODO
                     pass
                 elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_e:
+                    if event.key == pygame.K_ESCAPE:
                         in_pop_up = False
-                    elif event.key == pygame.K_ESCAPE:
-                        in_pop_up = False
-                elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_e:
                         player.stop_acting()
-    
+                    
+                elif player.key == True:
+                    self.puzzle_completed = True
+                    in_pop_up = False
+                    user_returned = True
+                    player.stop_acting()
+                else:
+                    self.puzzle_completed = False
+                    self.print_pop_up()
+        h = 0.2*constants.HEIGHT
+        w = 0.5*constants.WIDTH
+        if self.puzzle_completed and user_returned:
+            self.image = pygame.image.load(self.open_door_image).convert_alpha()
+            constants.SCREEN.blit(self.image, self.rect)
+            player.draw_player()
+            parameters = {'message': 'Usou a Chave', 'wait_time': 1.4,
+                'font_size': 40, 'width': w, 'height': h
+            }
+            Utils().print_message({'centralized', 'persistent'}, parameters)
+            player.passed_room = True
+        elif user_returned:
+            parameters = {'message': 'Nada Ocorre...', 'wait_time': 0.8,
+                'font_size': 40, 'width': w, 'height': h
+            }
+            Utils().print_message({'centralized', 'persistent'}, parameters)
+
     def print_pop_up(self):
-        message = 'Melhor não voltar para lá.'
-        options = {'centralized'}
-        parameters = {'message': message, 'font_size': 20,
-            'width': 0.4*constants.WIDTH, 'height': 0.2*constants.HEIGHT,
+        options = {'centralized', 'text_offset'}
+        parameters = {'message': 'Nada Ocorre...', 'font_size': 40,
+            'width': 0.5*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
+            'x_text': 0.25*constants.WIDTH, 'y_text': 0.06*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
+

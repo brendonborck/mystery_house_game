@@ -5,7 +5,7 @@ WIDTH=800
 HEIGHT=800
 TITLE='Mistery House'
 FPS=30
-SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
+SCREEN = None
 
 ASSETS_DIR = os.path.join(os.getcwd(), 'assets')
 IMAGES_DIR = os.path.join(ASSETS_DIR, 'images')
@@ -17,4 +17,4 @@ WHITE=(255, 255, 255)
 BLUE=(0, 0, 255)
 FONT='comicsansms'
 
-Y_SUPERIOR_WALL = 206
+Y_SUPERIOR_WALL = 0.2575*HEIGHT

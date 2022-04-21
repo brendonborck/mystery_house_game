@@ -11,7 +11,6 @@ class Paper(InteractiveObjetcs):
         super().__init__(self.paper_image_path, x, y, position_mode, (45, 55))
 
 
-
     def after_interaction(self):
         pass
 
@@ -25,7 +24,7 @@ class Paper(InteractiveObjetcs):
         position = ((mask_width - rect_width)/2, (mask_height - rect_width)/2)
         rect = pygame.mask.Mask((rect_width, rect_height), True)
         mask.draw(rect, position)
-        return mask        
+        return mask
 
 
 class Paper1(Paper):
@@ -55,8 +54,8 @@ class Paper1(Paper):
 
         message1 = "Bem vindo a Mistery House!"
         message2 = "Você não se lembra como veio parar aqui, mas não se preocupe, tudo será explicado no tempo"
-        message3 = "certo. A única coisa que posso te dizer nesse momento é que, por muitas vezes, a vida"
-        message4 = "parece ser apenas preto no branco, mas, na verdade, ela não é. Tudo não é sempre 0 ou 1."
+        message3 = "certo. A única coisa que posso te dizer nesse momento é "
+        message4 = "que voce merece tudo que vai ocorrer com voçe."
 
         options = {'centralized', 'text_offset'}
         parameters = {'message': message1, 'font_size': 16,
@@ -107,10 +106,28 @@ class Paper2(Paper):
 
 
     def print_pop_up(self):
+        width = 0.9*constants.WIDTH
+        x_pop_up = 0.5*constants.WIDTH
 
-        message = "Nada por aqui."
-        options = {'centralized'}
-        parameters = {'message': message, 'font_size': 20,
-            'width': 0.3*constants.WIDTH, 'height': 0.2*constants.HEIGHT
+        message1 = "Laurent, meu irmão amado, é inaceitável as ações do caçula, ele acha que pode"
+        message2 = "assaltar nossa familia! Nosso amado pai é contra, mas o TEMPO dele...."
+        message3 = "O resto da mensagem parece destruída "
+
+        options = {}
+        parameters = {'message': message1, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+        
+        parameters = {'message': message2, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+        parameters = {'message': message3, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.56*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
