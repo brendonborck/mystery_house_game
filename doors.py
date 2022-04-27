@@ -92,7 +92,7 @@ class Door1(Door):
         Utils().print_message(options, parameters)
 
         options = {}
-        parameters = {'message': 'Há um cadeado na porta', 'font_size': 20,
+        parameters = {'message': 'Há um cadeado na porta, escrito "Mais Novo"', 'font_size': 16,
             'width': 0.5*constants.WIDTH, 'height': 0.03*constants.HEIGHT,
             'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.51*constants.HEIGHT
         }
