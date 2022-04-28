@@ -22,7 +22,7 @@ class Room(pygame.sprite.Sprite):
             room_image = constants.ROOM_IMAGE_2
         elif level == 3:
             room_image = constants.ROOM_IMAGE_3
-        else:        
+        elif level == 4:
             room_image = constants.ROOM_IMAGE_4
 
         room_image_path = os.path.join(constants.IMAGES_DIR, room_image)

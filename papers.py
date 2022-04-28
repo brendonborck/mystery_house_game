@@ -6,12 +6,32 @@ from objects import InteractiveObjetcs
 
 class Paper(InteractiveObjetcs):
 
-    def __init__(self, x, y, position_mode, type):
-
+    def __init__(self, x, y, position_mode):
         paper_image = constants.PAPER_IMAGE
-        if type != 1:
-            paper_image = constants.ROOM_IMAGE_2
+        self.paper_image_path = os.path.join(constants.IMAGES_DIR, paper_image)
+        super().__init__(self.paper_image_path, x, y, position_mode, (45, 55))
 
+
+    def after_interaction(self):
+        pass
+
+
+    def define_mask(self):
+        mask_width = self.width
+        mask_height = self.height
+        mask = pygame.mask.Mask((mask_width, mask_height), False)
+        rect_width = 0.8*mask_width
+        rect_height = 0.8*mask_height
+        position = ((mask_width - rect_width)/2, (mask_height - rect_width)/2)
+        rect = pygame.mask.Mask((rect_width, rect_height), True)
+        mask.draw(rect, position)
+        return mask
+
+
+class OtherPaper(InteractiveObjetcs):
+
+    def __init__(self, x, y, position_mode):
+        paper_image = constants.PAPER_IMAGE_2
         self.paper_image_path = os.path.join(constants.IMAGES_DIR, paper_image)
         super().__init__(self.paper_image_path, x, y, position_mode, (45, 55))
 
@@ -89,7 +109,7 @@ class Paper1(Paper):
         Utils().print_message(options, parameters)
 
 
-class Paper2(Paper):
+class Paper2(OtherPaper):
 
     def interaction(self, player):
         self.print_pop_up()
@@ -173,7 +193,7 @@ class Paper3(Paper):
         Utils().print_message(options, parameters)
 
 
-class Paper4(Paper):
+class Paper4(OtherPaper):
 
     def interaction(self, player):
         self.print_pop_up()
