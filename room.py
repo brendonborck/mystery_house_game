@@ -284,6 +284,7 @@ def create_rooms():
                 'position_mode': 'center',
                 'type': 2
             }
+        }
     }
     room = Room(name, print_time, player_pos, 5)
     room.define_interactive_objects(interactive_objects)
