@@ -141,4 +141,197 @@ def create_rooms():
     room.define_interactive_objects(interactive_objects)
     rooms.append(room)
 
+
+    name = 'Fase 3'
+    print_time = 1.7
+    player_pos = (int(0.018*constants.WIDTH)*10, int(constants.Y_SUPERIOR_WALL/10)*10)
+    exit_door_x = 0.12*constants.WIDTH
+    exit_door_y = constants.Y_SUPERIOR_WALL
+    paper_x = 0.8*constants.WIDTH
+    paper_y = 0.4*constants.HEIGHT
+    wdesk_x = 0.95*constants.WIDTH
+    wdesk_y = 0.50*constants.HEIGHT
+    wdrobe_x = 0.70*constants.WIDTH
+    wdrobe_y = 0.20*constants.HEIGHT
+    clock_x = 0.30*constants.WIDTH
+    clock_y = 0.36*constants.Y_SUPERIOR_WALL
+    bed_x = 0.80*constants.WIDTH
+    bed_y = 0.90*constants.HEIGHT
+    interactive_objects = {
+        'exit_door': {
+            'constructor': Door2,
+            'parameters': {
+                'x': exit_door_x,
+                'y': exit_door_y,
+                'position_mode': 'bottomleft'
+            }
+        },
+        'writingdesk': 
+         {'constructor': Writing_Desk2,
+         'parameters':{
+             'x': wdesk_x, 
+             'y': wdesk_y, 
+             'position_mode': 'center'}},
+
+        'wardrobe': 
+         {'constructor': Wardrobe1,
+         'parameters':{
+             'x': wdrobe_x, 
+             'y': wdrobe_y, 
+             'position_mode': 'center'}},
+
+        'bed': {'constructor': Bed2,
+        'parameters':
+            {'x': bed_x, 
+             'y': bed_y, 
+            'position_mode': 'center'}},
+
+        'clock': {'constructor': Clock2,
+        'parameters':
+            {'x': clock_x, 
+            'y': clock_y, 
+            'position_mode': 'center'}},
+
+        'paper': {
+            'constructor': Paper2,
+            'parameters': {
+                'x': paper_x,
+                'y': paper_y,
+                'position_mode': 'center'
+            }
+        }
+    }
+    room = Room(name, print_time, player_pos)
+    room.define_interactive_objects(interactive_objects)
+    rooms.append(room)
+
+
+    name = 'Fase 4'
+    print_time = 1.7
+    player_pos = (int(0.018*constants.WIDTH)*10, int(constants.Y_SUPERIOR_WALL/10)*10)
+    exit_door_x = 0.12*constants.WIDTH
+    exit_door_y = constants.Y_SUPERIOR_WALL
+    paper_x = 0.8*constants.WIDTH
+    paper_y = 0.4*constants.HEIGHT
+    wdesk_x = 0.95*constants.WIDTH
+    wdesk_y = 0.50*constants.HEIGHT
+    wdrobe_x = 0.70*constants.WIDTH
+    wdrobe_y = 0.20*constants.HEIGHT
+    clock_x = 0.30*constants.WIDTH
+    clock_y = 0.36*constants.Y_SUPERIOR_WALL
+    bed_x = 0.80*constants.WIDTH
+    bed_y = 0.90*constants.HEIGHT
+    interactive_objects = {
+        'exit_door': {
+            'constructor': Door2,
+            'parameters': {
+                'x': exit_door_x,
+                'y': exit_door_y,
+                'position_mode': 'bottomleft'
+            }
+        },
+        'writingdesk': 
+         {'constructor': Writing_Desk2,
+         'parameters':{
+             'x': wdesk_x, 
+             'y': wdesk_y, 
+             'position_mode': 'center'}},
+
+        'wardrobe': 
+         {'constructor': Wardrobe1,
+         'parameters':{
+             'x': wdrobe_x, 
+             'y': wdrobe_y, 
+             'position_mode': 'center'}},
+
+        'bed': {'constructor': Bed2,
+        'parameters':
+            {'x': bed_x, 
+             'y': bed_y, 
+            'position_mode': 'center'}},
+
+        'clock': {'constructor': Clock2,
+        'parameters':
+            {'x': clock_x, 
+            'y': clock_y, 
+            'position_mode': 'center'}},
+
+        'paper': {
+            'constructor': Paper2,
+            'parameters': {
+                'x': paper_x,
+                'y': paper_y,
+                'position_mode': 'center'
+            }
+        }
+    }
+    room = Room(name, print_time, player_pos)
+    room.define_interactive_objects(interactive_objects)
+    rooms.append(room)
+
+
+
+    name = 'Fase 5'
+    print_time = 1.7
+    player_pos = (int(0.018*constants.WIDTH)*10, int(constants.Y_SUPERIOR_WALL/10)*10)
+    exit_door_x = 0.12*constants.WIDTH
+    exit_door_y = constants.Y_SUPERIOR_WALL
+    paper_x = 0.8*constants.WIDTH
+    paper_y = 0.4*constants.HEIGHT
+    wdesk_x = 0.95*constants.WIDTH
+    wdesk_y = 0.50*constants.HEIGHT
+    wdrobe_x = 0.70*constants.WIDTH
+    wdrobe_y = 0.20*constants.HEIGHT
+    clock_x = 0.30*constants.WIDTH
+    clock_y = 0.36*constants.Y_SUPERIOR_WALL
+    bed_x = 0.80*constants.WIDTH
+    bed_y = 0.90*constants.HEIGHT
+    interactive_objects = {
+        'exit_door': {
+            'constructor': Door2,
+            'parameters': {
+                'x': exit_door_x,
+                'y': exit_door_y,
+                'position_mode': 'bottomleft'
+            }
+        },
+        'writingdesk': 
+         {'constructor': Writing_Desk2,
+         'parameters':{
+             'x': wdesk_x, 
+             'y': wdesk_y, 
+             'position_mode': 'center'}},
+
+        'wardrobe': 
+         {'constructor': Wardrobe1,
+         'parameters':{
+             'x': wdrobe_x, 
+             'y': wdrobe_y, 
+             'position_mode': 'center'}},
+
+        'bed': {'constructor': Bed2,
+        'parameters':
+            {'x': bed_x, 
+             'y': bed_y, 
+            'position_mode': 'center'}},
+
+        'clock': {'constructor': Clock2,
+        'parameters':
+            {'x': clock_x, 
+            'y': clock_y, 
+            'position_mode': 'center'}},
+
+        'paper': {
+            'constructor': Paper2,
+            'parameters': {
+                'x': paper_x,
+                'y': paper_y,
+                'position_mode': 'center'
+            }
+        }
+    }
+    room = Room(name, print_time, player_pos)
+    room.define_interactive_objects(interactive_objects)
+    rooms.append(room)
+
     return rooms
