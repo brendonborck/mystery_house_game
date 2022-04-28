@@ -6,8 +6,13 @@ from objects import InteractiveObjetcs
 
 class Paper(InteractiveObjetcs):
 
-    def __init__(self, x, y, position_mode):
-        self.paper_image_path = os.path.join(constants.IMAGES_DIR, 'paper.png')
+    def __init__(self, x, y, position_mode, type):
+
+        paper_image = constants.PAPER_IMAGE
+        if type != 1:
+            paper_image = constants.ROOM_IMAGE_2
+
+        self.paper_image_path = os.path.join(constants.IMAGES_DIR, paper_image)
         super().__init__(self.paper_image_path, x, y, position_mode, (45, 55))
 
 
@@ -112,6 +117,55 @@ class Paper2(Paper):
         message1 = "Laurent, meu irmão amado, é inaceitável as ações do caçula, ele acha que pode"
         message2 = "assaltar nossa familia! Nosso amado pai é contra, mas o TEMPO dele...."
         message3 = "O resto da mensagem parece destruída "
+
+        options = {}
+        parameters = {'message': message1, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+        
+        parameters = {'message': message2, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+        parameters = {'message': message3, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.56*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+
+class Paper5(Paper):
+
+    def interaction(self, player):
+        self.print_pop_up()
+
+        in_pop_up = True
+        while in_pop_up:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    #TODO
+                    pass
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        in_pop_up = False
+                    elif event.key == pygame.K_ESCAPE:
+                        in_pop_up = False
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_e:
+                        player.stop_acting()
+
+
+    def print_pop_up(self):
+        width = 0.9*constants.WIDTH
+        x_pop_up = 0.5*constants.WIDTH
+
+        message1 = "Estou impressionado que tenha chegado até aqui, você deve ter entendido toda a situação "
+        message2 = "e o porquê está nesse local. O último desafio é simples, "
+        message3 = "você deve me informar seu nome. Muito fácil né ?"
 
         options = {}
         parameters = {'message': message1, 'font_size': 16,
