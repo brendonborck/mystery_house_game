@@ -7,7 +7,7 @@ import os
 from utils import Utils
 from doors import Door1, Door2
 from paintings import Painting1
-from papers import Paper1, Paper2, Paper5
+from papers import Paper1, Paper2, Paper3, Paper4, Paper5
 from wardrobe import Wardrobe1
 from writingdesk import Writing_Desk1, Writing_Desk2
 
@@ -202,7 +202,7 @@ def create_rooms():
             'position_mode': 'center'}},
 
         'paper': {
-            'constructor': Paper2,
+            'constructor': Paper3,
             'parameters': {
                 'x': paper_x,
                 'y': paper_y,
@@ -267,12 +267,12 @@ def create_rooms():
             'position_mode': 'center'}},
 
         'paper': {
-            'constructor': Paper2,
+            'constructor': Paper4,
             'parameters': {
                 'x': paper_x,
                 'y': paper_y,
                 'position_mode': 'center',
-                'type': 2
+                'type': 1
             }
         }
     }

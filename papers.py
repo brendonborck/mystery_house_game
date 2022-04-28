@@ -138,6 +138,90 @@ class Paper2(Paper):
         Utils().print_message(options, parameters)
 
 
+class Paper3(Paper):
+
+    def interaction(self, player):
+        self.print_pop_up()
+
+        in_pop_up = True
+        while in_pop_up:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    #TODO
+                    pass
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        in_pop_up = False
+                    elif event.key == pygame.K_ESCAPE:
+                        in_pop_up = False
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_e:
+                        player.stop_acting()
+
+
+    def print_pop_up(self):
+        width = 0.9*constants.WIDTH
+        x_pop_up = 0.5*constants.WIDTH
+
+        message1 = "Há uma manchete de jornal, 'O REI ESTÁ MORTO! O mais novo é o suspeito!?'"
+
+        options = {}
+        parameters = {'message': message1, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+
+class Paper4(Paper):
+
+    def interaction(self, player):
+        self.print_pop_up()
+
+        in_pop_up = True
+        while in_pop_up:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    #TODO
+                    pass
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        in_pop_up = False
+                    elif event.key == pygame.K_ESCAPE:
+                        in_pop_up = False
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_e:
+                        player.stop_acting()
+
+
+    def print_pop_up(self):
+        width = 0.9*constants.WIDTH
+        x_pop_up = 0.5*constants.WIDTH
+
+        message1 = "Estou impressionado que você tenha chegado até esse ponto..."
+        message2 = "Por isso eu vou te da uma recompensa, você está aqui pois realizou "
+        message3 = "um ato muito ruim contra a nossa família..."
+
+        options = {}
+        parameters = {'message': message1, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+        
+        parameters = {'message': message2, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+        parameters = {'message': message3, 'font_size': 16,
+            'width': width, 'height': 0.04*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.56*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+
 class Paper5(Paper):
 
     def interaction(self, player):
