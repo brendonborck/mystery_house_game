@@ -168,7 +168,7 @@ def create_rooms():
     bed_y = 0.90*constants.HEIGHT
     interactive_objects = {
         'exit_door': {
-            'constructor': Door3,
+            'constructor': Door2,
             'parameters': {
                 'x': exit_door_x,
                 'y': exit_door_y,
@@ -177,7 +177,7 @@ def create_rooms():
         },
 
         'wardrobe': 
-         {'constructor': Wardrobe3,
+         {'constructor': Wardrobe1,
          'parameters':{
              'x': wdrobe_x, 
              'y': wdrobe_y, 
