@@ -1,6 +1,6 @@
 from turtle import position
 import pygame
-from bed import Bed1, Bed2
+from bed import Bed1, Bed2, Bed3, Bed4
 from clock import Clock1, Clock2
 import constants
 import os
@@ -168,37 +168,25 @@ def create_rooms():
     bed_y = 0.90*constants.HEIGHT
     interactive_objects = {
         'exit_door': {
-            'constructor': Door2,
+            'constructor': Door3,
             'parameters': {
                 'x': exit_door_x,
                 'y': exit_door_y,
                 'position_mode': 'bottomleft'
             }
         },
-        'writingdesk': 
-         {'constructor': Writing_Desk2,
-         'parameters':{
-             'x': wdesk_x, 
-             'y': wdesk_y, 
-             'position_mode': 'center'}},
 
         'wardrobe': 
-         {'constructor': Wardrobe1,
+         {'constructor': Wardrobe3,
          'parameters':{
              'x': wdrobe_x, 
              'y': wdrobe_y, 
              'position_mode': 'center'}},
 
-        'bed': {'constructor': Bed2,
+        'bed': {'constructor': Bed3,
         'parameters':
             {'x': bed_x, 
              'y': bed_y, 
-            'position_mode': 'center'}},
-
-        'clock': {'constructor': Clock2,
-        'parameters':
-            {'x': clock_x, 
-            'y': clock_y, 
             'position_mode': 'center'}},
 
         'paper': {
@@ -254,7 +242,7 @@ def create_rooms():
              'y': wdrobe_y, 
              'position_mode': 'center'}},
 
-        'bed': {'constructor': Bed2,
+        'bed': {'constructor': Bed4,
         'parameters':
             {'x': bed_x, 
              'y': bed_y, 

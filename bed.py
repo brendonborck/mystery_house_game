@@ -84,3 +84,60 @@ class Bed2(Bed):
             'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
+
+class Bed3(Bed):
+
+    def interaction(self, player):
+        self.print_pop_up()        
+        in_pop_up = True
+        while in_pop_up:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    #TODO
+                    pass
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        in_pop_up = False
+                    elif event.key == pygame.K_ESCAPE:
+                        in_pop_up = False
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_e:
+                        player.stop_acting()
+
+
+    def print_pop_up(self):
+        message = "Embaixo da cama há uma foto de uma mulher e um homem, com uma inscrição 'Sua Majestade Albert e Rainha Isabella Constock'"
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+        }
+        Utils().print_message(options, parameters)
+
+
+class Bed4(Bed):
+
+    def interaction(self, player):
+        self.print_pop_up()        
+        in_pop_up = True
+        while in_pop_up:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    #TODO
+                    pass
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        in_pop_up = False
+                    elif event.key == pygame.K_ESCAPE:
+                        in_pop_up = False
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_e:
+                        player.stop_acting()
+
+
+    def print_pop_up(self):
+        message = "Nada há nada"
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+        }
+        Utils().print_message(options, parameters)
