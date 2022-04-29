@@ -10,8 +10,11 @@ SCREEN = None
 # Dir paths -----------------------------------------------------------------------
 ASSETS_DIR = os.path.join(os.getcwd(), 'assets')
 IMAGES_DIR = os.path.join(ASSETS_DIR, 'images')
+MUSIC_DIR = os.path.join(ASSETS_DIR, 'music')
 START_IMAGE = 'start_image.jpg'
 
+# Music-------------------------------------------------------------------------
+MUSIC_GAME = "Defeat.mp3"
 # Room images -----------------------------------------------------------------------
 ROOM_IMAGE_1 = "room_v1.jpeg"
 ROOM_IMAGE_2 = "room_v2.jpeg"
