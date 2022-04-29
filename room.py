@@ -13,7 +13,7 @@ from writingdesk import Writing_Desk1, Writing_Desk2, Writing_Desk4
 from chair import DecorationArmChairLateral, DecorationArmChairFront
 from lamp import DecorationLamp
 from safe import Safebox3
-from shelf import DecorationShelfBooks, DecorationEmptyWardrobe
+from shelf import DecorationShelfBooks
 from vase import DecorationVaseStar
 from piano import DecorationPiano
 
