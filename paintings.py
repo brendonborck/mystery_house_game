@@ -6,7 +6,9 @@ from objects import InteractiveObjetcs
 
 
 class Painting(InteractiveObjetcs):
-    """Classe que define as funcionalidades básicas para todos os quadros"""
+    """
+        Classe que define as funcionalidades básicas para todos os quadros
+    """
     def __init__(self, x, y, position_mode):
         self.painting_image = os.path.join(constants.IMAGES_DIR, 'painting.png')
         super().__init__(self.painting_image, x, y, position_mode, (69, 74))
@@ -29,7 +31,9 @@ class Painting(InteractiveObjetcs):
 
 
 class Painting1(Painting):
-    """Classe que define o quadro do tipo 1"""
+    """
+        Classe que define o quadro do tipo 1
+    """
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True

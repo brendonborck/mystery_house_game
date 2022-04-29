@@ -2,7 +2,9 @@ import pygame
 from abc import abstractmethod
 
 class InteractiveObjetcs(pygame.sprite.Sprite):
-    """Classe que define os parametros de iteração para todos os móveis"""
+    """
+        Classe que define os parametros de iteração para todos os móveis
+    """
     def __init__(self, image_path, x, y, position_mode, scale = None):
         super().__init__()
         self.image = pygame.image.load(image_path).convert_alpha()

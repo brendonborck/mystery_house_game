@@ -3,7 +3,9 @@ import constants
 from utils import Utils
 
 class Menu():
-    """Classe que define a criação do menu do jogo"""
+    """
+        Classe que define a criação do menu do jogo
+    """
     def __init__(self, start_screen_image):
         self.start_screen_image = start_screen_image
         self.running = True

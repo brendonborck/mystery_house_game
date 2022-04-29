@@ -3,7 +3,9 @@ import os
 import constants
 
 class Player(pygame.sprite.Sprite):
-    """Classe que define como será o personagem principal"""
+    """
+        Classe que define como será o personagem principal
+    """
     def __init__(self, player_image, speed):
         super().__init__()
         self.image_path = os.path.join(constants.IMAGES_DIR, player_image)
