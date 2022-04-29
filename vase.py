@@ -113,25 +113,40 @@ class DecorationVaseStar(Vase):
         Classe que define os parametros básicos de um vaso decorativo com uma estrela
     """
     def __init__(self, x, y, position_mode):
-        self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase star.png')
-        super().__init__(self.vase_image, x, y, position_mode, (69, 60))
+        super().__init__(x, y, position_mode)
+        self.paper_image_path = os.path.join(constants.IMAGES_DIR, 'vase star.png')
+        self.image = pygame.image.load(self.paper_image_path).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (50, 70))
+        self.puzzle_completed = False
 
     def interaction(self, player):
-        self.print_pop_up()        
-        in_pop_up = True
-        while in_pop_up:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    #TODO
-                    pass
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_e:
-                        in_pop_up = False
-                    elif event.key == pygame.K_ESCAPE:
-                        in_pop_up = False
-                elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_e:
-                        player.stop_acting()
+        h = 0.23*constants.HEIGHT
+        w = 0.5*constants.WIDTH
+        if self.puzzle_completed:
+            w = 0.56*constants.WIDTH
+            parameters = {'message': 'Você já ganhou uma chave.', 'wait_time': 1.4,
+                'font_size': 40, 'width': w, 'height': h
+            }
+            Utils().print_message({'centralized', 'persistent'}, parameters)
+            player.stop_acting()
+        else:
+            self.print_pop_up()        
+            in_pop_up = True
+            while in_pop_up:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        #TODO
+                        pass
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_e:
+                            in_pop_up = False
+                        elif event.key == pygame.K_ESCAPE:
+                            in_pop_up = False
+                    elif event.type == pygame.KEYUP:
+                        if event.key == pygame.K_e:
+                            self.puzzle_completed = True
+                            player.pocket.append('key_room_return_3')
+                            player.stop_acting()
 
 
     def print_pop_up(self):

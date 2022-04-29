@@ -157,10 +157,11 @@ class Paper3(Paper):
         w = 0.5*constants.WIDTH
         if self.puzzle_completed:
             w = 0.56*constants.WIDTH
-            parameters = {'message': 'Você ganhou uma chave.', 'wait_time': 1.4,
+            parameters = {'message': 'Você já ganhou uma chave.', 'wait_time': 1.4,
                 'font_size': 40, 'width': w, 'height': h
             }
             Utils().print_message({'centralized', 'persistent'}, parameters)
+            player.stop_acting()
         else:
             self.print_pop_up()
 
@@ -178,7 +179,12 @@ class Paper3(Paper):
                     elif event.type == pygame.KEYUP:
                         if event.key == pygame.K_e:
                             self.puzzle_completed = True
-                            player.pocket_objects.append('key_room_return_2')
+                            player.pocket.append('key_room_return_2')
+                            w = 0.56*constants.WIDTH
+                            parameters = {'message': 'Você ganhou uma chave.', 'wait_time': 1.4,
+                                'font_size': 40, 'width': w, 'height': h
+                            }
+                            Utils().print_message({'centralized', 'persistent'}, parameters)
                             player.stop_acting()
 
 

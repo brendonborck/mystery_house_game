@@ -36,14 +36,16 @@ class Safebox3(Safe):
         Classe que define os parametros básicos de um cofre
     """
     def interaction(self, player):
-        if 'key_room__return_2' in player.pocket_objects:
+        if 'key_room_return_3' in player.pocket:
             options = {'centralized', 'persistent'}
-            parameters = {'message': 'O passado nos molda...', 'font_size': 40,
+            parameters = {'message': 'Você pegou uma nova chave.', 'font_size': 40,
                 'width': 0.56*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
                 'wait_time': 1.4
             }
             Utils().print_message(options, parameters)
-            player.pocket_objects.append('key_room_3')
+            player.pocket.remove('key_room_return_2')
+            player.pocket.remove('key_room_return_3')
+            player.pocket.append('key_room_3')
             player.stop_acting()
         else:
             self.print_pop_up()        
@@ -66,7 +68,7 @@ class Safebox3(Safe):
     def print_pop_up(self):
         width = 0.9*constants.WIDTH
 
-        message = "Um cofre para você guardar suas chaves."
+        message = "O passado nos molda..."
 
         options = {'centralized', 'text_offset'}
         parameters = {'message': message, 'font_size': 18,

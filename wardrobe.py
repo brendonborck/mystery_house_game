@@ -37,7 +37,7 @@ class Wardrobe2(Wardrobe):
         Classe que define armário da sala 2
     """
     def interaction(self, player):
-        if 'key_room_2' in player.pocket_objects:
+        if 'key_room_2' in player.pocket:
             options = {'centralized', 'persistent'}
             parameters = {'message': 'Não há mais nada aqui', 'font_size': 40,
                 'width': 0.56*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
@@ -66,7 +66,7 @@ class Wardrobe2(Wardrobe):
                             player.stop_acting()
                             if password_input.lower() == password:
                                 self.puzzle_completed = True
-                                player.pocket_objects.append('key_room_2')
+                                player.pocket.append('key_room_2')
                             else:
                                 self.puzzle_completed = False
                         elif event.key == pygame.K_BACKSPACE:
@@ -128,7 +128,7 @@ class Wardrobe3(Wardrobe):
         Classe que define armário da sala 3
     """
     def interaction(self, player):
-        if 'key_room_2' in player.pocket_objects:
+        if 'key_room_2' in player.pocket:
             options = {'centralized', 'persistent'}
             parameters = {'message': 'Não há mais nada aqui', 'font_size': 40,
                 'width': 0.56*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
@@ -157,7 +157,7 @@ class Wardrobe3(Wardrobe):
                             player.stop_acting()
                             if password_input.lower() == password:
                                 self.puzzle_completed = True
-                                player.pocket_objects.append('key_room_2')
+                                player.pocket.append('key_room_2')
                             else:
                                 self.puzzle_completed = False
                         elif event.key == pygame.K_BACKSPACE:
@@ -219,7 +219,7 @@ class Wardrobe4(Wardrobe):
         Classe que define armário da sala 4
     """
     def interaction(self, player):
-        if 'key_room_2' in player.pocket_objects:
+        if 'key_room_2' in player.pocket:
             options = {'centralized', 'persistent'}
             parameters = {'message': 'Não há mais nada aqui', 'font_size': 40,
                 'width': 0.56*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
@@ -248,7 +248,7 @@ class Wardrobe4(Wardrobe):
                             player.stop_acting()
                             if password_input.lower() == password:
                                 self.puzzle_completed = True
-                                player.pocket_objects.append('key_room_2')
+                                player.pocket.append('key_room_2')
                             else:
                                 self.puzzle_completed = False
                         elif event.key == pygame.K_BACKSPACE:

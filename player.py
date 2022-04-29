@@ -23,7 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.y = int(0.088*constants.HEIGHT)*10
         self.speed = speed
         self.interacted_objects = []
-        self.pocket_objects = []
+        self.pocket = []
 
 
     def draw_player(self):
