@@ -45,6 +45,7 @@ class Player(pygame.sprite.Sprite):
     def limitations_w(self, obj_rects):
         y_min = constants.Y_SUPERIOR_WALL
         delta_y_3d = 0.2 * self.height
+        half_height = 30
 
         limitations = [
             self.y > y_min - delta_y_3d
@@ -54,15 +55,16 @@ class Player(pygame.sprite.Sprite):
             y_max = obj_rect.center[1] + obj_rect.h/2
             x_max = obj_rect.center[0] + obj_rect.w/2
             x_min = obj_rect.center[0] - obj_rect.w/2
-            if(self.x >= x_min - self.width/2 and self.x <= x_max + self.width/2):
-                limitations.append(not (self.y <= y_max - delta_y_3d + self.speed and self.y >= y_min - self.height/2 + self.speed))
+            if(self.x >= x_min - self.width/3 and self.x <= x_max + self.width/3):
+                limitations.append(not (self.y <= y_max - delta_y_3d + self.speed and self.y >= y_min - half_height + self.speed))
         return all(limitations)
 
 
     def limitations_s(self, obj_rects):
         y_max = constants.HEIGHT
         delta_y_3d = 0.2 * self.height
-
+        half_height = 30
+        
         limitations = [
             self.y < y_max - self.height/2
         ]
@@ -71,14 +73,15 @@ class Player(pygame.sprite.Sprite):
             y_max = obj_rect.center[1] + obj_rect.h/2
             x_max = obj_rect.center[0] + obj_rect.w/2
             x_min = obj_rect.center[0] - obj_rect.w/2
-            if(self.x >= x_min - self.width/2 and self.x <= x_max + self.width/2):
-                limitations.append(not (self.y <= y_max - delta_y_3d - self.speed and self.y >= y_min - self.height/2 - self.speed))
+            if(self.x >= x_min - self.width/3 and self.x <= x_max + self.width/3):
+                limitations.append(not (self.y <= y_max - delta_y_3d - self.speed and self.y >= y_min - half_height - self.speed))
         return all(limitations)
 
 
     def limitations_a(self, obj_rects):
         x_min = 0
         delta_y_3d = 0.2 * self.height
+        half_height = 30
 
         limitations = [
             self.x > x_min + self.width/2
@@ -88,14 +91,15 @@ class Player(pygame.sprite.Sprite):
             y_max = obj_rect.center[1] + obj_rect.h/2
             x_max = obj_rect.center[0] + obj_rect.w/2
             x_min = obj_rect.center[0] - obj_rect.w/2
-            if(self.y >= y_min - self.height/2 and self.y <= y_max - delta_y_3d):
-                limitations.append(not (self.x <= x_max + self.width/2 + self.speed and self.x >= x_min - self.width/2 + self.speed))
+            if(self.y >= y_min - half_height and self.y <= y_max - delta_y_3d):
+                limitations.append(not (self.x <= x_max + self.width/3 + self.speed and self.x >= x_min - self.width/3 + self.speed))
         return all(limitations)
 
 
     def limitations_d(self, obj_rects):
         x_max = constants.WIDTH
         delta_y_3d = 0.2 * self.height
+        half_height = 30
 
         limitations = [
             self.x < x_max - self.width/2
@@ -105,8 +109,8 @@ class Player(pygame.sprite.Sprite):
             y_max = obj_rect.center[1] + obj_rect.h/2
             x_max = obj_rect.center[0] + obj_rect.w/2
             x_min = obj_rect.center[0] - obj_rect.w/2
-            if(self.y >= y_min - self.height/2 and self.y <= y_max - delta_y_3d):
-                limitations.append(not (self.x <= x_max + self.width/2 - self.speed and self.x >= x_min - self.width/2 - self.speed))
+            if(self.y >= y_min - half_height and self.y <= y_max - delta_y_3d):
+                limitations.append(not (self.x <= x_max + self.width/3 - self.speed and self.x >= x_min - self.width/3 - self.speed))
         return all(limitations)
 
 
@@ -121,7 +125,7 @@ class Player(pygame.sprite.Sprite):
     def define_mask_on(self):
         mask = pygame.mask.from_surface(self.image)
         mask.clear()
-        mask_width = 0.65*self.width
+        mask_width = self.width
         mask_height = 0.3*self.height + 1
         position = ((self.width - mask_width)/2, self.height - mask_height)
         rect = pygame.mask.Mask((mask_width, mask_height), True)

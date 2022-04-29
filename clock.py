@@ -105,38 +105,38 @@ class Clock2(Clock):
         options = {}
         parameters = {'message': message2, 'font_size': 18,
             'width': width, 'height': 0.04*constants.HEIGHT,
-            'x_pop_up': x_pop_up, 'y_pop_up': 0.39*constants.HEIGHT
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.42*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
         
         parameters = {'message': message3, 'font_size': 18,
             'width': width, 'height': 0.04*constants.HEIGHT,
-            'x_pop_up': x_pop_up, 'y_pop_up': 0.43*constants.HEIGHT
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.46*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
         parameters = {'message': message4, 'font_size': 18,
             'width': width, 'height': 0.04*constants.HEIGHT,
-            'x_pop_up': x_pop_up, 'y_pop_up': 0.47*constants.HEIGHT
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.50*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
 
         parameters = {'message': message5, 'font_size': 18,
             'width': width, 'height': 0.04*constants.HEIGHT,
-            'x_pop_up': x_pop_up, 'y_pop_up': 0.51*constants.HEIGHT
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.54*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
         
 
         parameters = {'message': message6, 'font_size': 18,
             'width': width, 'height': 0.04*constants.HEIGHT,
-            'x_pop_up': x_pop_up, 'y_pop_up': 0.55*constants.HEIGHT
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.58*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
         parameters = {'message': message7, 'font_size': 18,
             'width': width, 'height': 0.04*constants.HEIGHT,
-            'x_pop_up': x_pop_up, 'y_pop_up': 0.59*constants.HEIGHT
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.62*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
