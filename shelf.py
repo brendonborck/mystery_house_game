@@ -9,9 +9,8 @@ class Shelf(InteractiveObjetcs):
     """
         Classe que define o métodos básicos de uma estante
     """
-    def __init__(self, x, y, position_mode):
-        self.shelf_image = os.path.join(constants.IMAGES_DIR, 'shelf.png')
-        super().__init__(self.shelf_image, x, y, position_mode, (69, 60))
+    def __init__(self, x, y, position_mode, scale = None):
+        super().__init__(self.shelf_image, x, y, position_mode, scale)
 
     def after_interaction(self):
         pass
@@ -33,10 +32,8 @@ class DecorationShelfBooks(Shelf):
         Classe que define uma estante de livros decorativa
     """
     def __init__(self, x, y, position_mode):
-        super().__init__(x, y, position_mode)
         self.shelf_image = os.path.join(constants.IMAGES_DIR, 'shelf - books.png')
-        self.image = pygame.image.load(self.shelf_image).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (250, 170))
+        super().__init__(x, y, position_mode, (250, 170))
 
     def interaction(self, player):
         self.print_pop_up()        
@@ -75,10 +72,8 @@ class DecorationEmptyWardrobe(Shelf):
         Classe que define uma estante vazia
     """
     def __init__(self, x, y, position_mode):
-        super().__init__(x, y, position_mode)
         self.shelf_image = os.path.join(constants.IMAGES_DIR, 'wardrobe - empty.png')
-        self.image = pygame.image.load(self.shelf_image).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (250, 200))
+        super().__init__(x, y, position_mode, (250, 200))
 
     def interaction(self, player):
         self.print_pop_up()        

@@ -131,7 +131,7 @@ class Game:
         start_music_path = os.path.join(constants.MUSIC_DIR, constants.MUSIC_GAME)
         pygame.mixer.music.load(start_music_path) 
         pygame.mixer.music.set_volume(1.0)   
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(loops = -1)
         
     def end_game(self):
         constants.clock.tick(constants.FPS)

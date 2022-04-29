@@ -70,7 +70,7 @@ def create_rooms():
     painting_y = 0.36*constants.Y_SUPERIOR_WALL
     exit_door_x = 0.75*constants.WIDTH
     exit_door_y = constants.Y_SUPERIOR_WALL
-    shelf_x = 0.1*constants.WIDTH
+    shelf_x = 0.2*constants.WIDTH
     shelf_y = 0.45*constants.HEIGHT
     paper_x = 0.25*constants.WIDTH
     paper_y = 0.8*constants.HEIGHT
@@ -447,8 +447,6 @@ def create_rooms():
     wdrobe_y = 0.20*constants.HEIGHT
     piano_x = 0.15*constants.WIDTH
     piano_y = 0.60*constants.HEIGHT
-    shelf_x = 0.45*constants.WIDTH
-    shelf_y = 0.20*constants.HEIGHT
     bed_x = 0.80*constants.WIDTH
     bed_y = 0.90*constants.HEIGHT
     interactive_objects = {
@@ -480,13 +478,6 @@ def create_rooms():
                 'x': piano_x, 
                 'y': piano_y, 
                 'position_mode': 'center'}},
-
-        'shelf': 
-         {'constructor': DecorationEmptyWardrobe,
-         'parameters':{
-             'x': shelf_x, 
-             'y': shelf_y, 
-             'position_mode': 'center'}},
 
         'bed': {'constructor': Bed4,
         'parameters':
