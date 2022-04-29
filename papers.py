@@ -77,7 +77,7 @@ class Paper1(Paper):
         width = 0.9*constants.WIDTH
         x_pop_up = 0.5*constants.WIDTH
 
-        message1 = "Bem vindo a Mistery House!"
+        message1 = "Bem vindo a Mystery House!"
         message2 = "Você não se lembra como veio parar aqui, mas não se preocupe, tudo será explicado no tempo"
         message3 = "certo. A única coisa que posso te dizer nesse momento é "
         message4 = "que voce merece tudo que vai ocorrer com voçe."

@@ -1,1 +1,1 @@
-# Mistery House
+# Mystery House

@@ -3,7 +3,7 @@ import pygame
 
 WIDTH=800
 HEIGHT=800
-TITLE='Mistery House'
+TITLE='Mystery House'
 FPS=30
 SCREEN = None
 
