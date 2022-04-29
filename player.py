@@ -3,9 +3,7 @@ import os
 import constants
 
 class Player(pygame.sprite.Sprite):
-    """
-        Classe que define como será o personagem principal
-    """
+    """Classe que define como será o personagem principal"""
     def __init__(self, player_image, speed):
         super().__init__()
         self.image_path = os.path.join(constants.IMAGES_DIR, player_image)
@@ -23,7 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.y = int(0.088*constants.HEIGHT)*10
         self.speed = speed
         self.interacted_objects = []
-        self.key=False
+        self.pocket_objects = []
 
 
     def draw_player(self):
