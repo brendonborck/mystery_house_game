@@ -6,7 +6,9 @@ from objects import InteractiveObjetcs
 
 
 class Vase(InteractiveObjetcs):
-    """Classe que define os métodos básicos para um vaso"""
+    """
+        Classe que define os parametros básicos do vaso
+    """
     def __init__(self, x, y, position_mode):
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase 1.png')
         super().__init__(self.vase_image, x, y, position_mode, (69, 60))
@@ -17,19 +19,21 @@ class Vase(InteractiveObjetcs):
 
 
     def define_mask(self):
-        mask_width = self.width
-        mask_height = constants.Y_SUPERIOR_WALL - self.rect.top
+        mask_width = self.width*1.2
+        mask_height = self.height*1.2
         mask = pygame.mask.Mask((mask_width, mask_height), False)
-        rect_width = 0.1*self.width
-        rect_height = mask_height
-        position = ((mask_width - rect_width)/2, 0)
+        rect_width = 0.8*mask_width
+        rect_height = 0.8*mask_height
+        position = ((mask_width - rect_width)/2, (mask_height - rect_height)/2)
         rect = pygame.mask.Mask((rect_width, rect_height), True)
         mask.draw(rect, position)
         return mask
 
 
 class DecorationVase1(Vase):
-    """Classe que define um vaso decorativo"""
+    """
+        Classe que define os parametros básicos de um vaso decorativo do tipo 1
+    """
     def __init__(self, x, y, position_mode):
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase 1.png')
         super().__init__(self.vase_image, x, y, position_mode, (69, 60))
@@ -66,7 +70,9 @@ class DecorationVase1(Vase):
 
 
 class DecorationVase2(Vase):
-    """Classe que define um vaso decorativo do tipo 2"""
+    """
+        Classe que define os parametros básicos de um vaso decorativo do tipo 2
+    """
     def __init__(self, x, y, position_mode):
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase 2.png')
         super().__init__(self.vase_image, x, y, position_mode, (69, 60))
@@ -103,7 +109,9 @@ class DecorationVase2(Vase):
 
 
 class DecorationVaseStar(Vase):
-    """Classe que define um vaso decorativo do tipo estrela"""
+    """
+        Classe que define os parametros básicos de um vaso decorativo com uma estrela
+    """
     def __init__(self, x, y, position_mode):
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase star.png')
         super().__init__(self.vase_image, x, y, position_mode, (69, 60))

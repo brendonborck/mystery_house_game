@@ -15,10 +15,8 @@ class Door(InteractiveObjetcs):
         super().__init__(self.closed_door_image, x, y, position_mode, (85,130))
         self.puzzle_completed = False
 
-
     def after_interaction(self):
         pass
-
 
     def define_mask(self):
         mask = pygame.mask.from_surface(self.image)
@@ -73,7 +71,7 @@ class Door1(Door):
         w = 0.58*constants.WIDTH
         if self.puzzle_completed and user_returned:
             self.image = pygame.image.load(self.open_door_image).convert_alpha()
-            self.image = pygame.transform.scale(self.image, (85, 130))
+            self.image = pygame.transform.scale(self.image, (105, 130))
             constants.SCREEN.blit(self.image, self.rect)
             player.draw_player()
             parameters = {'message': 'A porta se abre', 'wait_time': 1.4,
@@ -126,6 +124,12 @@ class Door2(Door):
     """
         Classe que define a porta da sala 2
     """
+    def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
+        self.closed_door_image = os.path.join(constants.IMAGES_DIR, 'door closed.png')
+        self.open_door_image = os.path.join(constants.IMAGES_DIR, 'door stairs.png')
+        self.puzzle_completed = False
+    
     def interaction(self, player):        
         player.stop_acting()
         if 'key_room_2' in player.pocket_objects:
@@ -137,7 +141,7 @@ class Door2(Door):
         w = 0.5*constants.WIDTH
         if self.puzzle_completed:
             self.image = pygame.image.load(self.open_door_image).convert_alpha()
-            self.image = pygame.transform.scale(self.image, (85, 130))
+            self.image = pygame.transform.scale(self.image, (105, 130))
             constants.SCREEN.blit(self.image, self.rect)
             player.draw_player()
             parameters = {'message': 'Usou a Chave', 'wait_time': 1.4,
@@ -159,9 +163,17 @@ class Door3(Door):
     """
         Classe que define a porta da sala 3
     """
+    def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
+        self.closed_door_image = os.path.join(constants.IMAGES_DIR, 'dark door closed.png')
+        self.open_door_image = os.path.join(constants.IMAGES_DIR, 'dark door.png')
+        self.image = pygame.image.load(self.closed_door_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (85, 130))
+        self.puzzle_completed = False
+
     def interaction(self, player):        
         player.stop_acting()
-        if 'key_room_2' in player.pocket_objects:
+        if 'key_room_3' in player.pocket_objects:
             self.puzzle_completed = True
         else:
             self.print_pop_up()
@@ -170,7 +182,7 @@ class Door3(Door):
         w = 0.5*constants.WIDTH
         if self.puzzle_completed:
             self.image = pygame.image.load(self.open_door_image).convert_alpha()
-            self.image = pygame.transform.scale(self.image, (85, 130))
+            self.image = pygame.transform.scale(self.image, (105, 130))
             constants.SCREEN.blit(self.image, self.rect)
             player.draw_player()
             parameters = {'message': 'Usou a Chave', 'wait_time': 1.4,
@@ -188,10 +200,59 @@ class Door3(Door):
         Utils().print_message(options, parameters)
 
 
+class Door3to2(Door):
+    """
+        Classe que define a porta da sala 3 que volta para sala 2
+    """
+    def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
+        self.closed_door_image = os.path.join(constants.IMAGES_DIR, 'door closed.png')
+        self.open_door_image = os.path.join(constants.IMAGES_DIR, 'door opened 2.png')
+        self.image = pygame.image.load(self.closed_door_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (85, 130))
+        self.puzzle_completed = False
+
+    def interaction(self, player):        
+        player.stop_acting()
+        if 'key_room_return_2' in player.pocket_objects:
+            self.puzzle_completed = True
+        else:
+            self.print_pop_up()
+
+        h = 0.2*constants.HEIGHT
+        w = 0.5*constants.WIDTH
+        if self.puzzle_completed:
+            self.image = pygame.image.load(self.open_door_image).convert_alpha()
+            self.image = pygame.transform.scale(self.image, (105, 130))
+            constants.SCREEN.blit(self.image, self.rect)
+            player.draw_player()
+            parameters = {'message': 'Usou a Chave', 'wait_time': 1.4,
+                'font_size': 40, 'width': w, 'height': h
+            }
+            Utils().print_message({'centralized', 'persistent'}, parameters)
+            player.passed_room = True
+
+
+    def print_pop_up(self):
+        options = {'centralized', 'persistent'}
+        parameters = {'message': 'Trancada', 'font_size': 40, 'wait_time': 0.8,
+            'width': 0.5*constants.WIDTH, 'height': 0.23*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+
 class Door4(Door):
     """
         Classe que define a porta da sala 4
     """
+    def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
+        self.closed_door_image = os.path.join(constants.IMAGES_DIR, 'dark door closed.png')
+        self.open_door_image = os.path.join(constants.IMAGES_DIR, 'dark door opened.png')
+        self.image = pygame.image.load(self.closed_door_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (85, 130))
+        self.puzzle_completed = False
+
     def interaction(self, player):        
         player.stop_acting()
         if 'key_room_2' in player.pocket_objects:
@@ -203,7 +264,7 @@ class Door4(Door):
         w = 0.5*constants.WIDTH
         if self.puzzle_completed:
             self.image = pygame.image.load(self.open_door_image).convert_alpha()
-            self.image = pygame.transform.scale(self.image, (85, 130))
+            self.image = pygame.transform.scale(self.image, (105, 130))
             constants.SCREEN.blit(self.image, self.rect)
             player.draw_player()
             parameters = {'message': 'Usou a Chave', 'wait_time': 1.4,
@@ -225,6 +286,14 @@ class Door5(Door):
     """
         Classe que define a porta da sala 5
     """
+    def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
+        self.closed_door_image = os.path.join(constants.IMAGES_DIR, 'door closed.png')
+        self.open_door_image = os.path.join(constants.IMAGES_DIR, 'door.png')
+        self.image = pygame.image.load(self.closed_door_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (85, 130))
+        self.puzzle_completed = False
+    
     def interaction(self, player):        
         player.stop_acting()
         if 'key_room_2' in player.pocket_objects:
@@ -236,7 +305,7 @@ class Door5(Door):
         w = 0.5*constants.WIDTH
         if self.puzzle_completed:
             self.image = pygame.image.load(self.open_door_image).convert_alpha()
-            self.image = pygame.transform.scale(self.image, (85, 130))
+            self.image = pygame.transform.scale(self.image, (105, 130))
             constants.SCREEN.blit(self.image, self.rect)
             player.draw_player()
             parameters = {'message': 'Usou a Chave', 'wait_time': 1.4,

@@ -24,33 +24,7 @@ class Paper(InteractiveObjetcs):
         mask = pygame.mask.Mask((mask_width, mask_height), False)
         rect_width = 0.8*mask_width
         rect_height = 0.8*mask_height
-        position = ((mask_width - rect_width)/2, (mask_height - rect_width)/2)
-        rect = pygame.mask.Mask((rect_width, rect_height), True)
-        mask.draw(rect, position)
-        return mask
-
-
-class OtherPaper(InteractiveObjetcs):
-    """
-        Classe que define os parametros básicos de outro tipo de pergaminho
-    """
-    def __init__(self, x, y, position_mode):
-        paper_image = constants.PAPER_IMAGE_2
-        self.paper_image_path = os.path.join(constants.IMAGES_DIR, paper_image)
-        super().__init__(self.paper_image_path, x, y, position_mode, (45, 55))
-
-
-    def after_interaction(self):
-        pass
-
-
-    def define_mask(self):
-        mask_width = self.width
-        mask_height = self.height
-        mask = pygame.mask.Mask((mask_width, mask_height), False)
-        rect_width = 0.8*mask_width
-        rect_height = 0.8*mask_height
-        position = ((mask_width - rect_width)/2, (mask_height - rect_width)/2)
+        position = ((mask_width - rect_width)/2, (mask_height - rect_height)/2)
         rect = pygame.mask.Mask((rect_width, rect_height), True)
         mask.draw(rect, position)
         return mask
@@ -58,7 +32,7 @@ class OtherPaper(InteractiveObjetcs):
 
 class Paper1(Paper):
     """
-        Classe que define o pergaminho do tipo 1
+        Classe que define o pergaminho da sala 1
     """
     def interaction(self, player):
         self.print_pop_up()
@@ -115,9 +89,9 @@ class Paper1(Paper):
         Utils().print_message(options, parameters)
 
 
-class Paper2(OtherPaper):
+class Paper2(Paper):
     """
-        Classe que define o pergaminho do tipo 2
+        Classe que define o pergaminho da sala 2
     """
     def interaction(self, player):
         self.print_pop_up()
@@ -168,25 +142,45 @@ class Paper2(OtherPaper):
 
 class Paper3(Paper):
     """
-        Classe que define o pergaminho do tipo 3
+        Classe que define o pergaminho da sala 3
     """
-    def interaction(self, player):
-        self.print_pop_up()
+    def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
+        paper_image = constants.PAPER_IMAGE_2
+        self.paper_image_path = os.path.join(constants.IMAGES_DIR, paper_image)
+        self.image = pygame.image.load(self.paper_image_path).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (45, 55))
+        self.puzzle_completed = False
 
-        in_pop_up = True
-        while in_pop_up:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    #TODO
-                    pass
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_e:
-                        in_pop_up = False
-                    elif event.key == pygame.K_ESCAPE:
-                        in_pop_up = False
-                elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_e:
-                        player.stop_acting()
+    def interaction(self, player):
+        h = 0.23*constants.HEIGHT
+        w = 0.5*constants.WIDTH
+        if self.puzzle_completed:
+            w = 0.56*constants.WIDTH
+            parameters = {'message': 'Você ganhou uma chave.', 'wait_time': 1.4,
+                'font_size': 40, 'width': w, 'height': h
+            }
+            Utils().print_message({'centralized', 'persistent'}, parameters)
+        else:
+            self.print_pop_up()
+
+            in_pop_up = True
+            while in_pop_up:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        #TODO
+                        pass
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_e:
+                            in_pop_up = False
+                        elif event.key == pygame.K_ESCAPE:
+                            in_pop_up = False
+                    elif event.type == pygame.KEYUP:
+                        if event.key == pygame.K_e:
+                            self.puzzle_completed = True
+                            player.pocket_objects.append('key_room_return_2')
+                            player.stop_acting()
+
 
 
     def print_pop_up(self):
@@ -203,10 +197,18 @@ class Paper3(Paper):
         Utils().print_message(options, parameters)
 
 
-class Paper4(OtherPaper):
+class Paper4(Paper):
     """
-        Classe que define o pergaminho do tipo 4
+        Classe que define o pergaminho da sala 4
     """
+    def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
+        paper_image = constants.PAPER_IMAGE_2
+        self.paper_image_path = os.path.join(constants.IMAGES_DIR, paper_image)
+        self.image = pygame.image.load(self.paper_image_path).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (45, 55))
+        self.puzzle_completed = False
+
     def interaction(self, player):
         self.print_pop_up()
 
@@ -256,7 +258,7 @@ class Paper4(OtherPaper):
 
 class Paper5(Paper):
     """
-        Classe que define o pergaminho do tipo 5
+        Classe que define o pergaminho da sala 5
     """
     def interaction(self, player):
         self.print_pop_up()

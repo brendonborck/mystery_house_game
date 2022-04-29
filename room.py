@@ -5,21 +5,23 @@ from clock import Clock1, Clock2
 import constants
 import os
 from utils import Utils
-from doors import Door1, Door2, Door3, Door4, Door5
+from doors import Door1, Door2, Door3, Door3to2, Door4, Door5
 from paintings import Painting1
 from papers import Paper1, Paper2, Paper3, Paper4, Paper5
 from wardrobe import Wardrobe2, Wardrobe3, Wardrobe4
 from writingdesk import Writing_Desk1, Writing_Desk2, Writing_Desk4
 from chair import DecorationChair, DecorationSofa, DecorationBench, DecorationArmChairLateral, DecorationArmChairFront
 from lamp import DecorationLamp, DecorationLamp2
-from safe import DecorationSafe
+from safe import Safebox3
 from shelf import DecorationShelfBooks, DecorationEmptyWardrobe
 from vase import DecorationVase1, DecorationVase2, DecorationVaseStar
 from piano import DecorationPiano
 
 
 class Room(pygame.sprite.Sprite):
-    """Classe que define os aspectos de cada sala"""
+    """
+        Classe que define os aspectos de cada sala
+    """
     def __init__(self, name, print_time, player_position, level):
         super().__init__()
         
@@ -40,6 +42,7 @@ class Room(pygame.sprite.Sprite):
         self.name = name
         self.print_time = print_time
         self.player_position = player_position
+        self.rooms_passed = []
 
     def define_interactive_objects(self, interactive_objects):
         for object_name in interactive_objects:
@@ -89,8 +92,9 @@ def create_rooms():
             {'x': paper_x, 'y': paper_y, 'position_mode': 'center'}}
     }
     room = Room(name, print_time, player_pos, 1)
+    room.rooms_passed.append(1)
     room.define_interactive_objects(interactive_objects)
-    rooms.append(room)
+    # rooms.append(room)
 
     name = 'Fase 2'
     print_time = 1.7
@@ -152,8 +156,9 @@ def create_rooms():
         }
     }
     room = Room(name, print_time, player_pos, 2)
+    room.rooms_passed.append(2)
     room.define_interactive_objects(interactive_objects)
-    rooms.append(room)
+    # rooms.append(room)
 
 
     name = 'Fase 3'
@@ -161,10 +166,14 @@ def create_rooms():
     player_pos = (int(0.018*constants.WIDTH)*10, int(constants.Y_SUPERIOR_WALL/10)*10)
     exit_door_x = 0.12*constants.WIDTH
     exit_door_y = constants.Y_SUPERIOR_WALL
+    return_door_x = 0.84*constants.WIDTH
+    return_door_y = constants.Y_SUPERIOR_WALL
     paper_x = 0.8*constants.WIDTH
     paper_y = 0.4*constants.HEIGHT
     wdrobe_x = 0.70*constants.WIDTH
     wdrobe_y = 0.20*constants.HEIGHT
+    safebox_x = 0.10*constants.WIDTH
+    safebox_y = 0.60*constants.HEIGHT
     bed_x = 0.80*constants.WIDTH
     bed_y = 0.90*constants.HEIGHT
     interactive_objects = {
@@ -176,11 +185,25 @@ def create_rooms():
                 'y': exit_door_y,
                 'position_mode': 'bottomleft'}},
 
+        'return_door': {
+            'constructor': Door3to2,
+            'parameters': {
+                'x': return_door_x,
+                'y': return_door_y,
+                'position_mode': 'bottomleft'}},
+
         'wardrobe': {
             'constructor': Wardrobe3,
             'parameters':{
                 'x': wdrobe_x, 
                 'y': wdrobe_y, 
+                'position_mode': 'center'}},
+
+        'safe': {
+            'constructor': Safebox3,
+            'parameters':{
+                'x': safebox_x, 
+                'y': safebox_y, 
                 'position_mode': 'center'}},
 
         'bed': {
@@ -200,6 +223,7 @@ def create_rooms():
         }
     }
     room = Room(name, print_time, player_pos, 3)
+    room.rooms_passed.append(3)
     room.define_interactive_objects(interactive_objects)
     rooms.append(room)
 
@@ -256,6 +280,7 @@ def create_rooms():
         }
     }
     room = Room(name, print_time, player_pos, 4)
+    room.rooms_passed.append(4)
     room.define_interactive_objects(interactive_objects)
     rooms.append(room)
 
@@ -286,6 +311,7 @@ def create_rooms():
         }
     }
     room = Room(name, print_time, player_pos, 5)
+    room.rooms_passed.append(5)
     room.define_interactive_objects(interactive_objects)
     rooms.append(room)
 

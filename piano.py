@@ -24,7 +24,7 @@ class Piano(InteractiveObjetcs):
         mask = pygame.mask.Mask((mask_width, mask_height), False)
         rect_width = 0.8*mask_width
         rect_height = 0.8*mask_height
-        position = ((mask_width - rect_width)/2, (mask_height - rect_width)/2)
+        position = ((mask_width - rect_width)/2, (mask_height - rect_height)/2)
         rect = pygame.mask.Mask((rect_width, rect_height), True)
         mask.draw(rect, position)
         return mask
