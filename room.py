@@ -431,7 +431,7 @@ def create_rooms():
             }
         }
     }
-    room = Room(name, print_time, player_pos, constants.ROOM_IMAGE_1)
+    room = Room(name, print_time, player_pos, constants.ROOM_IMAGE_4)
     created_rooms['obj_rects_list'].append(room.define_interactive_objects(interactive_objects))
     created_rooms['rooms'].append(room)
 

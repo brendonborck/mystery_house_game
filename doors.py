@@ -402,7 +402,7 @@ class Door5(Door):
 
         in_pop_up = True
         password_input = ''
-        password = 'Laubert'
+        password = 'laubert'
         user_returned = False
         while in_pop_up:
             for event in pygame.event.get():
