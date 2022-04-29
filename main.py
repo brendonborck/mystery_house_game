@@ -27,7 +27,6 @@ class Game:
         player_speed = self.options['speed']
         constants.countdown = self.options['countdown']
         player = Player(player_image, player_speed)
-        self.run_music()
         self.run_rooms(player)
 
 
@@ -164,6 +163,7 @@ class Game:
 
 if __name__ == '__main__':
     game = Game()
+    game.run_music()
     game.draw_start_screen()
     if game.running:
         game.run_game()
