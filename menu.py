@@ -1,6 +1,6 @@
-from itertools import count
 import pygame
 import constants
+import os
 from utils import Utils
 
 class Menu():
@@ -95,23 +95,51 @@ class Menu():
         options = {}
         parameters = {'message': message, 'font_size': 20,
             'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
-            'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.33*constants.HEIGHT
+            'x_pop_up': 0.72*constants.WIDTH, 'y_pop_up': 0.29*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
+
+        x = constants.WIDTH*0.3
+        y = constants.HEIGHT*0.29
+        image = os.path.join(constants.IMAGES_DIR, 'wasd.png')
+        image = pygame.image.load(image)
+        image = pygame.transform.scale(image, (280, 180))
+        rect = image.get_rect()
+        rect.center = (x, y)
+        constants.SCREEN.blit(image, rect)
 
         message = 'E: Interagir'
         parameters = {'message': message, 'font_size': 20,
             'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
-            'x_pop_up': 0.39*constants.WIDTH, 'y_pop_up': 0.5*constants.HEIGHT
+            'x_pop_up': 0.72*constants.WIDTH, 'y_pop_up': 0.56*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
+
+        x = constants.WIDTH*0.29
+        y = constants.HEIGHT*0.56
+        image = os.path.join(constants.IMAGES_DIR, 'letter_e.png')
+        image = pygame.image.load(image)
+        image = pygame.transform.scale(image, (80, 80))
+        rect = image.get_rect()
+        rect.center = (x, y)
+        constants.SCREEN.blit(image, rect)
+
 
         message = 'Esc: Sair da interação/Sair do jogo'
         parameters = {'message': message, 'font_size': 20,
             'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
-            'x_pop_up': 0.53*constants.WIDTH, 'y_pop_up': 0.67*constants.HEIGHT
+            'x_pop_up': 0.72*constants.WIDTH, 'y_pop_up': 0.75*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
+
+        x = constants.WIDTH*0.29
+        y = constants.HEIGHT*0.75
+        image = os.path.join(constants.IMAGES_DIR, 'esc_key.png')
+        image = pygame.image.load(image)
+        image = pygame.transform.scale(image, (80, 80))
+        rect = image.get_rect()
+        rect.center = (x, y)
+        constants.SCREEN.blit(image, rect)
 
         pygame.display.update()
         while in_pop_up:
