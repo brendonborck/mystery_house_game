@@ -5,11 +5,11 @@ from clock import Clock1, Clock2
 import constants
 import os
 from utils import Utils
-from doors import Door1, Door2
+from doors import Door1, Door2, Door3, Door4, Door5
 from paintings import Painting1
 from papers import Paper1, Paper2, Paper3, Paper4, Paper5
-from wardrobe import Wardrobe1
-from writingdesk import Writing_Desk1, Writing_Desk2
+from wardrobe import Wardrobe1, Wardrobe3, Wardrobe4
+from writingdesk import Writing_Desk1, Writing_Desk2, Writing_Desk4
 
 
 class Room(pygame.sprite.Sprite):
@@ -17,12 +17,13 @@ class Room(pygame.sprite.Sprite):
     def __init__(self, name, print_time, player_position, level):
         super().__init__()
         
-        room_image = constants.ROOM_IMAGE
-        if level == 2:
+        if level == 1:
+            room_image = constants.ROOM_IMAGE
+        elif level == 2:
             room_image = constants.ROOM_IMAGE_2
         elif level == 3:
             room_image = constants.ROOM_IMAGE_3
-        elif level == 4:
+        else:
             room_image = constants.ROOM_IMAGE_4
 
         room_image_path = os.path.join(constants.IMAGES_DIR, room_image)
@@ -43,7 +44,6 @@ class Room(pygame.sprite.Sprite):
             position_mode = parameters['position_mode']
             obj = Constructor(x, y, position_mode)
             self.interactive_objects_group.add(obj)
-
     
     def print_room_message(self):
         parameters = {'message': self.name, 'wait_time': self.print_time}
@@ -80,7 +80,7 @@ def create_rooms():
         'exit_door': {'constructor': Door1, 'parameters':
             {'x': exit_door_x, 'y': exit_door_y, 'position_mode': 'bottomleft'}},
         'paper': {'constructor': Paper1, 'parameters':
-            {'x': paper_x, 'y': paper_y, 'position_mode': 'center', 'type': 1}}
+            {'x': paper_x, 'y': paper_y, 'position_mode': 'center'}}
     }
     room = Room(name, print_time, player_pos, 1)
     room.define_interactive_objects(interactive_objects)
@@ -142,7 +142,6 @@ def create_rooms():
                 'x': paper_x,
                 'y': paper_y,
                 'position_mode': 'center',
-                'type': 1
             }
         }
     }
@@ -158,36 +157,32 @@ def create_rooms():
     exit_door_y = constants.Y_SUPERIOR_WALL
     paper_x = 0.8*constants.WIDTH
     paper_y = 0.4*constants.HEIGHT
-    wdesk_x = 0.95*constants.WIDTH
-    wdesk_y = 0.50*constants.HEIGHT
     wdrobe_x = 0.70*constants.WIDTH
     wdrobe_y = 0.20*constants.HEIGHT
-    clock_x = 0.30*constants.WIDTH
-    clock_y = 0.36*constants.Y_SUPERIOR_WALL
     bed_x = 0.80*constants.WIDTH
     bed_y = 0.90*constants.HEIGHT
     interactive_objects = {
+
         'exit_door': {
-            'constructor': Door2,
+            'constructor': Door3,
             'parameters': {
                 'x': exit_door_x,
                 'y': exit_door_y,
-                'position_mode': 'bottomleft'
-            }
-        },
+                'position_mode': 'bottomleft'}},
 
-        'wardrobe': 
-         {'constructor': Wardrobe1,
-         'parameters':{
-             'x': wdrobe_x, 
-             'y': wdrobe_y, 
-             'position_mode': 'center'}},
+        'wardrobe': {
+            'constructor': Wardrobe3,
+            'parameters':{
+                'x': wdrobe_x, 
+                'y': wdrobe_y, 
+                'position_mode': 'center'}},
 
-        'bed': {'constructor': Bed3,
-        'parameters':
-            {'x': bed_x, 
-             'y': bed_y, 
-            'position_mode': 'center'}},
+        'bed': {
+            'constructor': Bed3,
+            'parameters': {
+                'x': bed_x, 
+                'y': bed_y, 
+                'position_mode': 'center'}},
 
         'paper': {
             'constructor': Paper3,
@@ -195,7 +190,6 @@ def create_rooms():
                 'x': paper_x,
                 'y': paper_y,
                 'position_mode': 'center',
-                'type': 2
             }
         }
     }
@@ -215,13 +209,11 @@ def create_rooms():
     wdesk_y = 0.50*constants.HEIGHT
     wdrobe_x = 0.70*constants.WIDTH
     wdrobe_y = 0.20*constants.HEIGHT
-    clock_x = 0.30*constants.WIDTH
-    clock_y = 0.36*constants.Y_SUPERIOR_WALL
     bed_x = 0.80*constants.WIDTH
     bed_y = 0.90*constants.HEIGHT
     interactive_objects = {
         'exit_door': {
-            'constructor': Door2,
+            'constructor': Door4,
             'parameters': {
                 'x': exit_door_x,
                 'y': exit_door_y,
@@ -229,14 +221,14 @@ def create_rooms():
             }
         },
         'writingdesk': 
-         {'constructor': Writing_Desk2,
+         {'constructor': Writing_Desk4,
          'parameters':{
              'x': wdesk_x, 
              'y': wdesk_y, 
              'position_mode': 'center'}},
 
         'wardrobe': 
-         {'constructor': Wardrobe1,
+         {'constructor': Wardrobe4,
          'parameters':{
              'x': wdrobe_x, 
              'y': wdrobe_y, 
@@ -248,19 +240,12 @@ def create_rooms():
              'y': bed_y, 
             'position_mode': 'center'}},
 
-        'clock': {'constructor': Clock2,
-        'parameters':
-            {'x': clock_x, 
-            'y': clock_y, 
-            'position_mode': 'center'}},
-
         'paper': {
             'constructor': Paper4,
             'parameters': {
                 'x': paper_x,
                 'y': paper_y,
                 'position_mode': 'center',
-                'type': 1
             }
         }
     }
@@ -273,16 +258,24 @@ def create_rooms():
     name = 'Fase 5'
     print_time = 1.2
     player_pos = (int(0.012*constants.WIDTH)*10, int(0.088*constants.HEIGHT)*10)
+    exit_door_x = 0.12*constants.WIDTH
+    exit_door_y = constants.Y_SUPERIOR_WALL
     paper_x = 0.25*constants.WIDTH
     paper_y = 0.8*constants.HEIGHT
     interactive_objects = {
+        'exit_door': {
+            'constructor': Door5,
+            'parameters': {
+                'x': exit_door_x,
+                'y': exit_door_y,
+                'position_mode': 'bottomleft'}},
+
         'paper': {
             'constructor': Paper5,
             'parameters': {
                 'x': paper_x,
                 'y': paper_y,
                 'position_mode': 'center',
-                'type': 2
             }
         }
     }

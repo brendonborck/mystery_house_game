@@ -56,6 +56,7 @@ class Writing_Desk1(Writing_Desk):
         }
         Utils().print_message(options, parameters)
 
+
 class Writing_Desk2(Writing_Desk):
 
     def interaction(self, player):
@@ -78,6 +79,34 @@ class Writing_Desk2(Writing_Desk):
 
     def print_pop_up(self):
         message = "Na Gaveta há uma foto de uma criança junto de sua mãe que lhe traz lembranças..."
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 18,
+            'width': 0.85*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+        }
+        Utils().print_message(options, parameters)
+
+class Writing_Desk4(Writing_Desk):
+
+    def interaction(self, player):
+        self.print_pop_up()        
+        in_pop_up = True
+        while in_pop_up:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    #TODO
+                    pass
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        in_pop_up = False
+                    elif event.key == pygame.K_ESCAPE:
+                        in_pop_up = False
+                elif event.type == pygame.KEYUP:
+                    if event.key == pygame.K_e:
+                        player.stop_acting()
+
+
+    def print_pop_up(self):
+        message = "Meu filho, estou preocupada com o que você vai fazer com o seu irmão de menor IDADE, eu sei que ele fez uma coisa errada, mas isso não justifica essa tortura sobre ele,..."
         options = {'centralized'}
         parameters = {'message': message, 'font_size': 18,
             'width': 0.85*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
