@@ -103,6 +103,10 @@ class Paper2(Paper):
 
         in_pop_up = True
         while in_pop_up:
+            constants.clock.tick(constants.FPS)
+            if constants.countdown:
+                constants.time_left -= constants.clock.get_time()/1000
+                Utils().print_time()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     #TODO
@@ -173,6 +177,10 @@ class Paper3(Paper):
 
             in_pop_up = True
             while in_pop_up:
+                constants.clock.tick(constants.FPS)
+                if constants.countdown:
+                    constants.time_left -= constants.clock.get_time()/1000
+                    Utils().print_time()
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         #TODO
@@ -246,6 +254,10 @@ class Paper4(Paper):
 
         in_pop_up = True
         while in_pop_up:
+            constants.clock.tick(constants.FPS)
+            if constants.countdown:
+                constants.time_left -= constants.clock.get_time()/1000
+                Utils().print_time()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     #TODO
@@ -297,6 +309,10 @@ class Paper5(Paper):
 
         in_pop_up = True
         while in_pop_up:
+            constants.clock.tick(constants.FPS)
+            if constants.countdown:
+                constants.time_left -= constants.clock.get_time()/1000
+                Utils().print_time()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     #TODO

@@ -42,6 +42,10 @@ class DecorationVase1(Vase):
         self.print_pop_up()        
         in_pop_up = True
         while in_pop_up:
+            constants.clock.tick(constants.FPS)
+            if constants.countdown:
+                constants.time_left -= constants.clock.get_time()/1000
+                Utils().print_time()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     #TODO
@@ -79,6 +83,10 @@ class DecorationVase2(Vase):
         self.print_pop_up()        
         in_pop_up = True
         while in_pop_up:
+            constants.clock.tick(constants.FPS)
+            if constants.countdown:
+                constants.time_left -= constants.clock.get_time()/1000
+                Utils().print_time()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     #TODO
@@ -129,6 +137,10 @@ class DecorationVaseStar(Vase):
             self.print_pop_up()        
             in_pop_up = True
             while in_pop_up:
+                constants.clock.tick(constants.FPS)
+                if constants.countdown:
+                    constants.time_left -= constants.clock.get_time()/1000
+                    Utils().print_time()
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         #TODO

@@ -42,6 +42,10 @@ class Door1(Door):
         password = 'laubert'
         user_returned = False
         while in_pop_up:
+            constants.clock.tick(constants.FPS)
+            if constants.countdown:
+                constants.time_left -= constants.clock.get_time()/1000
+                Utils().print_time()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     #TODO
@@ -313,6 +317,10 @@ class Door4(Door):
         password = '28'
         user_returned = False
         while in_pop_up:
+            constants.clock.tick(constants.FPS)
+            if constants.countdown:
+                constants.time_left -= constants.clock.get_time()/1000
+                Utils().print_time()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     #TODO
@@ -405,6 +413,10 @@ class Door5(Door):
         password = 'laubert'
         user_returned = False
         while in_pop_up:
+            constants.clock.tick(constants.FPS)
+            if constants.countdown:
+                constants.time_left -= constants.clock.get_time()/1000
+                Utils().print_time()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     #TODO

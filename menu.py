@@ -85,10 +85,34 @@ class Menu():
     def game_keys(self):
         image = pygame.Surface([constants.WIDTH, constants.HEIGHT])
         image.fill(constants.BLACK)
+
         rect = image.get_rect()
         rect.topleft = (0, 0)
         in_pop_up = True
         constants.SCREEN.blit(image, rect)
+
+        message = 'W A S D: Movimentar jogador'
+        options = {}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+            'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.33*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+        message = 'E: Interagir'
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+            'x_pop_up': 0.39*constants.WIDTH, 'y_pop_up': 0.5*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+        message = 'Esc: Sair da interação/Sair do jogo'
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+            'x_pop_up': 0.53*constants.WIDTH, 'y_pop_up': 0.67*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
         pygame.display.update()
         while in_pop_up:
             for event in pygame.event.get():
