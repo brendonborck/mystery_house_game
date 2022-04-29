@@ -10,6 +10,12 @@ from paintings import Painting1
 from papers import Paper1, Paper2, Paper3, Paper4, Paper5
 from wardrobe import Wardrobe1, Wardrobe3, Wardrobe4
 from writingdesk import Writing_Desk1, Writing_Desk2, Writing_Desk4
+from chair import DecorationChair, DecorationSofa, DecorationBench, DecorationArmChairLateral, DecorationArmChairFront
+from lamp import DecorationLamp, DecorationLamp2
+from safe import DecorationSafe
+from shelf import DecorationShelfBooks, DecorationEmptyWardrobe
+from vase import DecorationVase1, DecorationVase2, DecorationVaseStar
+from piano import DecorationPiano
 
 
 class Room(pygame.sprite.Sprite):
