@@ -18,6 +18,7 @@ class InteractiveObjetcs(pygame.sprite.Sprite):
         self.width = self.rect.width
         self.height = self.rect.height
         self.mask = self.define_mask()
+        self.impassable = True
         
 
     @abstractmethod

@@ -32,8 +32,13 @@ class Game:
 
     def run_rooms(self, player):
         room_group = pygame.sprite.GroupSingle()
-        rooms = create_rooms()
-        for room in rooms:
+        created_rooms = create_rooms()
+        rooms = created_rooms['rooms']
+        obj_rects_list = created_rooms['obj_rects_list']
+        
+        for i in range(len(rooms)):
+            room = rooms[i]
+            obj_rects = obj_rects_list[i]
             if self.playing:
                 room_group.add(room)
                 room.print_room_message()
@@ -45,7 +50,7 @@ class Game:
                 self.watch_events(player)
                 room_group.draw(constants.SCREEN)
                 room.interactive_objects_group.draw(constants.SCREEN)
-                player.move_player()
+                player.move_player(obj_rects)
                 player.draw_player()
                 interacted = player.check_interaction(room.interactive_objects_group)
                 if interacted:

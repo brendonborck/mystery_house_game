@@ -12,6 +12,7 @@ class Paper(InteractiveObjetcs):
         paper_image = constants.PAPER_IMAGE
         self.paper_image_path = os.path.join(constants.IMAGES_DIR, paper_image)
         super().__init__(self.paper_image_path, x, y, position_mode, (45, 55))
+        self.impassable = False
 
 
     def after_interaction(self):

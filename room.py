@@ -20,18 +20,8 @@ from piano import DecorationPiano
 
 class Room(pygame.sprite.Sprite):
     """Classe que define os aspectos de cada sala"""
-    def __init__(self, name, print_time, player_position, level):
+    def __init__(self, name, print_time, player_position, room_image):
         super().__init__()
-        
-        if level == 1:
-            room_image = constants.ROOM_IMAGE
-        elif level == 2:
-            room_image = constants.ROOM_IMAGE_2
-        elif level == 3:
-            room_image = constants.ROOM_IMAGE_3
-        else:
-            room_image = constants.ROOM_IMAGE_4
-
         room_image_path = os.path.join(constants.IMAGES_DIR, room_image)
         self.image = pygame.image.load(room_image_path).convert()
         self.image = pygame.transform.scale(self.image, (constants.WIDTH, constants.HEIGHT))
@@ -42,6 +32,7 @@ class Room(pygame.sprite.Sprite):
         self.player_position = player_position
 
     def define_interactive_objects(self, interactive_objects):
+        obj_rects_list = []
         for object_name in interactive_objects:
             Constructor = interactive_objects[object_name]['constructor']
             parameters = interactive_objects[object_name]['parameters']
@@ -50,6 +41,9 @@ class Room(pygame.sprite.Sprite):
             position_mode = parameters['position_mode']
             obj = Constructor(x, y, position_mode)
             self.interactive_objects_group.add(obj)
+            if obj.impassable:
+                obj_rects_list.append(obj.rect)
+        return obj_rects_list
     
     def print_room_message(self):
         parameters = {'message': self.name, 'wait_time': self.print_time}
@@ -57,7 +51,9 @@ class Room(pygame.sprite.Sprite):
 
 
 def create_rooms():
-    rooms = []
+    created_rooms = {}
+    created_rooms['rooms'] = []
+    created_rooms['obj_rects_list'] = []
 
     name = 'Fase 1'
     print_time = 1.2
@@ -88,9 +84,9 @@ def create_rooms():
         'paper': {'constructor': Paper1, 'parameters':
             {'x': paper_x, 'y': paper_y, 'position_mode': 'center'}}
     }
-    room = Room(name, print_time, player_pos, 1)
-    room.define_interactive_objects(interactive_objects)
-    rooms.append(room)
+    room = Room(name, print_time, player_pos, constants.ROOM_IMAGE_1)
+    created_rooms['obj_rects_list'].append(room.define_interactive_objects(interactive_objects))
+    created_rooms['rooms'].append(room)
 
     name = 'Fase 2'
     print_time = 1.7
@@ -151,9 +147,9 @@ def create_rooms():
             }
         }
     }
-    room = Room(name, print_time, player_pos, 2)
-    room.define_interactive_objects(interactive_objects)
-    rooms.append(room)
+    room = Room(name, print_time, player_pos, constants.ROOM_IMAGE_2)
+    created_rooms['obj_rects_list'].append(room.define_interactive_objects(interactive_objects))
+    created_rooms['rooms'].append(room)
 
 
     name = 'Fase 3'
@@ -199,9 +195,9 @@ def create_rooms():
             }
         }
     }
-    room = Room(name, print_time, player_pos, 3)
-    room.define_interactive_objects(interactive_objects)
-    rooms.append(room)
+    room = Room(name, print_time, player_pos, constants.ROOM_IMAGE_3)
+    created_rooms['obj_rects_list'].append(room.define_interactive_objects(interactive_objects))
+    created_rooms['rooms'].append(room)
 
 
     name = 'Fase 4'
@@ -255,11 +251,9 @@ def create_rooms():
             }
         }
     }
-    room = Room(name, print_time, player_pos, 4)
-    room.define_interactive_objects(interactive_objects)
-    rooms.append(room)
-
-
+    room = Room(name, print_time, player_pos, constants.ROOM_IMAGE_1)
+    created_rooms['obj_rects_list'].append(room.define_interactive_objects(interactive_objects))
+    created_rooms['rooms'].append(room)
 
     name = 'Fase 5'
     print_time = 1.2
@@ -285,8 +279,8 @@ def create_rooms():
             }
         }
     }
-    room = Room(name, print_time, player_pos, 5)
-    room.define_interactive_objects(interactive_objects)
-    rooms.append(room)
+    room = Room(name, print_time, player_pos, constants.ROOM_IMAGE_1)
+    created_rooms['obj_rects_list'].append(room.define_interactive_objects(interactive_objects))
+    created_rooms['rooms'].append(room)
 
-    return rooms
+    return created_rooms

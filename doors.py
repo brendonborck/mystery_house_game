@@ -21,12 +21,13 @@ class Door(InteractiveObjetcs):
 
 
     def define_mask(self):
-        mask = pygame.mask.from_surface(self.image)
-        mask.clear()
-        mask_width = 0.2*self.width
-        mask_height = self.height
-        position = ((self.width - mask_width)/2, self.height - mask_height)
-        rect = pygame.mask.Mask((mask_width, mask_height), True)
+        mask_width = self.width
+        mask_height = self.height*1.2
+        mask = pygame.mask.Mask((mask_width, mask_height), False)
+        rect_width = 0.2*mask_width
+        rect_height = mask_height
+        position = ((mask_width - rect_width)/2, 0)
+        rect = pygame.mask.Mask((rect_width, rect_height), True)
         mask.draw(rect, position)
         return mask
 

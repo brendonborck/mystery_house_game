@@ -59,13 +59,13 @@ class Menu():
     def game_options(self, selected_button):
         if selected_button == 0:
             player_image = "player1.png"
-            speed = 10
+            speed = 5
         elif selected_button == 1:
             player_image = "player2.png"
-            speed = 10
+            speed = 5
         elif selected_button == 2:
             player_image = "player1.png"
-            speed = 20
+            speed = 10
 
         options = {}
         options['player_image'] = player_image

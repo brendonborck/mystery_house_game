@@ -11,7 +11,8 @@ class Bed(InteractiveObjetcs):
     """
     def __init__(self, x, y, position_mode):
         self.bed_image = os.path.join(constants.IMAGES_DIR, 'bed.png')
-        super().__init__(self.bed_image, x, y, position_mode, (101, 156))
+        super().__init__(self.bed_image, x, y, position_mode, (100, 150))
+        #self.rect.width = 0.7*self.rect.width
 
 
     def after_interaction(self):
