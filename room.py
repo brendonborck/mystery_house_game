@@ -13,7 +13,7 @@ from writingdesk import Writing_Desk1, Writing_Desk2, Writing_Desk4
 
 
 class Room(pygame.sprite.Sprite):
-
+    """Classe que define os aspectos de cada sala"""
     def __init__(self, name, print_time, player_position, level):
         super().__init__()
         

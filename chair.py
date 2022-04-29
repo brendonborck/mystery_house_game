@@ -6,7 +6,7 @@ from objects import InteractiveObjetcs
 
 
 class Chair(InteractiveObjetcs):
-    
+    """Classe que define os parametros básicos das cadeiras do código"""
     def __init__(self, x, y, position_mode):
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'chair.png')
         super().__init__(self.chair_image, x, y, position_mode, (69, 60))
@@ -29,7 +29,7 @@ class Chair(InteractiveObjetcs):
 
 
 class DecorationChair(Chair):
-
+    """Classe que define as cadeias decorativas das salas"""
     def __init__(self, x, y, position_mode):
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'chair.png')
         super().__init__(self.chair_image, x, y, position_mode, (69, 60))
@@ -66,7 +66,7 @@ class DecorationChair(Chair):
 
 
 class DecorationSofa(Chair):
-
+    """Classe que define os sofás decorativos das salas"""
     def __init__(self, x, y, position_mode):
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'sofa.png')
         super().__init__(self.chair_image, x, y, position_mode, (69, 60))
@@ -103,7 +103,7 @@ class DecorationSofa(Chair):
 
 
 class DecorationBench(Chair):
-
+    """Classe que define um banquinho decorativo que estão nas salas"""
     def __init__(self, x, y, position_mode):
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'bench.png')
         super().__init__(self.chair_image, x, y, position_mode, (69, 60))
@@ -140,7 +140,7 @@ class DecorationBench(Chair):
 
 
 class DecorationArmChairLateral(Chair):
-
+    """Classe que define uma cadeira na posição lateral que estão nas salas"""
     def __init__(self, x, y, position_mode):
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'red armchair right.png')
         super().__init__(self.chair_image, x, y, position_mode, (69, 60))
@@ -177,7 +177,7 @@ class DecorationArmChairLateral(Chair):
 
 
 class DecorationArmChairFront(Chair):
-
+    """Classe que define uma cadeira na posição frontal que estão nas salas"""
     def __init__(self, x, y, position_mode):
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'purple armchair front.png')
         super().__init__(self.chair_image, x, y, position_mode, (69, 60))

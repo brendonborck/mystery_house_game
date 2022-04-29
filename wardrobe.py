@@ -6,7 +6,7 @@ from objects import InteractiveObjetcs
 
 
 class Wardrobe(InteractiveObjetcs):
-    
+    """Classe que define os parametros básicos para o armário"""
     def __init__(self, x, y, position_mode):
         self.Wardrobe = os.path.join(constants.IMAGES_DIR, 'wardrobe.png')
         super().__init__(self.Wardrobe, x, y, position_mode, (103, 184))
@@ -30,7 +30,7 @@ class Wardrobe(InteractiveObjetcs):
 
 
 class Wardrobe1(Wardrobe):
-
+    """Classe que define armário da sala 1"""
     def interaction(self, player):        
         self.print_pop_up()
         in_pop_up = True
@@ -99,7 +99,7 @@ class Wardrobe1(Wardrobe):
 
 
 class Wardrobe3(Wardrobe):
-
+    """Classe que define armário da sala 3"""
     def interaction(self, player):        
         self.print_pop_up()
         in_pop_up = True
@@ -168,7 +168,7 @@ class Wardrobe3(Wardrobe):
 
 
 class Wardrobe4(Wardrobe):
-
+    """Classe que define armário da sala 4"""
     def interaction(self, player):        
         self.print_pop_up()
         in_pop_up = True
