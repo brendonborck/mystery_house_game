@@ -6,7 +6,7 @@ from objects import InteractiveObjetcs
 
 
 class Wardrobe(InteractiveObjetcs):
-    
+    """Classe que define os parametros básicos para o armário"""
     def __init__(self, x, y, position_mode):
         self.Wardrobe = os.path.join(constants.IMAGES_DIR, 'wardrobe.png')
         super().__init__(self.Wardrobe, x, y, position_mode, (103, 184))
@@ -29,8 +29,9 @@ class Wardrobe(InteractiveObjetcs):
         return mask
 
 
-class Wardrobe1(Wardrobe):
+class Wardrobe2(Wardrobe):
 
+    """Classe que define armário da sala 1"""
     def interaction(self, player):
         if 'key_room_2' in player.pocket_objects:
             options = {'centralized', 'persistent'}
@@ -119,6 +120,7 @@ class Wardrobe1(Wardrobe):
 
 class Wardrobe3(Wardrobe):
 
+    """Classe que define armário da sala 1"""
     def interaction(self, player):
         if 'key_room_2' in player.pocket_objects:
             options = {'centralized', 'persistent'}
@@ -207,6 +209,7 @@ class Wardrobe3(Wardrobe):
 
 class Wardrobe4(Wardrobe):
 
+    """Classe que define armário da sala 1"""
     def interaction(self, player):
         if 'key_room_2' in player.pocket_objects:
             options = {'centralized', 'persistent'}

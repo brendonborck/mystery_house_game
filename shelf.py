@@ -5,16 +5,14 @@ import os
 from objects import InteractiveObjetcs
 
 
-class Writing_Desk(InteractiveObjetcs):
-    """Classe que define os parametros básicos de uma mesa de escrever"""
+class Shelf(InteractiveObjetcs):
+    """Classe que define o métodos básicos de uma estante"""
     def __init__(self, x, y, position_mode):
-        self.writingdesk = os.path.join(constants.IMAGES_DIR, 'writingdesk.png')
-        super().__init__(self.writingdesk, x, y, position_mode, (103, 184))
-
+        self.shelf_image = os.path.join(constants.IMAGES_DIR, 'shelf.png')
+        super().__init__(self.shelf_image, x, y, position_mode, (69, 60))
 
     def after_interaction(self):
         pass
-
 
     def define_mask(self):
         mask_width = self.width*1.2
@@ -28,8 +26,12 @@ class Writing_Desk(InteractiveObjetcs):
         return mask
 
 
-class Writing_Desk1(Writing_Desk):
-    """Classe que define uma mesa de escrever da sala 1"""
+class DecorationShelfBooks(Shelf):
+    """Classe que define uma estante de livros decorativa"""
+    def __init__(self, x, y, position_mode):
+        self.shelf_image = os.path.join(constants.IMAGES_DIR, 'shelf - books.png')
+        super().__init__(self.shelf_image, x, y, position_mode, (69, 60))
+
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
@@ -49,16 +51,23 @@ class Writing_Desk1(Writing_Desk):
 
 
     def print_pop_up(self):
-        message = 'Um papel, com um nome escrito "Lady Constock a impiedosa"'
-        options = {'centralized'}
-        parameters = {'message': message, 'font_size': 20,
-            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+        width = 0.9*constants.WIDTH
+
+        message = "Livros e mais livros..."
+
+        options = {'centralized', 'text_offset'}
+        parameters = {'message': message, 'font_size': 18,
+            'width': width, 'height': 0.40*constants.HEIGHT,
+            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
+class DecorationEmptyWardrobe(Shelf):
+    """Classe que define uma estante vazia"""
+    def __init__(self, x, y, position_mode):
+        self.shelf_image = os.path.join(constants.IMAGES_DIR, 'wardrobe - empty.png')
+        super().__init__(self.shelf_image, x, y, position_mode, (69, 60))
 
-class Writing_Desk2(Writing_Desk):
-    """Classe que define uma mesa de escrever da sala 2"""
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
@@ -78,37 +87,13 @@ class Writing_Desk2(Writing_Desk):
 
 
     def print_pop_up(self):
-        message = "Na Gaveta há uma foto de uma criança junto de sua mãe que lhe traz lembranças..."
-        options = {'centralized'}
+        width = 0.9*constants.WIDTH
+
+        message = "Não há nada dentro."
+
+        options = {'centralized', 'text_offset'}
         parameters = {'message': message, 'font_size': 18,
-            'width': 0.85*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
-        }
-        Utils().print_message(options, parameters)
-
-class Writing_Desk4(Writing_Desk):
-    """Classe que define uma mesa de escrever da sala 4"""
-    def interaction(self, player):
-        self.print_pop_up()        
-        in_pop_up = True
-        while in_pop_up:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    #TODO
-                    pass
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_e:
-                        in_pop_up = False
-                    elif event.key == pygame.K_ESCAPE:
-                        in_pop_up = False
-                elif event.type == pygame.KEYUP:
-                    if event.key == pygame.K_e:
-                        player.stop_acting()
-
-
-    def print_pop_up(self):
-        message = "Meu filho, estou preocupada com o que você vai fazer com o seu irmão de menor IDADE, eu sei que ele fez uma coisa errada, mas isso não justifica essa tortura sobre ele,..."
-        options = {'centralized'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': 0.85*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+            'width': width, 'height': 0.40*constants.HEIGHT,
+            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
         }
         Utils().print_message(options, parameters)

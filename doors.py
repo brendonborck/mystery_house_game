@@ -6,7 +6,7 @@ from objects import InteractiveObjetcs
 
 
 class Door(InteractiveObjetcs):
-    
+    """Classe que define os parametros básicos para as portas da sala"""
     def __init__(self, x, y, position_mode):
         self.closed_door_image = os.path.join(constants.IMAGES_DIR, 'closed_door.png')
         self.open_door_image = os.path.join(constants.IMAGES_DIR, 'open_door.png')
@@ -30,7 +30,7 @@ class Door(InteractiveObjetcs):
 
 
 class Door1(Door):
-
+    """Classe que define a porta da sala 1"""
     def interaction(self, player):        
         self.print_pop_up()
 
@@ -118,7 +118,7 @@ class Door1(Door):
 
 
 class Door2(Door):
-
+    """Classe que define a porta da sala 2"""
     def interaction(self, player):        
         player.stop_acting()
         if 'key_room_2' in player.pocket_objects:
@@ -148,7 +148,7 @@ class Door2(Door):
 
 
 class Door3(Door):
-
+    """Classe que define a porta da sala 3"""
     def interaction(self, player):        
         player.stop_acting()
         if 'key_room_2' in player.pocket_objects:
@@ -178,7 +178,7 @@ class Door3(Door):
 
 
 class Door4(Door):
-
+    """Classe que define a porta da sala 4"""
     def interaction(self, player):        
         player.stop_acting()
         if 'key_room_2' in player.pocket_objects:
@@ -208,7 +208,7 @@ class Door4(Door):
 
 
 class Door5(Door):
-
+    """Classe que define a porta da sala 5"""
     def interaction(self, player):        
         player.stop_acting()
         if 'key_room_2' in player.pocket_objects:

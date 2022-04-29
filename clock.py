@@ -6,7 +6,7 @@ from objects import InteractiveObjetcs
 
 
 class Clock(InteractiveObjetcs):
-    
+    """Classe que define os parametros básicos dos relógios do código"""
     def __init__(self, x, y, position_mode):
         self.clock_image = os.path.join(constants.IMAGES_DIR, 'clock.png')
         super().__init__(self.clock_image, x, y, position_mode, (69, 60))
@@ -29,7 +29,7 @@ class Clock(InteractiveObjetcs):
 
 
 class Clock1(Clock):
-
+    """Classe que define o relógio da sala 1"""
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
@@ -58,7 +58,7 @@ class Clock1(Clock):
 
 
 class Clock2(Clock):
-
+    """Classe que define o relógio da sala 2"""
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
