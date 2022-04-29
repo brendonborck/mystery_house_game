@@ -6,7 +6,9 @@ from objects import InteractiveObjetcs
 
 
 class Writing_Desk(InteractiveObjetcs):
-    """Classe que define os parametros básicos de uma mesa de escrever"""
+    """
+        Classe que define os parametros básicos de uma mesa de escrever
+    """
     def __init__(self, x, y, position_mode):
         self.writingdesk = os.path.join(constants.IMAGES_DIR, 'writingdesk.png')
         super().__init__(self.writingdesk, x, y, position_mode, (103, 184))
@@ -29,7 +31,9 @@ class Writing_Desk(InteractiveObjetcs):
 
 
 class Writing_Desk1(Writing_Desk):
-    """Classe que define uma mesa de escrever da sala 1"""
+    """
+        Classe que define uma mesa de escrever da sala 1
+    """
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
@@ -58,7 +62,9 @@ class Writing_Desk1(Writing_Desk):
 
 
 class Writing_Desk2(Writing_Desk):
-    """Classe que define uma mesa de escrever da sala 2"""
+    """
+        Classe que define uma mesa de escrever da sala 2
+    """
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
@@ -86,7 +92,9 @@ class Writing_Desk2(Writing_Desk):
         Utils().print_message(options, parameters)
 
 class Writing_Desk4(Writing_Desk):
-    """Classe que define uma mesa de escrever da sala 4"""
+    """
+        Classe que define uma mesa de escrever da sala 4
+    """
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True

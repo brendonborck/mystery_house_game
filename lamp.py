@@ -6,7 +6,9 @@ from objects import InteractiveObjetcs
 
 
 class Lamp(InteractiveObjetcs):
-    """Classe que define os parametros básicos de uma lampada que estão nas salas"""
+    """
+        Classe que define os parametros básicos de uma lampada que estão nas salas
+    """
     def __init__(self, x, y, position_mode):
         self.lamp_image = os.path.join(constants.IMAGES_DIR, 'lamp 1.png')
         super().__init__(self.lamp_image, x, y, position_mode, (69, 60))
@@ -28,7 +30,9 @@ class Lamp(InteractiveObjetcs):
 
 
 class DecorationLamp(Lamp):
-    """Classe que define uma lampada de decoração do tipo 1"""
+    """
+        Classe que define uma lampada de decoração do tipo 1
+    """
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
@@ -61,7 +65,9 @@ class DecorationLamp(Lamp):
 
 
 class DecorationLamp2(Lamp):
-    """Classe que define uma lampada de decoração do tipo 2"""
+    """
+        Classe que define uma lampada de decoração do tipo 2
+    """
     def __init__(self, x, y, position_mode):
         self.lamp_image = os.path.join(constants.IMAGES_DIR, 'lamp 2.png')
         super().__init__(self.lamp_image, x, y, position_mode, (69, 60))

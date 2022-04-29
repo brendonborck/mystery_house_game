@@ -5,11 +5,13 @@ import os
 from objects import InteractiveObjetcs
 
 
-class Door(InteractiveObjetcs):
-    """Classe que define os parametros básicos para as portas da sala"""
+class Door(InteractiveObjetcs): 
+    """
+        Classe que define os parametros básicos para as portas da sala
+    """
     def __init__(self, x, y, position_mode):
-        self.closed_door_image = os.path.join(constants.IMAGES_DIR, 'closed_door.png')
-        self.open_door_image = os.path.join(constants.IMAGES_DIR, 'open_door.png')
+        self.closed_door_image = os.path.join(constants.IMAGES_DIR, 'dor closed.png')
+        self.open_door_image = os.path.join(constants.IMAGES_DIR, 'door opened 2.png')
         super().__init__(self.closed_door_image, x, y, position_mode)
         self.puzzle_completed = False
 
@@ -30,7 +32,9 @@ class Door(InteractiveObjetcs):
 
 
 class Door1(Door):
-    """Classe que define a porta da sala 1"""
+    """
+        Classe que define a porta da sala 1
+    """
     def interaction(self, player):        
         self.print_pop_up()
 
@@ -111,7 +115,9 @@ class Door1(Door):
 
 
 class Door2(Door):
-    """Classe que define a porta da sala 2"""
+    """
+        Classe que define a porta da sala 2
+    """
     def interaction(self, player):        
         in_pop_up = True
         user_returned = False
@@ -160,7 +166,9 @@ class Door2(Door):
 
 
 class Door3(Door):
-    """Classe que define a porta da sala 3"""
+    """
+        Classe que define a porta da sala 3
+    """
     def interaction(self, player):        
         in_pop_up = True
         user_returned = False
@@ -209,7 +217,9 @@ class Door3(Door):
 
 
 class Door4(Door):
-    """Classe que define a porta da sala 4"""
+    """
+        Classe que define a porta da sala 4
+    """
     def interaction(self, player):        
         in_pop_up = True
         user_returned = False
@@ -258,7 +268,9 @@ class Door4(Door):
 
 
 class Door5(Door):
-    """Classe que define a porta da sala 5"""
+    """
+        Classe que define a porta da sala 5
+    """
     def interaction(self, player):        
         in_pop_up = True
         user_returned = False

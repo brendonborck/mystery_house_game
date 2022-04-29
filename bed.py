@@ -6,7 +6,9 @@ from objects import InteractiveObjetcs
 
 
 class Bed(InteractiveObjetcs):
-    """Classe que determina os métodos básicos das camas de cada sala"""
+    """
+        Classe que determina os métodos básicos das camas de cada sala
+    """
     def __init__(self, x, y, position_mode):
         self.bed_image = os.path.join(constants.IMAGES_DIR, 'bed.png')
         super().__init__(self.bed_image, x, y, position_mode, (101, 156))
@@ -29,7 +31,9 @@ class Bed(InteractiveObjetcs):
 
 
 class Bed1(Bed):
-    """Classe da cama da sala 1"""
+    """
+        Classe da cama da sala 1
+    """
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
@@ -58,7 +62,9 @@ class Bed1(Bed):
 
 
 class Bed2(Bed):
-    """Classe da cama da sala 2"""
+    """
+        Classe da cama da sala 2
+    """
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
@@ -86,7 +92,9 @@ class Bed2(Bed):
         Utils().print_message(options, parameters)
 
 class Bed3(Bed):
-    """Classe da cama da sala 3"""
+    """
+        Classe da cama da sala 3
+    """
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
@@ -115,7 +123,9 @@ class Bed3(Bed):
 
 
 class Bed4(Bed):
-    """Classe da cama da sala 4"""
+    """
+        Classe da cama da sala 4
+    """
     def interaction(self, player):
         self.print_pop_up()        
         in_pop_up = True
