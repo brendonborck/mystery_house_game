@@ -8,7 +8,7 @@ from utils import Utils
 from doors import Door1, Door2, Door3, Door3to2, Door2to3, Door2to3Rem,Door4, Door5
 from paintings import Painting1
 from papers import Paper1, Paper2, Paper3, Paper4, Paper5
-from wardrobe import Wardrobe2, Wardrobe3, Wardrobe4
+from wardrobe import Wardrobe2, Wardrobe3, Wardrobe2Rem, Wardrobe4
 from writingdesk import Writing_Desk1, Writing_Desk2, Writing_Desk4
 from chair import DecorationChair, DecorationSofa, DecorationBench, DecorationArmChairLateral, DecorationArmChairFront
 from lamp import DecorationLamp, DecorationLamp2
@@ -290,7 +290,7 @@ def create_rooms():
              'position_mode': 'center'}},
 
         'wardrobe': 
-         {'constructor': Wardrobe2,
+         {'constructor': Wardrobe2Rem,
          'parameters':{
              'x': wdrobe_x, 
              'y': wdrobe_y, 
@@ -399,7 +399,7 @@ def create_rooms():
     paper_y = 0.4*constants.HEIGHT
     wdesk_x = 0.95*constants.WIDTH
     wdesk_y = 0.50*constants.HEIGHT
-    wdrobe_x = 0.70*constants.WIDTH
+    wdrobe_x = 0.50*constants.WIDTH
     wdrobe_y = 0.20*constants.HEIGHT
     bed_x = 0.80*constants.WIDTH
     bed_y = 0.90*constants.HEIGHT

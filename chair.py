@@ -57,14 +57,12 @@ class DecorationChair(Chair):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
-
+        
         message = "Cadeira solta."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
 
@@ -96,14 +94,12 @@ class DecorationSofa(Chair):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
 
         message = "Um sofá velho."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
 
@@ -135,14 +131,12 @@ class DecorationBench(Chair):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
 
         message = "Nada acontece."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
 
@@ -174,14 +168,12 @@ class DecorationArmChairLateral(Chair):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
 
         message = "Uma poltrona vermelha."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
 
@@ -213,13 +205,11 @@ class DecorationArmChairFront(Chair):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
 
         message = "Quer descansar um pouco?"
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)

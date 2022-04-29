@@ -180,7 +180,7 @@ class Door2to3(Door):
 
     def print_pop_up(self):
         options = {'centralized', 'persistent'}
-        parameters = {'message': 'Trancado sem chaves.', 'font_size': 40, 'wait_time': 0.8,
+        parameters = {'message': 'Sem maçaneta.', 'font_size': 40, 'wait_time': 0.8,
             'width': 0.5*constants.WIDTH, 'height': 0.23*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
@@ -204,7 +204,7 @@ class Door2to3Rem(Door):
     def print_pop_up(self):
         options = {'centralized', 'persistent'}
         parameters = {'message': 'Você não consegue mais subir por aqui.', 'font_size': 40, 'wait_time': 0.8,
-            'width': 0.5*constants.WIDTH, 'height': 0.23*constants.HEIGHT
+            'width': 0.72*constants.WIDTH, 'height': 0.18*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
 
@@ -224,6 +224,7 @@ class Door3(Door):
     def interaction(self, player):        
         player.stop_acting()
         if 'key_room_3' in player.pocket:
+            player.pocket.remove('key_room_3')
             self.puzzle_completed = True
         else:
             self.print_pop_up()
@@ -365,13 +366,6 @@ class Door4(Door):
         Utils().print_message(options, parameters)
 
         options = {}
-        parameters = {'message': 'Há um cadeado na porta, escrito "Muito tempo se passa."', 'font_size': 20,
-            'width': 0.56*constants.WIDTH, 'height': 0.03*constants.HEIGHT,
-            'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.48*constants.HEIGHT
-        }
-        Utils().print_message(options, parameters)
-
-        options = {}
         parameters = {'message': 'Insira a senha:', 'font_size': 16,
             'width': 0.56*constants.WIDTH, 'height': 0.03*constants.HEIGHT,
             'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.54*constants.HEIGHT
@@ -464,7 +458,7 @@ class Door5(Door):
         Utils().print_message(options, parameters)
 
         options = {}
-        parameters = {'message': 'Há um cadeado na porta, escrito "Muito tempo se passa."', 'font_size': 20,
+        parameters = {'message': 'Porta de saída.', 'font_size': 20,
             'width': 0.56*constants.WIDTH, 'height': 0.03*constants.HEIGHT,
             'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.48*constants.HEIGHT
         }

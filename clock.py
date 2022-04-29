@@ -97,7 +97,7 @@ class Clock2(Clock):
 
         options = {'centralized', 'text_offset'}
         parameters = {'message': message1, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
+            'width': width, 'height': 0.35*constants.HEIGHT,
             'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
         }
         Utils().print_message(options, parameters)

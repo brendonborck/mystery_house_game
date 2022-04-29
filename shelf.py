@@ -55,14 +55,12 @@ class DecorationShelfBooks(Shelf):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
-
+        
         message = "Livros e mais livros..."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
 
@@ -93,13 +91,11 @@ class DecorationEmptyWardrobe(Shelf):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
 
         message = "Não há nada dentro."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)

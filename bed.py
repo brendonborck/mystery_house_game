@@ -112,12 +112,23 @@ class Bed3(Bed):
                     if event.key == pygame.K_e:
                         player.stop_acting()
 
-
     def print_pop_up(self):
-        message = "Embaixo da cama há uma foto de uma mulher e um homem, com uma inscrição 'Sua Majestade Albert e Rainha Isabella Constock'"
-        options = {'centralized'}
-        parameters = {'message': message, 'font_size': 20,
-            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+        width = 0.9*constants.WIDTH
+        x_pop_up = 0.5*constants.WIDTH
+
+        message1 = "Embaixo da cama há uma foto de uma mulher e um homem, com uma inscrição:"
+        message2 = "Sua Majestade Albert e  Rainha Isabella Constock"
+
+        options = {}
+        parameters = {'message': message1, 'font_size': 16,
+            'width': width, 'height': 0.06*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+        
+        parameters = {'message': message2, 'font_size': 18,
+            'width': width, 'height': 0.06*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
@@ -145,7 +156,7 @@ class Bed4(Bed):
 
 
     def print_pop_up(self):
-        message = "Nada há nada"
+        message = "Simples cama."
         options = {'centralized'}
         parameters = {'message': message, 'font_size': 20,
             'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,

@@ -57,14 +57,12 @@ class DecorationVase1(Vase):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
 
         message = "Nada acontece."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
 
@@ -96,14 +94,12 @@ class DecorationVase2(Vase):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
 
         message = "Vaso vazio."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
 
@@ -124,7 +120,7 @@ class DecorationVaseStar(Vase):
         w = 0.5*constants.WIDTH
         if self.puzzle_completed:
             w = 0.56*constants.WIDTH
-            parameters = {'message': 'Você já ganhou uma chave.', 'wait_time': 1.4,
+            parameters = {'message': 'Vaso vazio.', 'wait_time': 1.4,
                 'font_size': 40, 'width': w, 'height': h
             }
             Utils().print_message({'centralized', 'persistent'}, parameters)
@@ -151,12 +147,21 @@ class DecorationVaseStar(Vase):
 
     def print_pop_up(self):
         width = 0.9*constants.WIDTH
+        x_pop_up = 0.5*constants.WIDTH
 
-        message = "Nada há nada além de uma estrela no vaso."
+        message1 = "Um vaso bonito com uma estrela chamou sua atenção."
+        message2 = "Você ganhou a chave número 8."
 
         options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
+        parameters = {'message': message1, 'font_size': 18,
+            'width': width, 'height': 0.18*constants.HEIGHT,
             'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+        options = {}
+        parameters = {'message': message2, 'font_size': 20,
+            'width': width, 'height': 0.06*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
         }
         Utils().print_message(options, parameters)

@@ -71,19 +71,19 @@ class Paper1(Paper):
 
         options = {}
         parameters = {'message': message2, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
         
         parameters = {'message': message3, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
         parameters = {'message': message4, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.56*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
@@ -122,19 +122,19 @@ class Paper2(Paper):
 
         options = {}
         parameters = {'message': message1, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
         
         parameters = {'message': message2, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
         parameters = {'message': message3, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.56*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
@@ -157,7 +157,7 @@ class Paper3(Paper):
         w = 0.5*constants.WIDTH
         if self.puzzle_completed:
             w = 0.56*constants.WIDTH
-            parameters = {'message': 'Você já ganhou uma chave.', 'wait_time': 1.4,
+            parameters = {'message': 'Papel amassado.', 'wait_time': 1.4,
                 'font_size': 40, 'width': w, 'height': h
             }
             Utils().print_message({'centralized', 'persistent'}, parameters)
@@ -180,11 +180,6 @@ class Paper3(Paper):
                         if event.key == pygame.K_e:
                             self.puzzle_completed = True
                             player.pocket.append('key_room_return_2')
-                            w = 0.56*constants.WIDTH
-                            parameters = {'message': 'Você ganhou uma chave.', 'wait_time': 1.4,
-                                'font_size': 40, 'width': w, 'height': h
-                            }
-                            Utils().print_message({'centralized', 'persistent'}, parameters)
                             player.stop_acting()
 
 
@@ -194,11 +189,19 @@ class Paper3(Paper):
         x_pop_up = 0.5*constants.WIDTH
 
         message1 = "Há uma manchete de jornal, 'O REI ESTÁ MORTO! O mais novo é o suspeito!?'"
+        message2 = "Você ganhou a chave número 2."
+
+        options = {'centralized', 'text_offset'}
+        parameters = {'message': message1, 'font_size': 18,
+            'width': width, 'height': 0.18*constants.HEIGHT,
+            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
 
         options = {}
-        parameters = {'message': message1, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
-            'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
+        parameters = {'message': message2, 'font_size': 20,
+            'width': width, 'height': 0.06*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
@@ -244,19 +247,19 @@ class Paper4(Paper):
 
         options = {}
         parameters = {'message': message1, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
         
         parameters = {'message': message2, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
         parameters = {'message': message3, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.56*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
@@ -295,19 +298,19 @@ class Paper5(Paper):
 
         options = {}
         parameters = {'message': message1, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
         
         parameters = {'message': message2, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
 
         parameters = {'message': message3, 'font_size': 16,
-            'width': width, 'height': 0.04*constants.HEIGHT,
+            'width': width, 'height': 0.06*constants.HEIGHT,
             'x_pop_up': x_pop_up, 'y_pop_up': 0.56*constants.HEIGHT
         }
         Utils().print_message(options, parameters)

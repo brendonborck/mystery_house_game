@@ -38,8 +38,8 @@ class Safebox3(Safe):
     def interaction(self, player):
         if 'key_room_return_3' in player.pocket:
             options = {'centralized', 'persistent'}
-            parameters = {'message': 'Você pegou uma nova chave.', 'font_size': 40,
-                'width': 0.56*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
+            parameters = {'message': 'Você usou duas chaves e ganhou outra.', 'font_size': 26,
+                'width': 0.9*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
                 'wait_time': 1.4
             }
             Utils().print_message(options, parameters)
@@ -66,13 +66,11 @@ class Safebox3(Safe):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
 
         message = "O passado nos molda..."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)
