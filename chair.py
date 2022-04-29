@@ -12,7 +12,6 @@ class Chair(InteractiveObjetcs):
     def __init__(self, x, y, position_mode):
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'chair.png')
         super().__init__(self.chair_image, x, y, position_mode, (69, 60))
-        self.impassable = False
 
 
     def after_interaction(self):

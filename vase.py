@@ -35,8 +35,10 @@ class DecorationVase1(Vase):
         Classe que define os parametros básicos de um vaso decorativo do tipo 1
     """
     def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase 1.png')
-        super().__init__(self.vase_image, x, y, position_mode, (69, 60))
+        self.image = pygame.image.load(self.vase_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (50, 70))
 
     def interaction(self, player):
         self.print_pop_up()        
@@ -72,8 +74,10 @@ class DecorationVase2(Vase):
         Classe que define os parametros básicos de um vaso decorativo do tipo 2
     """
     def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase 2.png')
-        super().__init__(self.vase_image, x, y, position_mode, (69, 60))
+        self.image = pygame.image.load(self.vase_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (50, 70))
 
     def interaction(self, player):
         self.print_pop_up()        

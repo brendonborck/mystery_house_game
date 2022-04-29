@@ -12,7 +12,6 @@ class Lamp(InteractiveObjetcs):
     def __init__(self, x, y, position_mode):
         self.lamp_image = os.path.join(constants.IMAGES_DIR, 'lamp 1.png')
         super().__init__(self.lamp_image, x, y, position_mode, (80, 170))
-        self.impassable = False
 
     def after_interaction(self):
         pass
