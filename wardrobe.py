@@ -31,53 +31,64 @@ class Wardrobe(InteractiveObjetcs):
 
 class Wardrobe1(Wardrobe):
 
-    def interaction(self, player):        
-        self.print_pop_up()
-        in_pop_up = True
-        password_input = ''
-        password = 'Albert'
-        user_returned = False
-        while in_pop_up:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    #TODO
-                    pass
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        in_pop_up = False
-                        player.stop_acting()
-                    elif event.key == pygame.K_RETURN:
-                        in_pop_up = False
-                        user_returned = True
-                        player.stop_acting()
-                        if password_input == password:
-                            self.puzzle_completed = True
-                            player.key=True
-                        else:
-                            self.puzzle_completed = False
-                    elif event.key == pygame.K_BACKSPACE:
-                        password_input = password_input[:-1]
-                        self.print_password(password_input)
-                    elif event.key == pygame.K_SPACE:
-                        password_input += event.unicode
-                        self.print_password(password_input)
-                    elif event.unicode:
-                        password_input += event.unicode
-                        self.print_password(password_input)
+    def interaction(self, player):
+        if 'key_room_2' in player.pocket_objects:
+            options = {'centralized', 'persistent'}
+            parameters = {'message': 'Não há mais nada aqui', 'font_size': 40,
+                'width': 0.56*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
+                'wait_time': 1.4
+            }
+            Utils().print_message(options, parameters)
+            player.stop_acting()
+        else:    
+            self.print_pop_up()
+            in_pop_up = True
+            password_input = ''
+            password = 'albert'
+            user_returned = False
+            while in_pop_up:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        #TODO
+                        pass
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_ESCAPE:
+                            in_pop_up = False
+                            player.stop_acting()
+                        elif event.key == pygame.K_RETURN:
+                            in_pop_up = False
+                            user_returned = True
+                            player.stop_acting()
+                            if password_input.lower() == password:
+                                self.puzzle_completed = True
+                                player.pocket_objects.append('key_room_2')
+                            else:
+                                self.puzzle_completed = False
+                        elif event.key == pygame.K_BACKSPACE:
+                            password_input = password_input[:-1]
+                            self.print_password(password_input)
+                        elif event.key == pygame.K_SPACE:
+                            password_input += event.unicode
+                            self.print_password(password_input)
+                        elif event.unicode:
+                            password_input += event.unicode
+                            self.print_password(password_input)
 
-        h = 0.2*constants.HEIGHT
-        w = 0.5*constants.WIDTH
-        if self.puzzle_completed and user_returned:
-            parameters = {'message': 'Há uma Chave', 'wait_time': 1.4,
-                'font_size': 40, 'width': w, 'height': h
-            }
-            Utils().print_message({'centralized', 'persistent'}, parameters)
-        elif user_returned:
-            parameters = {'message': 'Nada Ocorre...', 'wait_time': 0.8,
-                'font_size': 40, 'width': w, 'height': h
-            }
-            Utils().print_message({'centralized', 'persistent'}, parameters)
-    
+            h = 0.23*constants.HEIGHT
+            w = 0.5*constants.WIDTH
+            if self.puzzle_completed and user_returned:
+                w = 0.56*constants.WIDTH
+                parameters = {'message': 'Você pegou uma chave!', 'wait_time': 1.4,
+                    'font_size': 40, 'width': w, 'height': h
+                }
+                Utils().print_message({'centralized', 'persistent'}, parameters)
+            elif user_returned:
+                w = 0.5*constants.WIDTH
+                parameters = {'message': 'Nada ocorre...', 'wait_time': 0.8,
+                    'font_size': 40, 'width': w, 'height': h
+                }
+                Utils().print_message({'centralized', 'persistent'}, parameters)
+        
     
     def print_pop_up(self):
         options = {'centralized', 'text_offset'}
@@ -86,6 +97,14 @@ class Wardrobe1(Wardrobe):
             'x_text': 0.25*constants.WIDTH, 'y_text': 0.06*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
+
+        options = {}
+        parameters = {'message': 'Insira a senha:', 'font_size': 16,
+            'width': 0.5*constants.WIDTH, 'height': 0.03*constants.HEIGHT,
+            'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.52*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+        self.print_password('')
 
 
     def print_password(self, password_input):
@@ -100,53 +119,64 @@ class Wardrobe1(Wardrobe):
 
 class Wardrobe3(Wardrobe):
 
-    def interaction(self, player):        
-        self.print_pop_up()
-        in_pop_up = True
-        password_input = ''
-        password = 'Albert'
-        user_returned = False
-        while in_pop_up:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    #TODO
-                    pass
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        in_pop_up = False
-                        player.stop_acting()
-                    elif event.key == pygame.K_RETURN:
-                        in_pop_up = False
-                        user_returned = True
-                        player.stop_acting()
-                        if password_input == password:
-                            self.puzzle_completed = True
-                            player.key=True
-                        else:
-                            self.puzzle_completed = False
-                    elif event.key == pygame.K_BACKSPACE:
-                        password_input = password_input[:-1]
-                        self.print_password(password_input)
-                    elif event.key == pygame.K_SPACE:
-                        password_input += event.unicode
-                        self.print_password(password_input)
-                    elif event.unicode:
-                        password_input += event.unicode
-                        self.print_password(password_input)
+    def interaction(self, player):
+        if 'key_room_2' in player.pocket_objects:
+            options = {'centralized', 'persistent'}
+            parameters = {'message': 'Não há mais nada aqui', 'font_size': 40,
+                'width': 0.56*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
+                'wait_time': 1.4
+            }
+            Utils().print_message(options, parameters)
+            player.stop_acting()
+        else:    
+            self.print_pop_up()
+            in_pop_up = True
+            password_input = ''
+            password = 'albert'
+            user_returned = False
+            while in_pop_up:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        #TODO
+                        pass
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_ESCAPE:
+                            in_pop_up = False
+                            player.stop_acting()
+                        elif event.key == pygame.K_RETURN:
+                            in_pop_up = False
+                            user_returned = True
+                            player.stop_acting()
+                            if password_input.lower() == password:
+                                self.puzzle_completed = True
+                                player.pocket_objects.append('key_room_2')
+                            else:
+                                self.puzzle_completed = False
+                        elif event.key == pygame.K_BACKSPACE:
+                            password_input = password_input[:-1]
+                            self.print_password(password_input)
+                        elif event.key == pygame.K_SPACE:
+                            password_input += event.unicode
+                            self.print_password(password_input)
+                        elif event.unicode:
+                            password_input += event.unicode
+                            self.print_password(password_input)
 
-        h = 0.2*constants.HEIGHT
-        w = 0.5*constants.WIDTH
-        if self.puzzle_completed and user_returned:
-            parameters = {'message': 'Há uma Chave', 'wait_time': 1.4,
-                'font_size': 40, 'width': w, 'height': h
-            }
-            Utils().print_message({'centralized', 'persistent'}, parameters)
-        elif user_returned:
-            parameters = {'message': 'Nada Ocorre...', 'wait_time': 0.8,
-                'font_size': 40, 'width': w, 'height': h
-            }
-            Utils().print_message({'centralized', 'persistent'}, parameters)
-    
+            h = 0.23*constants.HEIGHT
+            w = 0.5*constants.WIDTH
+            if self.puzzle_completed and user_returned:
+                w = 0.56*constants.WIDTH
+                parameters = {'message': 'Você pegou uma chave!', 'wait_time': 1.4,
+                    'font_size': 40, 'width': w, 'height': h
+                }
+                Utils().print_message({'centralized', 'persistent'}, parameters)
+            elif user_returned:
+                w = 0.5*constants.WIDTH
+                parameters = {'message': 'Nada ocorre...', 'wait_time': 0.8,
+                    'font_size': 40, 'width': w, 'height': h
+                }
+                Utils().print_message({'centralized', 'persistent'}, parameters)
+        
     
     def print_pop_up(self):
         options = {'centralized', 'text_offset'}
@@ -155,6 +185,14 @@ class Wardrobe3(Wardrobe):
             'x_text': 0.25*constants.WIDTH, 'y_text': 0.06*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
+
+        options = {}
+        parameters = {'message': 'Insira a senha:', 'font_size': 16,
+            'width': 0.5*constants.WIDTH, 'height': 0.03*constants.HEIGHT,
+            'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.52*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+        self.print_password('')
 
 
     def print_password(self, password_input):
@@ -169,53 +207,64 @@ class Wardrobe3(Wardrobe):
 
 class Wardrobe4(Wardrobe):
 
-    def interaction(self, player):        
-        self.print_pop_up()
-        in_pop_up = True
-        password_input = ''
-        password = 'Albert'
-        user_returned = False
-        while in_pop_up:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    #TODO
-                    pass
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
-                        in_pop_up = False
-                        player.stop_acting()
-                    elif event.key == pygame.K_RETURN:
-                        in_pop_up = False
-                        user_returned = True
-                        player.stop_acting()
-                        if password_input == password:
-                            self.puzzle_completed = True
-                            player.key=True
-                        else:
-                            self.puzzle_completed = False
-                    elif event.key == pygame.K_BACKSPACE:
-                        password_input = password_input[:-1]
-                        self.print_password(password_input)
-                    elif event.key == pygame.K_SPACE:
-                        password_input += event.unicode
-                        self.print_password(password_input)
-                    elif event.unicode:
-                        password_input += event.unicode
-                        self.print_password(password_input)
+    def interaction(self, player):
+        if 'key_room_2' in player.pocket_objects:
+            options = {'centralized', 'persistent'}
+            parameters = {'message': 'Não há mais nada aqui', 'font_size': 40,
+                'width': 0.56*constants.WIDTH, 'height': 0.23*constants.HEIGHT,
+                'wait_time': 1.4
+            }
+            Utils().print_message(options, parameters)
+            player.stop_acting()
+        else:    
+            self.print_pop_up()
+            in_pop_up = True
+            password_input = ''
+            password = 'albert'
+            user_returned = False
+            while in_pop_up:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        #TODO
+                        pass
+                    elif event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_ESCAPE:
+                            in_pop_up = False
+                            player.stop_acting()
+                        elif event.key == pygame.K_RETURN:
+                            in_pop_up = False
+                            user_returned = True
+                            player.stop_acting()
+                            if password_input.lower() == password:
+                                self.puzzle_completed = True
+                                player.pocket_objects.append('key_room_2')
+                            else:
+                                self.puzzle_completed = False
+                        elif event.key == pygame.K_BACKSPACE:
+                            password_input = password_input[:-1]
+                            self.print_password(password_input)
+                        elif event.key == pygame.K_SPACE:
+                            password_input += event.unicode
+                            self.print_password(password_input)
+                        elif event.unicode:
+                            password_input += event.unicode
+                            self.print_password(password_input)
 
-        h = 0.2*constants.HEIGHT
-        w = 0.5*constants.WIDTH
-        if self.puzzle_completed and user_returned:
-            parameters = {'message': 'Há uma Chave', 'wait_time': 1.4,
-                'font_size': 40, 'width': w, 'height': h
-            }
-            Utils().print_message({'centralized', 'persistent'}, parameters)
-        elif user_returned:
-            parameters = {'message': 'Nada Ocorre...', 'wait_time': 0.8,
-                'font_size': 40, 'width': w, 'height': h
-            }
-            Utils().print_message({'centralized', 'persistent'}, parameters)
-    
+            h = 0.23*constants.HEIGHT
+            w = 0.5*constants.WIDTH
+            if self.puzzle_completed and user_returned:
+                w = 0.56*constants.WIDTH
+                parameters = {'message': 'Você pegou uma chave!', 'wait_time': 1.4,
+                    'font_size': 40, 'width': w, 'height': h
+                }
+                Utils().print_message({'centralized', 'persistent'}, parameters)
+            elif user_returned:
+                w = 0.5*constants.WIDTH
+                parameters = {'message': 'Nada ocorre...', 'wait_time': 0.8,
+                    'font_size': 40, 'width': w, 'height': h
+                }
+                Utils().print_message({'centralized', 'persistent'}, parameters)
+        
     
     def print_pop_up(self):
         options = {'centralized', 'text_offset'}
@@ -224,6 +273,14 @@ class Wardrobe4(Wardrobe):
             'x_text': 0.25*constants.WIDTH, 'y_text': 0.06*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
+
+        options = {}
+        parameters = {'message': 'Insira a senha:', 'font_size': 16,
+            'width': 0.5*constants.WIDTH, 'height': 0.03*constants.HEIGHT,
+            'x_pop_up': 0.5*constants.WIDTH, 'y_pop_up': 0.52*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+        self.print_password('')
 
 
     def print_password(self, password_input):
