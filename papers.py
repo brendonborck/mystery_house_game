@@ -5,7 +5,7 @@ import os
 from objects import InteractiveObjetcs
 
 class Paper(InteractiveObjetcs):
-
+    """Classe que define os parametros básicos dos pergaminhos"""
     def __init__(self, x, y, position_mode):
         paper_image = constants.PAPER_IMAGE
         self.paper_image_path = os.path.join(constants.IMAGES_DIR, paper_image)
@@ -29,7 +29,7 @@ class Paper(InteractiveObjetcs):
 
 
 class OtherPaper(InteractiveObjetcs):
-
+    """Classe que define os parametros básicos de outro tipo de pergaminho"""
     def __init__(self, x, y, position_mode):
         paper_image = constants.PAPER_IMAGE_2
         self.paper_image_path = os.path.join(constants.IMAGES_DIR, paper_image)
@@ -53,7 +53,7 @@ class OtherPaper(InteractiveObjetcs):
 
 
 class Paper1(Paper):
-
+    """Classe que define o pergaminho do tipo 1"""
     def interaction(self, player):
         self.print_pop_up()
 
@@ -110,7 +110,7 @@ class Paper1(Paper):
 
 
 class Paper2(OtherPaper):
-
+    """Classe que define o pergaminho do tipo 2"""
     def interaction(self, player):
         self.print_pop_up()
 
@@ -159,7 +159,7 @@ class Paper2(OtherPaper):
 
 
 class Paper3(Paper):
-
+    """Classe que define o pergaminho do tipo 3"""
     def interaction(self, player):
         self.print_pop_up()
 
@@ -194,7 +194,7 @@ class Paper3(Paper):
 
 
 class Paper4(OtherPaper):
-
+    """Classe que define o pergaminho do tipo 4"""
     def interaction(self, player):
         self.print_pop_up()
 
@@ -243,7 +243,7 @@ class Paper4(OtherPaper):
 
 
 class Paper5(Paper):
-
+    """Classe que define o pergaminho do tipo 5"""
     def interaction(self, player):
         self.print_pop_up()
 

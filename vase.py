@@ -6,7 +6,7 @@ from objects import InteractiveObjetcs
 
 
 class Vase(InteractiveObjetcs):
-    
+    """Classe que define os métodos básicos para um vaso"""
     def __init__(self, x, y, position_mode):
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase 1.png')
         super().__init__(self.vase_image, x, y, position_mode, (69, 60))
@@ -29,7 +29,7 @@ class Vase(InteractiveObjetcs):
 
 
 class DecorationVase1(Vase):
-
+    """Classe que define um vaso decorativo"""
     def __init__(self, x, y, position_mode):
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase 1.png')
         super().__init__(self.vase_image, x, y, position_mode, (69, 60))
@@ -66,7 +66,7 @@ class DecorationVase1(Vase):
 
 
 class DecorationVase2(Vase):
-
+    """Classe que define um vaso decorativo do tipo 2"""
     def __init__(self, x, y, position_mode):
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase 2.png')
         super().__init__(self.vase_image, x, y, position_mode, (69, 60))
@@ -103,7 +103,7 @@ class DecorationVase2(Vase):
 
 
 class DecorationVaseStar(Vase):
-
+    """Classe que define um vaso decorativo do tipo estrela"""
     def __init__(self, x, y, position_mode):
         self.vase_image = os.path.join(constants.IMAGES_DIR, 'vase star.png')
         super().__init__(self.vase_image, x, y, position_mode, (69, 60))
