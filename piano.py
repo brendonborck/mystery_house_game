@@ -24,7 +24,7 @@ class Piano(InteractiveObjetcs):
         mask = pygame.mask.Mask((mask_width, mask_height), False)
         rect_width = 0.8*mask_width
         rect_height = 0.8*mask_height
-        position = ((mask_width - rect_width)/2, (mask_height - rect_width)/2)
+        position = ((mask_width - rect_width)/2, (mask_height - rect_height)/2)
         rect = pygame.mask.Mask((rect_width, rect_height), True)
         mask.draw(rect, position)
         return mask
@@ -53,13 +53,11 @@ class DecorationPiano(Piano):
 
 
     def print_pop_up(self):
-        width = 0.9*constants.WIDTH
-
+        
         message = "Toca uma música dramática ao fundo."
 
-        options = {'centralized', 'text_offset'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': width, 'height': 0.40*constants.HEIGHT,
-            'x_text': 0.5*width, 'y_text': 0.2*0.24*constants.HEIGHT
+        options = {'centralized'}
+        parameters = {'message': message, 'font_size': 20,
+            'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
         }
         Utils().print_message(options, parameters)

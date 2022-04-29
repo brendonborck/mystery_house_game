@@ -52,6 +52,7 @@ class Game:
                 room.interactive_objects_group.draw(constants.SCREEN)
                 player.move_player(obj_rects)
                 player.draw_player()
+                self.print_pocket(player)
                 interacted = player.check_interaction(room.interactive_objects_group)
                 if interacted:
                     for key in self.pressed_keys:
@@ -61,6 +62,19 @@ class Game:
                 if player.passed_room:
                     player.passed_room = False
                     break
+
+
+    def print_pocket(self, player):
+        x = 30
+        y = 30
+        image = os.path.join(constants.IMAGES_DIR, 'key.png')
+        image = pygame.image.load(image).convert_alpha()
+        image = pygame.transform.scale(image, (40, 40))
+        rect = image.get_rect()
+        for key in player.pocket:
+            rect.center = (x, y)
+            constants.SCREEN.blit(image, rect)
+            x += 40
 
 
     def watch_events(self, player):

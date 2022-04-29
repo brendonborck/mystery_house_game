@@ -24,7 +24,7 @@ class Writing_Desk(InteractiveObjetcs):
         mask = pygame.mask.Mask((mask_width, mask_height), False)
         rect_width = 0.8*mask_width
         rect_height = 0.8*mask_height
-        position = ((mask_width - rect_width)/2, (mask_height - rect_width)/2)
+        position = ((mask_width - rect_width)/2, (mask_height - rect_height)/2)
         rect = pygame.mask.Mask((rect_width, rect_height), True)
         mask.draw(rect, position)
         return mask
@@ -114,9 +114,28 @@ class Writing_Desk4(Writing_Desk):
 
 
     def print_pop_up(self):
-        message = "Meu filho, estou preocupada com o que você vai fazer com o seu irmão de menor IDADE, eu sei que ele fez uma coisa errada, mas isso não justifica essa tortura sobre ele,..."
-        options = {'centralized'}
-        parameters = {'message': message, 'font_size': 18,
-            'width': 0.85*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
+        width = 0.94*constants.WIDTH
+        x_pop_up = 0.5*constants.WIDTH
+
+        message1 = "Dentro há uma carta escrita com letras graciosas de uma mulher..."
+        message2 = "Meu filho, estou preocupada com o que você vai fazer com o seu irmão de menor IDADE, "
+        message3 = "eu sei que ele fez uma coisa errada, mas isso não justifica essa tortura sobre ele,..."
+
+        options = {}
+        parameters = {'message': message1, 'font_size': 18,
+            'width': width, 'height': 0.06*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.48*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+        
+        parameters = {'message': message2, 'font_size': 18,
+            'width': width, 'height': 0.06*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.52*constants.HEIGHT
+        }
+        Utils().print_message(options, parameters)
+
+        parameters = {'message': message3, 'font_size': 18,
+            'width': width, 'height': 0.06*constants.HEIGHT,
+            'x_pop_up': x_pop_up, 'y_pop_up': 0.56*constants.HEIGHT
         }
         Utils().print_message(options, parameters)
