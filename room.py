@@ -10,11 +10,11 @@ from paintings import Painting1
 from papers import Paper1, Paper2, Paper3, Paper3_2, Paper4, Paper5
 from wardrobe import Wardrobe2, Wardrobe3, Wardrobe2Rem, Wardrobe4
 from writingdesk import Writing_Desk1, Writing_Desk2, Writing_Desk4
-from chair import DecorationChair, DecorationSofa, DecorationBench, DecorationArmChairLateral, DecorationArmChairFront
-from lamp import DecorationLamp, DecorationLamp2
+from chair import DecorationArmChairLateral, DecorationArmChairFront
+from lamp import DecorationLamp
 from safe import Safebox3
 from shelf import DecorationShelfBooks, DecorationEmptyWardrobe
-from vase import DecorationVase1, DecorationVase2, DecorationVaseStar
+from vase import DecorationVaseStar
 from piano import DecorationPiano
 
 
@@ -70,8 +70,12 @@ def create_rooms():
     painting_y = 0.36*constants.Y_SUPERIOR_WALL
     exit_door_x = 0.75*constants.WIDTH
     exit_door_y = constants.Y_SUPERIOR_WALL
+    shelf_x = 0.1*constants.WIDTH
+    shelf_y = 0.45*constants.HEIGHT
     paper_x = 0.25*constants.WIDTH
     paper_y = 0.8*constants.HEIGHT
+    lamp_x = 0.65*constants.WIDTH
+    lamp_y = 0.2*constants.HEIGHT
     interactive_objects = {
         'writingdesk': {'constructor': Writing_Desk1,'parameters':
             {'x': wdesk_x, 'y': wdesk_y, 'position_mode': 'center'}},
@@ -83,6 +87,18 @@ def create_rooms():
             {'x': clock_x, 'y': clock_y, 'position_mode': 'center'}},
         'exit_door': {'constructor': Door1, 'parameters':
             {'x': exit_door_x, 'y': exit_door_y, 'position_mode': 'bottomleft'}},
+        'shelf': 
+         {'constructor': DecorationShelfBooks,
+         'parameters':{
+             'x': shelf_x, 
+             'y': shelf_y, 
+             'position_mode': 'center'}},
+        'lamp': 
+         {'constructor': DecorationLamp,
+         'parameters':{
+             'x': lamp_x, 
+             'y': lamp_y, 
+             'position_mode': 'center'}},
         'paper': {'constructor': Paper1, 'parameters':
             {'x': paper_x, 'y': paper_y, 'position_mode': 'center'}}
     }
@@ -97,6 +113,8 @@ def create_rooms():
     exit_door_y = constants.Y_SUPERIOR_WALL
     return_door_x = 0.80*constants.WIDTH
     return_door_y = constants.Y_SUPERIOR_WALL
+    armchair_x = 0.1*constants.WIDTH
+    armchair_y = 0.6*constants.HEIGHT
     paper_x = 0.8*constants.WIDTH
     paper_y = 0.4*constants.HEIGHT
     wdesk_x = 0.95*constants.WIDTH
@@ -121,6 +139,14 @@ def create_rooms():
             'parameters': {
                 'x': return_door_x,
                 'y': return_door_y,
+                'position_mode': 'bottomleft'
+            }
+        },
+        'armchair': {
+            'constructor': DecorationArmChairLateral,
+            'parameters': {
+                'x': armchair_x,
+                'y': armchair_y,
                 'position_mode': 'bottomleft'
             }
         },
@@ -175,8 +201,10 @@ def create_rooms():
     paper_y = 0.4*constants.HEIGHT
     wdrobe_x = int(0.65*constants.WIDTH/10)*10
     wdrobe_y = 0.20*constants.HEIGHT
-    safebox_x = 0.10*constants.WIDTH
-    safebox_y = 0.60*constants.HEIGHT
+    safebox_x = 0.40*constants.WIDTH
+    safebox_y = 0.85*constants.HEIGHT
+    piano_x = 0.15*constants.WIDTH
+    piano_y = 0.60*constants.HEIGHT
     bed_x = 0.80*constants.WIDTH
     bed_y = 0.90*constants.HEIGHT
     interactive_objects = {
@@ -209,6 +237,13 @@ def create_rooms():
                 'y': safebox_y, 
                 'position_mode': 'center'}},
 
+        'piano': {
+            'constructor': DecorationPiano,
+            'parameters':{
+                'x': piano_x, 
+                'y': piano_y, 
+                'position_mode': 'center'}},
+
         'bed': {
             'constructor': Bed3,
             'parameters': {
@@ -237,6 +272,8 @@ def create_rooms():
     exit_door_y = constants.Y_SUPERIOR_WALL
     return_door_x = 0.80*constants.WIDTH
     return_door_y = constants.Y_SUPERIOR_WALL
+    armchair_x = 0.1*constants.WIDTH
+    armchair_y = 0.6*constants.HEIGHT
     vase_x = 0.5*constants.WIDTH
     vase_y = 0.5*constants.HEIGHT
     paper_x = 0.75*constants.WIDTH
@@ -266,7 +303,14 @@ def create_rooms():
                 'position_mode': 'bottomleft'
             }
         },
-
+                'armchair': {
+            'constructor': DecorationArmChairLateral,
+            'parameters': {
+                'x': armchair_x,
+                'y': armchair_y,
+                'position_mode': 'bottomleft'
+            }
+        },
         'key': {'constructor': DecorationVaseStar,
         'parameters':
             {'x': vase_x, 
@@ -325,8 +369,10 @@ def create_rooms():
     paper_y = 0.4*constants.HEIGHT
     wdrobe_x = 0.65*constants.WIDTH
     wdrobe_y = 0.20*constants.HEIGHT
-    safebox_x = 0.10*constants.WIDTH
-    safebox_y = 0.60*constants.HEIGHT
+    safebox_x = 0.40*constants.WIDTH
+    safebox_y = 0.85*constants.HEIGHT
+    piano_x = 0.15*constants.WIDTH
+    piano_y = 0.60*constants.HEIGHT
     bed_x = 0.80*constants.WIDTH
     bed_y = 0.90*constants.HEIGHT
     interactive_objects = {
@@ -359,6 +405,14 @@ def create_rooms():
                 'y': safebox_y, 
                 'position_mode': 'center'}},
 
+        'piano': {
+            'constructor': DecorationPiano,
+            'parameters':{
+                'x': piano_x, 
+                'y': piano_y, 
+                'position_mode': 'center'}},
+
+
         'bed': {
             'constructor': Bed3,
             'parameters': {
@@ -382,15 +436,19 @@ def create_rooms():
 
     name = 'Fase 4'
     print_time = 1.7
-    player_pos = (int(0.018*constants.WIDTH)*10, int(constants.Y_SUPERIOR_WALL/10)*10)
+    player_pos = (int(0.018*constants.WIDTH)*10, int(constants.HEIGHT*0.88/10)*10)
     exit_door_x = 0.12*constants.WIDTH
     exit_door_y = constants.Y_SUPERIOR_WALL
-    paper_x = 0.8*constants.WIDTH
-    paper_y = 0.4*constants.HEIGHT
+    paper_x = 0.5*constants.WIDTH
+    paper_y = 0.7*constants.HEIGHT
     wdesk_x = 0.95*constants.WIDTH
     wdesk_y = 0.50*constants.HEIGHT
     wdrobe_x = 0.50*constants.WIDTH
     wdrobe_y = 0.20*constants.HEIGHT
+    piano_x = 0.15*constants.WIDTH
+    piano_y = 0.60*constants.HEIGHT
+    shelf_x = 0.45*constants.WIDTH
+    shelf_y = 0.20*constants.HEIGHT
     bed_x = 0.80*constants.WIDTH
     bed_y = 0.90*constants.HEIGHT
     interactive_objects = {
@@ -414,6 +472,20 @@ def create_rooms():
          'parameters':{
              'x': wdrobe_x, 
              'y': wdrobe_y, 
+             'position_mode': 'center'}},
+
+        'piano': {
+            'constructor': DecorationPiano,
+            'parameters':{
+                'x': piano_x, 
+                'y': piano_y, 
+                'position_mode': 'center'}},
+
+        'shelf': 
+         {'constructor': DecorationEmptyWardrobe,
+         'parameters':{
+             'x': shelf_x, 
+             'y': shelf_y, 
              'position_mode': 'center'}},
 
         'bed': {'constructor': Bed4,
@@ -440,8 +512,10 @@ def create_rooms():
     player_pos = (int(0.012*constants.WIDTH)*10, int(0.088*constants.HEIGHT)*10)
     exit_door_x = 0.48*constants.WIDTH
     exit_door_y = constants.Y_SUPERIOR_WALL
-    paper_x = 0.25*constants.WIDTH
-    paper_y = 0.8*constants.HEIGHT
+    paper_x = 0.3*constants.WIDTH
+    paper_y = 0.5*constants.HEIGHT
+    armchair_x = 0.70*constants.WIDTH
+    armchair_y = 0.50*constants.HEIGHT
     interactive_objects = {
         'exit_door': {
             'constructor': Door5,
@@ -449,6 +523,13 @@ def create_rooms():
                 'x': exit_door_x,
                 'y': exit_door_y,
                 'position_mode': 'bottomleft'}},
+
+        'armchair': {
+            'constructor': DecorationArmChairFront,
+            'parameters': {
+                'x': armchair_x,
+                'y': armchair_y,
+                'position_mode': 'center'}},
 
         'paper': {
             'constructor': Paper5,
