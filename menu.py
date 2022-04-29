@@ -41,7 +41,7 @@ class Menu():
                         in_menu = False
                         options = self.game_options(selected_button)
                         return options
-                    elif event.key == pygame.K_ESCAPE:
+                    elif event.key == pygame.K_ESCAPE: 
                         in_menu = False
                         self.running = False
                 if event.type == pygame.KEYUP:
@@ -52,7 +52,6 @@ class Menu():
                     if event.key in (pygame.K_UP, pygame.K_DOWN):
                         colors = [constants.WHITE] * n_buttons
                         colors[selected_button] = constants.GRAY
-        
                         screen_rect = self.start_screen_image.get_rect()
                         screen_rect.midtop = (constants.WIDTH/2,0)
                         constants.SCREEN.blit(self.start_screen_image, screen_rect)
@@ -72,14 +71,18 @@ class Menu():
         elif selected_button == 2:
             self.game_keys()
             options = self.get_options()
-            player_image = options['player_image']
-            speed = options['speed']
-            countdown = options['countdown']    
+            if options:
+                player_image = options['player_image']
+                speed = options['speed']
+                countdown = options['countdown']    
 
         options = {}
-        options['player_image'] = player_image
-        options['speed'] = speed
-        options['countdown'] = countdown
+        try:
+            options['player_image'] = player_image
+            options['speed'] = speed
+            options['countdown'] = countdown
+        except:
+            pass
         return options
 
     def game_keys(self):
@@ -91,7 +94,7 @@ class Menu():
         in_pop_up = True
         constants.SCREEN.blit(image, rect)
 
-        message = 'W A S D: Movimentar jogador'
+        message = 'Movimentar jogador'
         options = {}
         parameters = {'message': message, 'font_size': 20,
             'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
@@ -108,7 +111,7 @@ class Menu():
         rect.center = (x, y)
         constants.SCREEN.blit(image, rect)
 
-        message = 'E: Interagir'
+        message = 'Interagir'
         parameters = {'message': message, 'font_size': 20,
             'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
             'x_pop_up': 0.72*constants.WIDTH, 'y_pop_up': 0.56*constants.HEIGHT
@@ -125,7 +128,7 @@ class Menu():
         constants.SCREEN.blit(image, rect)
 
 
-        message = 'Esc: Sair da interação/Sair do jogo'
+        message = 'Sair da interação/Sair do jogo'
         parameters = {'message': message, 'font_size': 20,
             'width': 0.72*constants.WIDTH, 'height': 0.1*constants.HEIGHT,
             'x_pop_up': 0.72*constants.WIDTH, 'y_pop_up': 0.75*constants.HEIGHT
