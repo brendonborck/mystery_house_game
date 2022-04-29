@@ -19,6 +19,17 @@ class Utils:
         text_rect.center = (x, y)
         constants.SCREEN.blit(text, text_rect)
 
+    @staticmethod
+    def print_time():
+        minutes = int(constants.time_left / 60)
+        seconds = int(constants.time_left - 60 * minutes)
+        parameters = {
+            'message': f"{minutes:02d}" + ':' + f"{seconds:02d}", 
+            'x_pop_up': int(0.94*constants.WIDTH), 'y_pop_up': int(0.05*constants.HEIGHT),
+            'pop_up_color': constants.WHITE, 'text_color': constants.BLACK, 'width': 0.08*constants.WIDTH,
+            'height': 0.04*constants.HEIGHT, 'font_size': 14
+        }
+        Utils().print_message({'colors'}, parameters)
 
     @staticmethod
     def print_message(options, parameters):

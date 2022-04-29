@@ -30,3 +30,9 @@ BLUE=(0, 0, 255)
 FONT='comicsansms'
 
 Y_SUPERIOR_WALL = 0.2575*HEIGHT
+
+
+#TIME
+countdown = False
+clock = None
+time_left = 20*60 + 2

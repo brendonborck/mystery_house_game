@@ -13,7 +13,6 @@ class Game:
         pygame.mixer.init()
         constants.SCREEN = pygame.display.set_mode((constants.WIDTH, constants.HEIGHT))
         pygame.display.set_caption(constants.TITLE)
-        self.clock = pygame.time.Clock()
         self.running = True
         self.playing = False
         self.pressed_keys = {'a': False, 's': False, 'd': False, 'w': False}
@@ -25,6 +24,7 @@ class Game:
 
         player_image = self.options['player_image']
         player_speed = self.options['speed']
+        constants.countdown = self.options['countdown']
         player = Player(player_image, player_speed)
 
         self.run_rooms(player)
@@ -35,7 +35,8 @@ class Game:
         created_rooms = create_rooms()
         rooms = created_rooms['rooms']
         obj_rects_list = created_rooms['obj_rects_list']
-        
+        if self.playing:
+            constants.clock = pygame.time.Clock()
         for i in range(len(rooms)):
             room = rooms[i]
             obj_rects = obj_rects_list[i]
@@ -46,13 +47,23 @@ class Game:
                 player.x = room.player_position[0]
                 player.y = room.player_position[1]
             while self.playing:
-                self.clock.tick(constants.FPS)
+                if constants.countdown:
+                    seconds_passed = constants.clock.get_time()/1000
+                    constants.time_left -= seconds_passed
+                if constants.time_left <= 0:
+                    self.you_lost()
+                    self.running = False
+                    self.playing = False
+                    break
+                constants.clock.tick(constants.FPS)
                 self.watch_events(player)
                 room_group.draw(constants.SCREEN)
                 room.interactive_objects_group.draw(constants.SCREEN)
                 player.move_player(obj_rects)
                 player.draw_player()
                 self.print_pocket(player)
+                if constants.countdown:
+                    Utils().print_time()
                 interacted = player.check_interaction(room.interactive_objects_group)
                 if interacted:
                     for key in self.pressed_keys:
@@ -117,7 +128,7 @@ class Game:
 	
                     
     def end_game(self):
-        self.clock.tick(constants.FPS)
+        constants.clock.tick(constants.FPS)
         parameters = {'message': 'Você venceu!'}
         Utils().print_message({'full', 'centralized'}, parameters)
 
@@ -126,6 +137,23 @@ class Game:
                 self.running = False
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 self.running = False
+
+
+    def you_lost(self):
+        parameters = {'message': 'Você perdeu!'}
+        Utils().print_message({'full', 'centralized'}, parameters)
+        in_pop_up = True
+        pygame.display.update()
+        while in_pop_up:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                    self.playing = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        in_pop_up = False
+                    elif event.key == pygame.K_ESCAPE:
+                        in_pop_up = False
 
 
 if __name__ == '__main__':

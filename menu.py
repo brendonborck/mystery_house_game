@@ -1,3 +1,4 @@
+from itertools import count
 import pygame
 import constants
 from utils import Utils
@@ -8,15 +9,17 @@ class Menu():
     """
     def __init__(self, start_screen_image):
         self.start_screen_image = start_screen_image
+        self.start_screen_rect = self.start_screen_image.get_rect()
+        self.start_screen_rect.midtop = (constants.WIDTH/2, 0)
         self.running = True
         self.playing = False
         self.font_size = 35
 
 
     def draw_options(self, colors):
-        Utils().draw_text('Modo 1', self.font_size, colors[0], constants.WIDTH/2, constants.HEIGHT * 0.7)
-        Utils().draw_text('Modo 2', self.font_size, colors[1], constants.WIDTH/2, constants.HEIGHT * 0.8)
-        Utils().draw_text('Modo 3', self.font_size, colors[2], constants.WIDTH/2, constants.HEIGHT * 0.9)
+        Utils().draw_text('Jogar com emoção', self.font_size, colors[0], constants.WIDTH/2, constants.HEIGHT * 0.7)
+        Utils().draw_text('Jogar sem emoção', self.font_size, colors[1], constants.WIDTH/2, constants.HEIGHT * 0.8)
+        Utils().draw_text('Teclas do jogo', self.font_size, colors[2], constants.WIDTH/2, constants.HEIGHT * 0.9)
         pygame.display.flip()
 
     
@@ -24,6 +27,7 @@ class Menu():
         n_buttons = 3
         selected_button = 0
         colors = [constants.GRAY, constants.WHITE, constants.WHITE]
+        constants.SCREEN.blit(self.start_screen_image, self.start_screen_rect)
         self.draw_options(colors)
 
         in_menu=True
@@ -60,18 +64,42 @@ class Menu():
         if selected_button == 0:
             player_image = "player1.png"
             speed = 5
+            countdown = True
         elif selected_button == 1:
-            player_image = "player2.png"
-            speed = 5
-        elif selected_button == 2:
             player_image = "player1.png"
-            speed = 10
+            speed = 5
+            countdown = False
+        elif selected_button == 2:
+            self.game_keys()
+            options = self.get_options()
+            player_image = options['player_image']
+            speed = options['speed']
+            countdown = options['countdown']    
 
         options = {}
         options['player_image'] = player_image
         options['speed'] = speed
+        options['countdown'] = countdown
         return options
 
+    def game_keys(self):
+        image = pygame.Surface([constants.WIDTH, constants.HEIGHT])
+        image.fill(constants.BLACK)
+        rect = image.get_rect()
+        rect.topleft = (0, 0)
+        in_pop_up = True
+        constants.SCREEN.blit(image, rect)
+        pygame.display.update()
+        while in_pop_up:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                    self.playing = False
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_e:
+                        in_pop_up = False
+                    elif event.key == pygame.K_ESCAPE:
+                        in_pop_up = False
 
     def get_options(self):
         return self.draw_menu()
