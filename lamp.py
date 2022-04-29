@@ -11,7 +11,8 @@ class Lamp(InteractiveObjetcs):
     """
     def __init__(self, x, y, position_mode):
         self.lamp_image = os.path.join(constants.IMAGES_DIR, 'lamp 1.png')
-        super().__init__(self.lamp_image, x, y, position_mode, (69, 60))
+        super().__init__(self.lamp_image, x, y, position_mode, (80, 170))
+        self.impassable = False
 
     def after_interaction(self):
         pass
@@ -67,8 +68,10 @@ class DecorationLamp2(Lamp):
         Classe que define uma lampada de decoração do tipo 2
     """
     def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
         self.lamp_image = os.path.join(constants.IMAGES_DIR, 'lamp 2.png')
-        super().__init__(self.lamp_image, x, y, position_mode, (69, 60))
+        self.image = pygame.image.load(self.vase_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (80, 170))
 
     def interaction(self, player):
         self.print_pop_up()        

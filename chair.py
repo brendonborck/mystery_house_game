@@ -12,6 +12,7 @@ class Chair(InteractiveObjetcs):
     def __init__(self, x, y, position_mode):
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'chair.png')
         super().__init__(self.chair_image, x, y, position_mode, (69, 60))
+        self.impassable = False
 
 
     def after_interaction(self):
@@ -35,8 +36,10 @@ class DecorationChair(Chair):
         Classe que define as cadeias decorativas das salas
     """
     def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'chair.png')
-        super().__init__(self.chair_image, x, y, position_mode, (69, 60))
+        self.image = pygame.image.load(self.chair_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (60, 75))
 
     def interaction(self, player):
         self.print_pop_up()        
@@ -72,8 +75,10 @@ class DecorationSofa(Chair):
         Classe que define os sofás decorativos das salas
     """
     def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'sofa.png')
-        super().__init__(self.chair_image, x, y, position_mode, (69, 60))
+        self.image = pygame.image.load(self.chair_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (60, 75))
 
     def interaction(self, player):
         self.print_pop_up()        
@@ -109,8 +114,10 @@ class DecorationBench(Chair):
         Classe que define um banquinho decorativo que estão nas salas
     """
     def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'bench.png')
-        super().__init__(self.chair_image, x, y, position_mode, (69, 60))
+        self.image = pygame.image.load(self.chair_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (60, 75))
 
     def interaction(self, player):
         self.print_pop_up()        
@@ -146,8 +153,10 @@ class DecorationArmChairLateral(Chair):
         Classe que define uma cadeira na posição lateral que estão nas salas
     """
     def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'red armchair right.png')
-        super().__init__(self.chair_image, x, y, position_mode, (69, 60))
+        self.image = pygame.image.load(self.chair_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (90, 115))
 
     def interaction(self, player):
         self.print_pop_up()        
@@ -183,8 +192,10 @@ class DecorationArmChairFront(Chair):
         Classe que define uma cadeira na posição frontal que estão nas salas
     """
     def __init__(self, x, y, position_mode):
+        super().__init__(x, y, position_mode)
         self.chair_image = os.path.join(constants.IMAGES_DIR, 'purple armchair front.png')
-        super().__init__(self.chair_image, x, y, position_mode, (69, 60))
+        self.image = pygame.image.load(self.chair_image).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (90, 115))
 
     def interaction(self, player):
         self.print_pop_up()        

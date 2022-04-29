@@ -11,7 +11,8 @@ class Piano(InteractiveObjetcs):
     """
     def __init__(self, x, y, position_mode):
         self.piano_image = os.path.join(constants.IMAGES_DIR, 'piano 2.png')
-        super().__init__(self.piano_image, x, y, position_mode, (69, 60))
+        super().__init__(self.piano_image, x, y, position_mode, (140, 155))
+        self.impassable = False
 
 
     def after_interaction(self):

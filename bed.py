@@ -19,13 +19,8 @@ class Bed(InteractiveObjetcs):
 
 
     def define_mask(self):
-<<<<<<< HEAD
-        mask_width = self.width*1.8
-        mask_height = self.height*1.8
-=======
         mask_width = self.width
         mask_height = self.height
->>>>>>> 587c94e080113df5ea91b6cb361dbacf38e0431e
         mask = pygame.mask.Mask((mask_width, mask_height), False)
         rect_width = mask_width
         rect_height = mask_height

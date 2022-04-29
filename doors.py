@@ -153,6 +153,11 @@ class Door2(Door):
                 'font_size': 40, 'width': w, 'height': h
             }
             Utils().print_message({'centralized', 'persistent'}, parameters)
+            if 'key_room_return_3' in player.pocket:
+                parameters = {'message': 'As chaves 2 e 8 continuam no seu bolso.', 'wait_time': 1.7,
+                    'font_size': 20, 'width': w, 'height': h, 'y_pop_up': 0.48*constants.HEIGHT
+                }
+                Utils().print_message({'centralized', 'persistent'}, parameters)
             player.passed_room = True
 
 
@@ -200,7 +205,24 @@ class Door2to3Rem(Door):
 
     def interaction(self, player):        
         player.stop_acting()
-        self.print_pop_up()
+        if 'key_room_return_2' in player.pocket and 'key_room_return_3' not in player.pocket:
+            self.puzzle_completed = True
+        else:
+            self.print_pop_up()
+
+        h = 0.2*constants.HEIGHT
+        w = 0.5*constants.WIDTH
+        if self.puzzle_completed:
+            self.image = pygame.image.load(self.open_door_image).convert_alpha()
+            self.image = pygame.transform.scale(self.image, (105, 130))
+            constants.SCREEN.blit(self.image, self.rect)
+            player.draw_player()
+            parameters = {'message': 'Usou a Chave', 'wait_time': 1.4,
+                'font_size': 40, 'width': w, 'height': h, 'y_pop_up': 0.48*constants.HEIGHT
+            }
+            Utils().print_message({'centralized', 'persistent'}, parameters)
+            player.passed_room = True
+
 
     def print_pop_up(self):
         options = {'centralized', 'persistent'}
@@ -279,7 +301,11 @@ class Door3to2(Door):
             constants.SCREEN.blit(self.image, self.rect)
             player.draw_player()
             parameters = {'message': 'Usou a Chave', 'wait_time': 1.4,
-                'font_size': 40, 'width': w, 'height': h
+                'font_size': 40, 'width': w, 'height': h, 'y_pop_up': 0.48*constants.HEIGHT
+            }
+            Utils().print_message({'centralized', 'persistent'}, parameters)
+            parameters = {'message': 'A chave 2 continua no seu bolso.', 'wait_time': 1.7,
+                'font_size': 20, 'width': w, 'height': h, 'y_pop_up': 0.48*constants.HEIGHT
             }
             Utils().print_message({'centralized', 'persistent'}, parameters)
             player.passed_room = True
