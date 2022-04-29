@@ -9,9 +9,8 @@ class Wardrobe(InteractiveObjetcs):
     """
         Classe que define os parametros básicos para o armário
     """
-    def __init__(self, x, y, position_mode):
-        self.Wardrobe = os.path.join(constants.IMAGES_DIR, 'wardrobe.png')
-        super().__init__(self.Wardrobe, x, y, position_mode, (103, 184))
+    def __init__(self, x, y, position_mode, scale = None):
+        super().__init__(self.link_image, x, y, position_mode, scale)
         self.puzzle_completed = False
 
 
@@ -20,12 +19,12 @@ class Wardrobe(InteractiveObjetcs):
 
 
     def define_mask(self):
-        mask_width = self.width*1.2
+        mask_width = self.width
         mask_height = self.height*1.2
         mask = pygame.mask.Mask((mask_width, mask_height), False)
-        rect_width = 0.8*mask_width
-        rect_height = 0.8*mask_height
-        position = ((mask_width - rect_width)/2, (mask_height - rect_height)/2)
+        rect_width = mask_width
+        rect_height = mask_height
+        position = ((self.width - rect_width)/2, (self.height - rect_height)/2)
         rect = pygame.mask.Mask((rect_width, rect_height), True)
         mask.draw(rect, position)
         return mask
@@ -36,6 +35,10 @@ class Wardrobe2(Wardrobe):
     """
         Classe que define armário da sala 2
     """
+    def __init__(self, x, y, position_mode):
+        self.link_image = os.path.join(constants.IMAGES_DIR, 'wardrobe.png')
+        super().__init__(x, y, position_mode, (105, 185))
+
     def interaction(self, player):
         if 'key_room_2' in player.pocket:
             options = {'centralized', 'persistent'}
@@ -128,10 +131,8 @@ class Wardrobe2Rem(Wardrobe):
         Classe que define armário da sala 3
     """
     def __init__(self, x, y, position_mode):
-        super().__init__(x, y, position_mode)
         self.link_image = os.path.join(constants.IMAGES_DIR, 'wardrobe.png')
-        self.image = pygame.image.load(self.link_image).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (103, 184))
+        super().__init__(x, y, position_mode, (105, 185))
 
     def interaction(self, player):
         self.print_pop_up()        
@@ -153,10 +154,8 @@ class Wardrobe3(Wardrobe):
         Classe que define armário da sala 3
     """
     def __init__(self, x, y, position_mode):
-        super().__init__(x, y, position_mode)
         self.link_image = os.path.join(constants.IMAGES_DIR, 'shelf 2.png')
-        self.image = pygame.image.load(self.link_image).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (130, 200))
+        super().__init__(x, y, position_mode, (130, 200))
 
     def interaction(self, player):
         self.print_pop_up()        
@@ -178,10 +177,8 @@ class Wardrobe4(Wardrobe):
         Classe que define armário da sala 4
     """
     def __init__(self, x, y, position_mode):
-        super().__init__(x, y, position_mode)
         self.link_image = os.path.join(constants.IMAGES_DIR, 'wine wardrobe.png')
-        self.image = pygame.image.load(self.link_image).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (85, 160))
+        super().__init__(x, y, position_mode, (85, 160))
 
     def interaction(self, player):
         self.print_pop_up()        

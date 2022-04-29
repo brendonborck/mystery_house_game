@@ -11,7 +11,7 @@ class Safe(InteractiveObjetcs):
     """
     def __init__(self, x, y, position_mode):
         self.safe_image = os.path.join(constants.IMAGES_DIR, 'safebox.png')
-        super().__init__(self.safe_image, x, y, position_mode, (80, 100))
+        super().__init__(self.safe_image, x, y, position_mode, (40, 50))
         self.puzzle_completed = False
 
 

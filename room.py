@@ -166,14 +166,14 @@ def create_rooms():
 
     name = 'Fase 3'
     print_time = 1.7
-    player_pos = (int(0.018*constants.WIDTH)*10, int(constants.Y_SUPERIOR_WALL/10)*10)
+    player_pos = (int(0.018*constants.WIDTH)*10, int(constants.HEIGHT*0.9/10)*10)
     exit_door_x = 0.12*constants.WIDTH
     exit_door_y = constants.Y_SUPERIOR_WALL
     return_door_x = 0.80*constants.WIDTH
     return_door_y = constants.Y_SUPERIOR_WALL
     paper_x = 0.8*constants.WIDTH
     paper_y = 0.4*constants.HEIGHT
-    wdrobe_x = 0.65*constants.WIDTH
+    wdrobe_x = int(0.65*constants.WIDTH/10)*10
     wdrobe_y = 0.20*constants.HEIGHT
     safebox_x = 0.10*constants.WIDTH
     safebox_y = 0.60*constants.HEIGHT
@@ -239,7 +239,7 @@ def create_rooms():
     return_door_y = constants.Y_SUPERIOR_WALL
     vase_x = 0.5*constants.WIDTH
     vase_y = 0.5*constants.HEIGHT
-    paper_x = 0.8*constants.WIDTH
+    paper_x = 0.75*constants.WIDTH
     paper_y = 0.4*constants.HEIGHT
     wdesk_x = 0.95*constants.WIDTH
     wdesk_y = 0.50*constants.HEIGHT
@@ -316,7 +316,7 @@ def create_rooms():
 
     name = 'Voltando...'
     print_time = 1.7
-    player_pos = (int(0.018*constants.WIDTH)*10, int(constants.Y_SUPERIOR_WALL/10)*10)
+    player_pos = (int(0.018*constants.WIDTH)*10, int(constants.HEIGHT*0.88/10)*10)
     exit_door_x = 0.12*constants.WIDTH
     exit_door_y = constants.Y_SUPERIOR_WALL
     return_door_x = 0.80*constants.WIDTH

@@ -19,12 +19,12 @@ class Writing_Desk(InteractiveObjetcs):
 
 
     def define_mask(self):
-        mask_width = self.width*1.2
+        mask_width = self.width
         mask_height = self.height*1.2
         mask = pygame.mask.Mask((mask_width, mask_height), False)
-        rect_width = 0.8*mask_width
-        rect_height = 0.8*mask_height
-        position = ((mask_width - rect_width)/2, (mask_height - rect_height)/2)
+        rect_width = mask_width
+        rect_height = mask_height
+        position = ((self.width - rect_width)/2, (self.height - rect_height)/2)
         rect = pygame.mask.Mask((rect_width, rect_height), True)
         mask.draw(rect, position)
         return mask
