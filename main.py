@@ -1,3 +1,4 @@
+from json import load
 import pygame
 import constants
 from menu import Menu
@@ -26,7 +27,7 @@ class Game:
         player_image = self.options['player_image']
         player_speed = self.options['speed']
         player = Player(player_image, player_speed)
-
+        self.run_music()
         self.run_rooms(player)
 
 
@@ -115,7 +116,12 @@ class Game:
         self.options = menu.get_options()
         self.running = menu.running
 	
-                    
+    def run_music(self):
+        start_music_path = os.path.join(constants.MUSIC_DIR, constants.MUSIC_GAME)
+        pygame.mixer.music.load(start_music_path) 
+        pygame.mixer.music.set_volume(1.0)   
+        pygame.mixer.music.play()
+        
     def end_game(self):
         self.clock.tick(constants.FPS)
         parameters = {'message': 'Você venceu!'}
